@@ -2,7 +2,6 @@
     font-family: 'Poiret One', cursive;
     background-color: var(--logo-clr4);
     margin: 0;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 10px;
