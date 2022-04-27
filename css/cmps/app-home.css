@@ -1,0 +1,7 @@
+.app-home{
+    background-image: url("../../assets/img/app-hero.png");
+    height: 100vh;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
