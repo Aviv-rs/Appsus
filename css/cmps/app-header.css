@@ -1,5 +1,6 @@
 .app-header{
     font-family: 'Poiret One', cursive;
+    font-weight: bold; 
     background-color: var(--logo-clr4);
     margin: 0;
     justify-content: space-between;
