@@ -1,6 +1,6 @@
 export function AppAbout() {
   return (
-    <section className="app-about">
+    <section className="app-about flex">
       <h1>About Apsus</h1>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas neque

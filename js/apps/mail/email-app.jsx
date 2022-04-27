@@ -1,8 +1,10 @@
+import {EmailPreview} from "./cmps/email-preview.jsx"
+
 export class EmailApp extends React.Component {
   render() {
     return (
       <main className="email-app">
-        <h2>Email app</h2>
+        <EmailPreview/>
       </main>
     )
   }
