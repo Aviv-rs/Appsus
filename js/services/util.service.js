@@ -9,6 +9,7 @@ export const utilService = {
   getFormattedPrice,
   debounce,
   prmDebounce,
+  getDateIntl,
 }
 
 function makeId(length = 6) {
@@ -135,4 +136,12 @@ function prmDebounce(f, interval) {
       timer = setTimeout(() => resolve(f(...args)), interval)
     })
   }
+}
+
+
+function getDateIntl(date) {
+  if(!date) date = Date.now()
+  let opt = { month: 'short', day: 'numeric' }
+  // let opt = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+  return new Intl.DateTimeFormat('en', opt).format(date)
 }
