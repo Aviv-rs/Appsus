@@ -21,5 +21,6 @@
 
 /* Cmps */
 @import './cmps/app-header.css';
+@import './cmps/app-footer.css';
 @import './cmps/app-home.css';
 @import './cmps/app-about.css';

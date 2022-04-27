@@ -1,0 +1,21 @@
+.app-header{
+    font-family: 'Poiret One', cursive;
+    background-color: var(--logo-clr4);
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.header-image{
+    height: 10vh;
+}
+
+a.page-link {
+    padding-right: 5px;
+    color: var(--logo-font);
+    text-decoration: none;
+}
+a.page-link.active {
+color: var(--logo-clr1);
+}
