@@ -1,0 +1,14 @@
+.app-footer{
+    position: fixed;
+    bottom: 0;
+    background-color: var(--logo-clr4);
+    width: 100vw;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-cr{
+    font-family: 'Poiret One', cursive;
+    color: var(--logo-clr1)
+}
