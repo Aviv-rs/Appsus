@@ -1,4 +1,6 @@
 .email-list{
+    width: 80%;
+    margin: auto;
 }
 
 ul.email-preview {
@@ -10,6 +12,12 @@ li.email-line {
     border: 1px solid var(--logo-font);
     justify-content: space-between;
 }
+li.email-line{
+    padding: 5px;
+    border: 1px solid var(--logo-font);
+    justify-content: space-between;
+    
+}
 li.email-line:hover {
     border: 2px solid var(--logo-font);
      
@@ -17,4 +25,17 @@ li.email-line:hover {
 span.mail-subject {
     font-size: large;
     font-weight: bold;
+}
+
+a.link-to-details {
+    text-decoration: none;
+    color: var(--logo-font);
+}
+a.link-to-details.read  {
+    text-decoration: none;
+    color: var(--logo-font);
+    background-color: lightgray;
+}
+
+.read{
 }
