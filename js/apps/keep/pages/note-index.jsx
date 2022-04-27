@@ -8,6 +8,7 @@ export class NoteIndex extends React.Component {
   }
 
   onAddNote = (ev, note) => {
+    if (!note.info.txt) return
     ev.preventDefault()
     noteService.addNote(note).then(this.loadNotes())
   }

@@ -9,8 +9,8 @@ export class NoteApp extends React.Component {
       <Router>
         <main className="note-app">
           <Switch>
-            <Route path="/note/details/:noteId?" component={NoteDetails} />
-            <Route path="/note/index" component={NoteIndex} />
+            <Route path="/keep/details/:noteId?" component={NoteDetails} />
+            <Route path="/keep" component={NoteIndex} />
           </Switch>
         </main>
       </Router>

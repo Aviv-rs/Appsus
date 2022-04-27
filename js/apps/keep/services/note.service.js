@@ -3,6 +3,7 @@ import { utilService } from '../../../services/util.service.js'
 
 export const noteService = {
   query,
+  addNote,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -37,6 +38,7 @@ function _createNotes() {
 
 function addNote(note) {
   let notes = _loadFromStorage()
+  note.id = utilService.makeId()
   notes = [note, ...notes]
   _saveToStorage(notes)
   return Promise.resolve()

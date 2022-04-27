@@ -15,7 +15,7 @@ export function App() {
       <main className="app">
         <Switch>
           <Route path="/mail" component={EmailApp} />
-          <Route path="/note" component={NoteApp} />
+          <Route path="/keep" component={NoteApp} />
           <Route path="/about" component={AppAbout} />
           <Route exact path="/" component={AppHome} />
         </Switch>
