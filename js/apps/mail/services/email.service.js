@@ -16,24 +16,24 @@ let gMails;
 function query(filterBy=0){
     gMails = _loadFromStorage()
     if (!gMails){
-        gMails = _crateMails()
+        gMails = _createMails()
         _saveToStorage(gMails)
     }
     if (filterBy){}
     return Promise.resolve(gMails)
 }
 
-function _crateMails(){
+function _createMails(){
     return [
-        _crateMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
-        _crateMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
-        _crateMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
-        _crateMail(utilService.makeLorem(5), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(5), utilService.makeLorem(), 'me@me.com'),
     ]
 
 }
 
-function _crateMail(subject, body='', to){
+function _createMail(subject, body='', to){
     return{
             id: utilService.makeId(),
             subject,
