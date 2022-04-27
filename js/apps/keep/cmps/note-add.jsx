@@ -48,17 +48,33 @@ export class NoteAdd extends React.Component {
             />
           </label>
         </form>
-        <button onClick={this.onChangeType} name="note-img">
-          Add image
+        <button
+          className="clean-btn btn-note-type"
+          onClick={this.onChangeType}
+          name="note-img"
+        >
+          <img src="assets/img/keep-icons/gallery.png" alt="" />
         </button>
-        <button onClick={this.onChangeType} name="note-todos">
-          Add todo-list
+        <button
+          className="clean-btn btn-note-type"
+          onClick={this.onChangeType}
+          name="note-todos"
+        >
+          <img src="assets/img/keep-icons/to-do-list.png" alt="" />
         </button>
-        <button onClick={this.onChangeType} name="note-video">
-          Add video
+        <button
+          className="clean-btn btn-note-type"
+          onClick={this.onChangeType}
+          name="note-video"
+        >
+          <img src="assets/img/keep-icons/video.png" alt="" />
         </button>
-        <button onClick={this.onChangeType} name="note-txt">
-          Add text
+        <button
+          className="clean-btn btn-note-type"
+          onClick={this.onChangeType}
+          name="note-txt"
+        >
+          <img src="assets/img/keep-icons/file.png" alt="" />
         </button>
       </section>
     )
