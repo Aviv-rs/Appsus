@@ -1,0 +1,5 @@
+.note-list {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin: 0 auto;
+  gap: 1rem;
+}

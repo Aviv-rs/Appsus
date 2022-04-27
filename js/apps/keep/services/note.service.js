@@ -1,6 +1,10 @@
 import { storageService } from '../../../services/storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
+export const noteService = {
+  query,
+}
+
 const NOTES_KEY = 'noteDB'
 
 function query(filterBy) {
@@ -25,11 +29,15 @@ function query(filterBy) {
 }
 
 function _createNotes() {
-  return [_createNote('note-txt', false, { txt: 'first note 😄' })]
+  return [
+    _createNote('note-txt', false, { txt: 'first note 😄' }),
+    _createNote('note-txt', false, { txt: 'NOTEice me senpai' }),
+  ]
 }
 
 function _createNote(type, isPinned, info, style) {
   return {
+    id: utilService.makeId(),
     type,
     isPinned,
     info,
