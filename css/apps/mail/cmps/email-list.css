@@ -19,7 +19,7 @@ li.email-line{
     
 }
 li.email-line:hover {
-    border: 2px solid var(--logo-font);
+    outline: 2px solid var(--logo-font);
      
 }
 span.mail-subject {
@@ -37,5 +37,11 @@ a.link-to-details.read  {
     background-color: lightgray;
 }
 
-.read{
+.mark-unread{
+    height: 15px;
+    display: block;
+}
+.delete-btn{
+    height: 25px;
+    display: block;
 }

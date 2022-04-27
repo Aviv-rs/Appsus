@@ -5,6 +5,8 @@ import {utilService} from '../../../services/util.service.js'
 export const emailService={
     query,
     getById,
+    markAsUnread,
+    removeMail,
 }
 
 const KEY = 'emailDB'
@@ -16,7 +18,7 @@ let gMails;
 
 function query(filterBy=0){
     gMails = _loadFromStorage()
-    if (!gMails){
+    if (!gMails || !gMails.length){
         gMails = _createMails()
         _saveToStorage(gMails)
     }
@@ -25,7 +27,7 @@ function query(filterBy=0){
 }
 
 function getById(id){
-    if (!gMails) {
+    if (!gMails || !gMails.length) {
         gMails = _loadFromStorage()
     }
     const mail = gMails.find(mail=> mail.id === id)
@@ -35,7 +37,7 @@ function getById(id){
 }
 
 function markAsUnread(id){
-    if (!gMails) {
+    if (!gMails || !gMails.length) {
         gMails = _loadFromStorage()
     }
     const mail = gMails.find(mail=> mail.id === id)
@@ -45,13 +47,13 @@ function markAsUnread(id){
 }
 
 function removeMail(id){
-    if (!gMails) {
+    if (!gMails || !gMails.length) {
         gMails = _loadFromStorage()
     }
     const mailIdx = gMails.findIndex(mail=> mail.id === id)
     gMails.splice(mailIdx, 1)
     _saveToStorage(gMails)
-    return Promise.resolve(mail)
+    return Promise.resolve(mailIdx)
 }
 
 
