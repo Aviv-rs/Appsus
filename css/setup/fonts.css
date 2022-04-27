@@ -1,0 +1,10 @@
+@font-face {
+    font-family: gaya;
+    src: url(../../assets/fonts/Gayathri/Gayathri-Bold.ttf);
+    src: url(../../assets/fonts/Gayathri/Gayathri-Regular.ttf);
+}
+
+@font-face {
+    font-family: poir;
+    src: url(../../assets/fonts/Poiret-One/PoiretOne-Regular.ttf);
+}
