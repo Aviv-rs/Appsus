@@ -35,6 +35,13 @@ function _createNotes() {
   ]
 }
 
+function addNote(note) {
+  let notes = _loadFromStorage()
+  notes = [note, ...notes]
+  _saveToStorage(notes)
+  return Promise.resolve()
+}
+
 function _createNote(type, isPinned, info, style) {
   return {
     id: utilService.makeId(),
