@@ -6,6 +6,7 @@ export const noteService = {
   addNote,
   deleteNote,
   toggleTodo,
+  changeStyle,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -62,6 +63,14 @@ function toggleTodo(todoId, noteId) {
 function deleteNote(noteId) {
   let notes = _loadFromStorage()
   notes = notes.filter(note => note.id !== noteId)
+  _saveToStorage(notes)
+  return Promise.resolve()
+}
+
+function changeStyle(noteId, style) {
+  let notes = _loadFromStorage()
+  const note = notes.find(note => note.id === noteId)
+  note.style = style
   _saveToStorage(notes)
   return Promise.resolve()
 }

@@ -1,8 +1,8 @@
 import { NoteControls } from '../note-controls.jsx'
 
-export function NoteTxt({ note, onDeleteNote }) {
+export function NoteTxt({ note, onDeleteNote, onChangeStyle }) {
   return (
-    <div className="note-txt note">
+    <div style={note.style} className="note-txt note">
       <p
         className="no-outline"
         suppressContentEditableWarning="true"
@@ -10,7 +10,11 @@ export function NoteTxt({ note, onDeleteNote }) {
       >
         {note.info.txt}
       </p>
-      <NoteControls note={note} onDeleteNote={onDeleteNote} />
+      <NoteControls
+        note={note}
+        onChangeStyle={onChangeStyle}
+        onDeleteNote={onDeleteNote}
+      />
     </div>
   )
 }

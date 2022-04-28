@@ -1,6 +1,6 @@
 import { NoteControls } from '../note-controls.jsx'
 
-export function NoteVideo({ note, onDeleteNote }) {
+export function NoteVideo({ note, onDeleteNote, onChangeStyle }) {
   const videoId = new URLSearchParams(note.info.url).get(
     'https://www.youtube.com/watch?v'
   )
@@ -14,7 +14,11 @@ export function NoteVideo({ note, onDeleteNote }) {
         frameBorder={0}
         allow={'fullscreen'}
       ></iframe>
-      <NoteControls note={note} onDeleteNote={onDeleteNote} />
+      <NoteControls
+        note={note}
+        onChangeStyle={onChangeStyle}
+        onDeleteNote={onDeleteNote}
+      />
     </div>
   )
 }

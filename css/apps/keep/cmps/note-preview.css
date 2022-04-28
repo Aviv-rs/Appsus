@@ -2,11 +2,12 @@
   min-height: 100px;
   border: 1px solid #515458;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1rem 1rem 2.5rem 1rem;
   break-inside: avoid;
   margin-bottom: 1rem;
   width: 240px;
   position: relative;
+  transition: background-color, 0.4s;
 }
 
 .note-controls {
@@ -17,22 +18,34 @@
   transition: opacity, 0.4s;
 }
 
+.note:hover .note-controls {
+  opacity: 1;
+}
 .note-controls button {
   border-radius: 50%;
   padding: 2px;
 }
 
-.btn-delete {
+.colors-container {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: lightgoldenrodyellow;
+}
+
+.colors-container .color {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.btn-note-edit {
   opacity: 0.7;
 }
 
-.btn-delete:hover {
-  background: #fdb833;
-  background-size: cover;
-  opacity: 1;
-}
-
-.note:hover .note-controls {
+.btn-note-edit:hover {
+  background: #5f636828;
   opacity: 1;
 }
 

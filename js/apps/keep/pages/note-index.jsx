@@ -29,6 +29,11 @@ export class NoteIndex extends React.Component {
     noteService.query().then(notes => this.setState({ notes }))
   }
 
+  onChangeStyle = (noteId, style) => {
+    console.log(style)
+    noteService.changeStyle(noteId, style).then(this.loadNotes)
+  }
+
   render() {
     const { notes } = this.state
     return (
@@ -36,6 +41,7 @@ export class NoteIndex extends React.Component {
         <NoteAdd onAddNote={this.onAddNote} />
         {notes && (
           <NoteList
+            onChangeStyle={this.onChangeStyle}
             onToggleTodo={this.onToggleTodo}
             onDeleteNote={this.onDeleteNote}
             notes={notes}
