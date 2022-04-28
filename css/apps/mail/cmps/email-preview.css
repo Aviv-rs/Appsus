@@ -1,6 +1,12 @@
 .email-preview{
     padding: 1rem 1rem
 }
+
+.mail-logo{
+    position: absolute;
+
+}
+
 .mail-logo-img{
     height: 4rem;
     background-color: var(--logo-clr1);

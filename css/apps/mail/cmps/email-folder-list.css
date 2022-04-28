@@ -1,0 +1,9 @@
+.email-folder-list{
+    position: absolute;
+    top: 16rem;
+}
+
+.folder-list-icon{
+    height: 15px;
+    padding-right: 5px;
+}
