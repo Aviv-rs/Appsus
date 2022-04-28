@@ -1,3 +1,6 @@
 .note-app {
   padding: 1rem;
+  height: 100vh;
+  background: #e8eaed;
+  color: #202124;
 }

@@ -14,7 +14,7 @@ export function NoteVideo({ note, onDeleteNote }) {
         frameBorder={0}
         allow={'fullscreen'}
       ></iframe>
-      <NoteControls />
+      <NoteControls note={note} onDeleteNote={onDeleteNote} />
     </div>
   )
 }

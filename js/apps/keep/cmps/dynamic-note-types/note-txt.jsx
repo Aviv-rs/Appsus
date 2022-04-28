@@ -10,7 +10,7 @@ export function NoteTxt({ note, onDeleteNote }) {
       >
         {note.info.txt}
       </p>
-      <NoteControls />
+      <NoteControls note={note} onDeleteNote={onDeleteNote} />
     </div>
   )
 }

@@ -4,7 +4,7 @@ export function NoteImg({ note, onDeleteNote }) {
   return (
     <div className="note">
       <img className="note-img" src={note.info.url} alt="" />
-      <NoteControls />
+      <NoteControls note={note} onDeleteNote={onDeleteNote} />
     </div>
   )
 }

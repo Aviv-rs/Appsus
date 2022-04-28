@@ -28,7 +28,7 @@ export class NoteTodos extends React.Component {
             </li>
           ))}
         </ul>
-        <NoteControls />
+        <NoteControls note={note} onDeleteNote={onDeleteNote} />
       </div>
     )
   }
