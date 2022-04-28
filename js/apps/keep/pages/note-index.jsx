@@ -18,7 +18,7 @@ export class NoteIndex extends React.Component {
   }
 
   onToggleTodo = (todoId, noteId) => {
-    noteService.toggleTodo(todoId, noteId)
+    noteService.toggleTodo(todoId, noteId).then(this.loadNotes())
   }
 
   componentDidMount() {
@@ -30,7 +30,6 @@ export class NoteIndex extends React.Component {
   }
 
   onChangeStyle = (noteId, style) => {
-    console.log(style)
     noteService.changeStyle(noteId, style).then(this.loadNotes)
   }
 
@@ -38,6 +37,8 @@ export class NoteIndex extends React.Component {
     const { notes } = this.state
     return (
       <section className="note-index">
+        {/* <input className="filter-input" type="text" placeholder="  ︎  Search note" /> */}
+
         <NoteAdd onAddNote={this.onAddNote} />
         {notes && (
           <NoteList

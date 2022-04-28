@@ -1,6 +1,6 @@
 .note {
   min-height: 100px;
-  border: 1px solid #515458;
+  border: 1px solid #c3bebe;
   border-radius: 8px;
   padding: 1rem 1rem 2.5rem 1rem;
   break-inside: avoid;
@@ -21,6 +21,7 @@
 .note:hover .note-controls {
   opacity: 1;
 }
+
 .note-controls button {
   border-radius: 50%;
   padding: 2px;
@@ -31,6 +32,8 @@
   gap: 10px;
   padding: 10px;
   background: lightgoldenrodyellow;
+  position: absolute;
+  z-index: 10;
 }
 
 .colors-container .color {
@@ -49,8 +52,29 @@
   opacity: 1;
 }
 
-.note-img {
+.note-img img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.note-video iframe {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.note.note-video,
+.note.note-img {
+  padding: 0 0 2.5rem 0;
+}
+.note.note-video .note-controls,
+.note.note-img .note-controls {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.todo.done {
+  text-decoration: line-through;
 }

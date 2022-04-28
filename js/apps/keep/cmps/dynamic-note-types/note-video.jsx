@@ -6,7 +6,7 @@ export function NoteVideo({ note, onDeleteNote, onChangeStyle }) {
   )
 
   return (
-    <div className="note note-video">
+    <div style={note.style} className="note note-video">
       <iframe
         width={'100%'}
         height={'100%'}

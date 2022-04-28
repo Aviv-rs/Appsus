@@ -58,6 +58,7 @@ function toggleTodo(todoId, noteId) {
   const todo = note.info.todos.find(todo => todo.id === todoId)
   todo.isDone = !todo.isDone
   _saveToStorage(notes)
+  return Promise.resolve()
 }
 
 function deleteNote(noteId) {

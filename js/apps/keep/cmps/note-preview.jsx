@@ -1,6 +1,7 @@
 import { NoteTxt } from './dynamic-note-types/note-txt.jsx'
 import { NoteImg } from './dynamic-note-types/note-img.jsx'
 import { NoteTodos } from './dynamic-note-types/note-todos.jsx'
+import { NoteVideo } from './dynamic-note-types/note-video.jsx'
 
 export function NotePreview({
   onToggleTodo,

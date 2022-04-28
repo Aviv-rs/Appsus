@@ -1,8 +1,12 @@
 import { NoteControls } from '../note-controls.jsx'
 
 export function NoteTxt({ note, onDeleteNote, onChangeStyle }) {
+  function onNoteActive() {
+    console.log('active')
+  }
+
   return (
-    <div style={note.style} className="note-txt note">
+    <div onClick={onNoteActive} style={note.style} className="note-txt note">
       <p
         className="no-outline"
         suppressContentEditableWarning="true"

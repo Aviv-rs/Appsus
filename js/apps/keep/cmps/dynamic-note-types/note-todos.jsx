@@ -10,23 +10,33 @@ export class NoteTodos extends React.Component {
     this.setState({ todos })
   }
 
+  onTodoDone() {
+    console.log('done')
+  }
+
   render() {
     const { todos } = this.state
     const { note, onDeleteNote, onChangeStyle } = this.props
     if (!todos) return <div className="loader">loading...</div>
     return (
-      <div className="note note-todos">
+      <div style={note.style} className="note note-todos">
         <ul>
-          {todos.map((todo, idx) => (
-            <li
-              data-done="todo"
-              key={idx}
-              onClick={() => this.props.onToggleTodo(todo.isDone)}
-              className="todo"
-            >
-              {todo.txt}
-            </li>
-          ))}
+          {todos.map((todo, idx) => {
+            const todoClass = todo.isDone ? 'todo done' : 'todo'
+
+            return (
+              <li
+                data-done="todo"
+                key={idx}
+                onClick={() => {
+                  this.props.onToggleTodo(todo.id, note.id)
+                }}
+                className={todoClass}
+              >
+                {todo.txt}
+              </li>
+            )
+          })}
         </ul>
         <NoteControls
           note={note}
