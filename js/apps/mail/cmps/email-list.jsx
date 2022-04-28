@@ -52,7 +52,7 @@ export class EmailList extends React.Component {
         return (
             <main className="email-list">
                 {unReadCount &&
-                    <span>{unReadCount} unread emails</span>
+                    <span className="unread-mails">{unReadCount}</span>
                 }
                 <button onClick={this.onToggleCompose} className="compose-btn">+ compose</button>
                 {mails &&
@@ -66,12 +66,12 @@ export class EmailList extends React.Component {
                                 className="email-line flex"
                             ><span className="mail-subject">{mail.subject}</span>
                                 <span className="mail-body">{this.onShortMailBody(mail.body)}...</span>
-                                <span className="mail-date">{mail.sentAt}
-                                <div className="flex">
+                                <span className="mail-date">{mail.sentAt}</span>
+                                <div className="list-btn flex">
                                     <img onClick={(event) => this.onMarkUnread(event, mail.id)} className="mark-unread" src="assets/img/mail-icons/mark-unread.png"></img>
                                     <img onClick={(event) => this.onDeleteMail(event, mail.id)} className="delete-btn" src="assets/img/delete.png"></img>
                                 </div>
-                                </span></li></Link>
+                                </li></Link>
                     })}</ul>
                 }
                 {compose &&
