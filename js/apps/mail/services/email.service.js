@@ -42,7 +42,7 @@ function markAsUnread(id){
         gMails = _loadFromStorage()
     }
     const mail = gMails.find(mail=> mail.id === id)
-    mail.isRead = false
+    mail.isRead = !mail.isRead
     _saveToStorage(gMails)
     return Promise.resolve(mail)
 }

@@ -9,21 +9,31 @@ ul.email-preview {
     flex-direction: column;
     list-style-type: none;
 }
-li.email-line {
+li.email-line:last-child {
     padding: 5px;
     border: 1px solid var(--logo-font);
     justify-content: space-between;
 }
-li.email-line{
-    padding: 5px;
-    border: 1px solid var(--logo-font);
-    justify-content: space-between;
-    
-}
+
 li.email-line:hover {
-    outline: 2px solid var(--logo-font);
+    outline: 1px solid var(--logo-font);
      
 }
+li.email-line:hover .list-btn{
+    opacity: 1;   
+    display: flex     
+}
+li.email-line:hover .mail-date{
+    opacity: 0;        
+}
+.list-btn{
+    transition: 0.4s;
+    display: none;
+    opacity: 0;
+}
+
+
+
 span.mail-subject {
     font-size: large;
     font-weight: bold;
@@ -63,5 +73,14 @@ a.link-to-details.read  {
 }
 .compose-btn:hover{
     background-color: #e1a738;
-
+}
+.unread-mails{
+    position: absolute;
+    top: 6rem;
+    left: 6rem;
+    background-color: var(--logo-clr4);
+    padding: 7px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
 }
