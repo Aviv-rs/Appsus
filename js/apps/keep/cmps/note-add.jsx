@@ -14,6 +14,7 @@ export class NoteAdd extends React.Component {
   onChangeType = ({ target }) => {
     const noteInput = this.inputRef.current
     const type = target.name
+    noteInput.value = ''
     this.setState(prevState => ({
       note: { ...prevState.note, type: type },
     }))
@@ -59,6 +60,7 @@ export class NoteAdd extends React.Component {
         </form>
         <div className="flex note-type-controls">
           <button
+            title={'Image note'}
             className="clean-btn btn-note-type"
             onClick={this.onChangeType}
           >
@@ -69,6 +71,7 @@ export class NoteAdd extends React.Component {
             />
           </button>
           <button
+            title={'Todo list note'}
             className="clean-btn btn-note-type"
             onClick={this.onChangeType}
           >
@@ -79,6 +82,7 @@ export class NoteAdd extends React.Component {
             />
           </button>
           <button
+            title={'Video note'}
             className="clean-btn btn-note-type"
             onClick={this.onChangeType}
           >
@@ -89,6 +93,7 @@ export class NoteAdd extends React.Component {
             />
           </button>
           <button
+            title={'Text note'}
             className="clean-btn btn-note-type"
             onClick={this.onChangeType}
           >
