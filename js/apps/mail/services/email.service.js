@@ -28,9 +28,7 @@ function query(filterBy=0){
 }
 
 function getById(id){
-    if (!gMails || !gMails.length) {
-        gMails = _loadFromStorage()
-    }
+    if (!gMails || !gMails.length)return
     const mail = gMails.find(mail=> mail.id === id)
     mail.isRead = true
     _saveToStorage(gMails)
@@ -38,9 +36,7 @@ function getById(id){
 }
 
 function markAsUnread(id){
-    if (!gMails || !gMails.length) {
-        gMails = _loadFromStorage()
-    }
+    if (!gMails || !gMails.length) return
     const mail = gMails.find(mail=> mail.id === id)
     mail.isRead = !mail.isRead
     _saveToStorage(gMails)
@@ -48,13 +44,11 @@ function markAsUnread(id){
 }
 
 function removeMail(id){
-    if (!gMails || !gMails.length) {
-        gMails = _loadFromStorage()
-    }
+    if (!gMails) return
     const mailIdx = gMails.findIndex(mail=> mail.id === id)
     gMails.splice(mailIdx, 1)
     _saveToStorage(gMails)
-    return Promise.resolve(mailIdx)
+    return Promise.resolve(gMails)
 }
 
 function sendMail(to, subject, body){
@@ -79,7 +73,15 @@ function _createMails(){
         _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
         _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
         _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(4), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
         _createMail(utilService.makeLorem(5), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(4), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
+        _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
     ]
 
 }

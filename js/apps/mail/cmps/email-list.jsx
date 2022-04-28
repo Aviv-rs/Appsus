@@ -1,5 +1,6 @@
 import { emailService } from "../services/email.service.js"
 import { EmailCompose } from "./email-compose.jsx"
+import {EmailFilter} from "./email-filter.jsx"
 const { Link } = ReactRouterDOM
 
 export class EmailList extends React.Component {
@@ -16,9 +17,10 @@ export class EmailList extends React.Component {
     loadMails = () => {
         emailService.query().then(mails => {
             this.setState({ mails })
+            this.setState({ unReadCount: 0})
             mails.forEach(mail => {
                 if (mail.isRead === false) {
-                    this.setState({ unReadCount: this.state.unReadCount-1 })
+                    this.setState({ unReadCount: this.state.unReadCount+1 })
                 }
             });
         })
@@ -32,8 +34,15 @@ export class EmailList extends React.Component {
 
     onDeleteMail = (ev, mailId) => {
         ev.preventDefault()
-        emailService.removeMail(mailId).then(() => this.loadMails())
-    }
+        emailService.removeMail(mailId).then((serviceMail) => {
+            this.setState({mails: serviceMail})
+            this.setState({ unReadCount: 0})
+            serviceMail.forEach(mail => {
+                if (mail.isRead === false) {
+                    this.setState({ unReadCount: this.state.unReadCount+1 })
+                }
+            });
+    })}
 
     onToggleCompose=()=>{
         this.setState({compose: !this.state.compose})
