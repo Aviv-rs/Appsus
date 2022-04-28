@@ -1,3 +1,7 @@
 .email-preview{
-    grid-template-columns: 150px 1fr;
+    padding: 1rem 1rem
+}
+.mail-logo-img{
+    height: 4rem;
+    background-color: var(--logo-clr1);
 }

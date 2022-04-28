@@ -67,8 +67,10 @@ export class EmailList extends React.Component {
                             ><span className="mail-subject">{mail.subject}</span>
                                 <span className="mail-body">{this.onShortMailBody(mail.body)}...</span>
                                 <span className="mail-date">{mail.sentAt}
-                                    <img onClick={(event) => this.onMarkUnread(event, mail.id)} className="mark-unread" src="assets/img/mark-unread.png"></img>
+                                <div className="flex">
+                                    <img onClick={(event) => this.onMarkUnread(event, mail.id)} className="mark-unread" src="assets/img/mail-icons/mark-unread.png"></img>
                                     <img onClick={(event) => this.onDeleteMail(event, mail.id)} className="delete-btn" src="assets/img/delete.png"></img>
+                                </div>
                                 </span></li></Link>
                     })}</ul>
                 }

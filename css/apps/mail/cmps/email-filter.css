@@ -1,3 +1,11 @@
-.email-filter {
-    grid-column: 1/-1;
+.email-filter{
+    text-align: center;
+    width: 70%;
+}
+
+.filter-input{
+    width: 70%;
+    height: 2.5rem;
+    border-radius: 7px;
+    background-color: snow;
 }
