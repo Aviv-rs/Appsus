@@ -18,7 +18,7 @@ export class EmailList extends React.Component {
             this.setState({ mails })
             mails.forEach(mail => {
                 if (mail.isRead === false) {
-                    this.setState({ unReadCount: this.state.unReadCount + 1 })
+                    this.setState({ unReadCount: this.state.unReadCount-1 })
                 }
             });
         })
