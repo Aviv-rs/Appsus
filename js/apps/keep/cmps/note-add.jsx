@@ -26,6 +26,9 @@ export class NoteAdd extends React.Component {
     } else if (type === 'note-todos') {
       noteInput.placeholder = 'Enter todos seperated by commas'
       noteInput.name = 'todos'
+    } else {
+      noteInput.placeholder = 'Insert video url'
+      noteInput.name = 'url'
     }
   }
 

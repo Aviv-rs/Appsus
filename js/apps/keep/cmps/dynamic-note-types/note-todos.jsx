@@ -1,23 +1,33 @@
-export function NoteTodos({ note, onDeleteNote }) {
-  function onToggleTodo({ target }) {}
+export class NoteTodos extends React.Component {
+  state = {
+    todos: null,
+  }
 
-  const todos = note.info.todos.split(',')
+  componentDidMount() {
+    const { todos } = this.props.note.info
+    this.setState({ todos })
+  }
 
-  return (
-    <div className="note">
-      <ul>
-        {todos.map((todo, idx) => (
-          <li
-            data-done="todo"
-            key={idx}
-            onClick={onToggleTodo}
-            className="todo"
-          >
-            {todo}
-          </li>
-        ))}
-      </ul>
-      <button onClick={() => onDeleteNote(note.id)}>Delete</button>
-    </div>
-  )
+  render() {
+    const { todos } = this.state
+    const { note, onDeleteNote } = this.props
+    if (!todos) return <div className="loader">loading...</div>
+    return (
+      <div className="note note-todos">
+        <ul>
+          {todos.map((todo, idx) => (
+            <li
+              data-done="todo"
+              key={idx}
+              onClick={() => this.props.onToggleTodo(todo.isDone)}
+              className="todo"
+            >
+              {todo.txt}
+            </li>
+          ))}
+        </ul>
+        <button onClick={() => onDeleteNote(note.id)}>Delete</button>
+      </div>
+    )
+  }
 }

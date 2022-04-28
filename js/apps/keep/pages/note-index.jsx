@@ -17,6 +17,10 @@ export class NoteIndex extends React.Component {
     noteService.deleteNote(noteId).then(this.loadNotes())
   }
 
+  onToggleTodo = (todoId, noteId) => {
+    noteService.toggleTodo(todoId, noteId)
+  }
+
   componentDidMount() {
     this.loadNotes()
   }
@@ -30,7 +34,13 @@ export class NoteIndex extends React.Component {
     return (
       <section className="note-index">
         <NoteAdd onAddNote={this.onAddNote} />
-        {notes && <NoteList onDeleteNote={this.onDeleteNote} notes={notes} />}
+        {notes && (
+          <NoteList
+            onToggleTodo={this.onToggleTodo}
+            onDeleteNote={this.onDeleteNote}
+            notes={notes}
+          />
+        )}
       </section>
     )
   }

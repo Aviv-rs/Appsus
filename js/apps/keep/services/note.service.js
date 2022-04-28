@@ -5,6 +5,7 @@ export const noteService = {
   query,
   addNote,
   deleteNote,
+  toggleTodo,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -40,9 +41,22 @@ function _createNotes() {
 function addNote(note) {
   let notes = _loadFromStorage()
   note.id = utilService.makeId()
+  if (note.type === 'note-todos') {
+    note.info.todos = note.info.todos
+      .split(',')
+      .map(todo => ({ txt: todo, isDone: false, id: utilService.makeId() }))
+  }
   notes = [note, ...notes]
   _saveToStorage(notes)
   return Promise.resolve()
+}
+
+function toggleTodo(todoId, noteId) {
+  let notes = _loadFromStorage()
+  const note = notes.find(note => note.id === noteId)
+  const todo = note.info.todos.find(todo => todo.id === todoId)
+  todo.isDone = !todo.isDone
+  _saveToStorage(notes)
 }
 
 function deleteNote(noteId) {

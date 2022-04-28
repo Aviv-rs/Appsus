@@ -10,5 +10,7 @@ export function NotePreview({ note, onDeleteNote }) {
       return <NoteImg onDeleteNote={onDeleteNote} note={note} />
     case 'note-todos':
       return <NoteTodos onDeleteNote={onDeleteNote} note={note} />
+    case 'note-video':
+      return <NoteVideo onDeleteNote={onDeleteNote} note={note} />
   }
 }
