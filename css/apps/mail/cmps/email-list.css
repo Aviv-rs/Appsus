@@ -52,4 +52,16 @@ a.link-to-details.read  {
 .compose-btn{
     position: absolute;
     left: 1rem;
+    top: 13rem;
+    width: 6.5rem;
+    border-radius: 20px;
+    padding: 5px;
+    border: none;
+    font-size: large;
+    color: white;
+    background-color: var(--logo-clr4);
+}
+.compose-btn:hover{
+    background-color: #e1a738;
+
 }
