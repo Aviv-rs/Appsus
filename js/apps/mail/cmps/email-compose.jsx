@@ -1,3 +1,5 @@
+import { emailService } from "../services/email.service.js"
+
 export class EmailCompose extends React.Component {
     state={
         message:{
@@ -5,29 +7,39 @@ export class EmailCompose extends React.Component {
             subject:'',
             textarea:'',
         },
-        isModalOpen: true 
+        
     }
 
+    handleChange = ({ target }) => {
+        const value =  target.value
+        const field = target.name
+        this.setState((prevState) => ({ message: { ...prevState.message, [field]: value } }), () => {
+        })
+    }
+
+
     onCloseModal=()=>{
-        this.setState({isModalOpen: false})
+        this.props.onToggleCompose()
     }
 
     onSendMail=(ev)=>{
+        const {to,subject,textarea} = this.state.message
         ev.preventDefault()
+        emailService.sendMail(to,subject,textarea).then(()=>{
+          this.onCloseModal()
+        })
     }
 
     render() {
-        const {isModalOpen} = this.state 
-        let hidden = (isModalOpen)? '':'hidden'
       return (
-        <div className={"email-compose "+hidden}>
+        <div className="email-compose">
       <h4 className="compose-header flex">New Message <span onClick={this.onCloseModal}>X</span></h4>
         <form onSubmit={this.onSendMail}>
-        <input type="text" className="compose-input" placeholder="To"/>
+        <input name="to" type="text" className="compose-input" placeholder="To" onChange={this.handleChange}/>
         <hr />
-        <input type="text" className="compose-input" placeholder="Subject"/>
+        <input name="subject" type="text" className="compose-input" placeholder="Subject" onChange={this.handleChange}/>
         <hr />
-        <textarea className="compose-text-area" name="" id="" cols="30" rows="10"></textarea>
+        <textarea name="textarea" className="compose-text-area" onChange={this.handleChange} id="" cols="30" rows="10"></textarea>
         <button className="send-btn">Send</button>
         </form>
         </div>

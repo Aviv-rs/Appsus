@@ -6,8 +6,8 @@ export class EmailList extends React.Component {
 
     state = {
         mails: [],
-        unReadCount: 0,
-
+        unReadCount: 0, 
+        compose: false
     }
 
     componentDidMount = () => {
@@ -35,9 +35,10 @@ export class EmailList extends React.Component {
         emailService.removeMail(mailId).then(() => this.loadMails())
     }
 
-    onOpenCompose=()=>{
-
+    onToggleCompose=()=>{
+        this.setState({compose: !this.state.compose})
     }
+
 
     onShortMailBody = (body) => {
         return body.slice(1, 50)
@@ -46,14 +47,14 @@ export class EmailList extends React.Component {
 
 
     render() {
-        let { mails, unReadCount } = this.state
+        let { mails, unReadCount,compose} = this.state
         let mailReadColor;
         return (
             <main className="email-list">
                 {unReadCount &&
                     <span>{unReadCount} unread emails</span>
                 }
-                <button onClick={this.onOpenCompose} className="compose-btn">+ compose</button>
+                <button onClick={this.onToggleCompose} className="compose-btn">+ compose</button>
                 {mails &&
                     <ul className="email-preview flex">{mails.map(mail => {
                         {
@@ -71,7 +72,9 @@ export class EmailList extends React.Component {
                                 </span></li></Link>
                     })}</ul>
                 }
-                <EmailCompose/>
+                {compose &&
+                <EmailCompose onToggleCompose={this.onToggleCompose}/>
+                }
             </main>
         )
     }

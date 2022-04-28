@@ -6,7 +6,7 @@ export class EmailPreview extends React.Component {
     render() {
       return (
         <main className="email-preview">
-          <EmailFilter/>
+          <EmailFilter className="email-filter"/>
           <EmailList/>
           <EmailFolderList/>
         </main>

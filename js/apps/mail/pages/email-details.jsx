@@ -21,8 +21,7 @@ export class EmailDetails extends React.Component {
         this.props.history.push('/mail')
     }
 
-    onDeleteMail=(ev,mailId)=>{
-      ev.preventDefault()
+    onDeleteMail=(mailId)=>{
       emailService.removeMail(mailId).then(()=>this.onGoBack())
   }
     
@@ -40,7 +39,7 @@ export class EmailDetails extends React.Component {
             <hr />
             </React.Fragment>}
           <h4 onClick={this.onGoBack}>←Return</h4>
-          <img onClick={(event)=>this.onDeleteMail(event, mail.id)} className="delete-btn" src="assets/img/delete.png"></img>
+          <img onClick={()=>this.onDeleteMail(mail.id)} className="delete-btn" src="assets/img/delete.png"></img>
         </main>
       )
     }
