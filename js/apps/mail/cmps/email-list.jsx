@@ -1,6 +1,8 @@
 import { emailService } from "../services/email.service.js"
 import { EmailCompose } from "./email-compose.jsx"
 import {EmailFilter} from "./email-filter.jsx"
+import { eventBusService } from "../../../services/event-bus-service.js"
+
 const { Link } = ReactRouterDOM
 
 export class EmailList extends React.Component {
@@ -8,14 +10,30 @@ export class EmailList extends React.Component {
     state = {
         mails: [],
         unReadCount: 0, 
-        compose: false
+        compose: false,
+        filter: '',
+        folder:'',
     }
 
     componentDidMount = () => {
         this.loadMails()
+        eventBusService.on('filter-submit', this.GetFilter)
+        eventBusService.on('folder-submit', this.GetFolder)
     }
+
+    GetFilter=(info)=>{
+        this.setState({filter: info})
+        this.loadMails()
+    }
+    GetFolder=(info)=>{
+        this.setState({folder: info})
+        this.loadMails()
+    }
+
     loadMails = () => {
-        emailService.query().then(mails => {
+        let {filter, folder} = this.state
+        // console.log(filter, folder)
+        emailService.query(filter, folder).then(mails => {
             this.setState({ mails })
             this.setState({ unReadCount: 0})
             mails.forEach(mail => {
@@ -60,7 +78,7 @@ export class EmailList extends React.Component {
         let mailReadColor;
         return (
             <main className="email-list">
-                {unReadCount &&
+                {unReadCount.toString() > 0 &&
                     <span className="unread-mails">{unReadCount}</span>
                 }
                 <button onClick={this.onToggleCompose} className="compose-btn">+ compose</button>

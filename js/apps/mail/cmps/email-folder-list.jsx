@@ -1,4 +1,4 @@
-
+import { eventBusService } from "../../../services/event-bus-service.js"
 
 export class EmailFolderList extends React.Component {
   state={
@@ -7,7 +7,7 @@ export class EmailFolderList extends React.Component {
 
   onShowType=({target})=>{
     this.setState({mailType: target.innerText})
-    this.setMailType()
+    eventBusService.emit('folder-submit', target.innerText)
   }
   setMailType=()=>{
     
