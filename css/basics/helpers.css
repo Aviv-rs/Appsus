@@ -61,6 +61,7 @@
 .clean-btn {
   background-color: inherit;
   border: none;
+  padding: 0;
 }
 
 /* list helpers */

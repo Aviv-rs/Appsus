@@ -4,6 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 export const noteService = {
   query,
   addNote,
+  deleteNote,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -40,6 +41,13 @@ function addNote(note) {
   let notes = _loadFromStorage()
   note.id = utilService.makeId()
   notes = [note, ...notes]
+  _saveToStorage(notes)
+  return Promise.resolve()
+}
+
+function deleteNote(noteId) {
+  let notes = _loadFromStorage()
+  notes = notes.filter(note => note.id !== noteId)
   _saveToStorage(notes)
   return Promise.resolve()
 }

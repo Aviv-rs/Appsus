@@ -1,10 +1,10 @@
 import { NotePreview } from './note-preview.jsx'
 
-export function NoteList({ notes }) {
+export function NoteList({ notes, onDeleteNote }) {
   return (
     <section className="note-list ">
       {notes.map(note => (
-        <NotePreview note={note} key={note.id} />
+        <NotePreview onDeleteNote={onDeleteNote} note={note} key={note.id} />
       ))}
     </section>
   )

@@ -1,0 +1,15 @@
+.note-type-controls {
+  gap: 5px;
+  margin-inline-start: 1rem;
+}
+
+.btn-note-type {
+  border-radius: 50%;
+  opacity: 0.7;
+  padding: 7px;
+}
+
+.btn-note-type:hover {
+  background-color: #fdb833;
+  opacity: 1;
+}

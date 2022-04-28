@@ -8,9 +8,13 @@ export class NoteIndex extends React.Component {
   }
 
   onAddNote = (ev, note) => {
-    if (!note.info.txt) return
     ev.preventDefault()
+    if (!note.info.txt && !note.info.url && !note.info.todos) return
     noteService.addNote(note).then(this.loadNotes())
+  }
+
+  onDeleteNote = noteId => {
+    noteService.deleteNote(noteId).then(this.loadNotes())
   }
 
   componentDidMount() {
@@ -26,7 +30,7 @@ export class NoteIndex extends React.Component {
     return (
       <section className="note-index">
         <NoteAdd onAddNote={this.onAddNote} />
-        {notes && <NoteList notes={notes} />}
+        {notes && <NoteList onDeleteNote={this.onDeleteNote} notes={notes} />}
       </section>
     )
   }
