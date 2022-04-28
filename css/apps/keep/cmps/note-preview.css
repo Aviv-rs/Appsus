@@ -6,6 +6,13 @@
   break-inside: avoid;
   margin-bottom: 1rem;
   width: 240px;
+  position: relative;
+}
+
+.note-controls {
+  position: absolute;
+  bottom: 9px;
+  height: 24px;
 }
 
 .note-img {
