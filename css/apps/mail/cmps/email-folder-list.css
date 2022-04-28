@@ -1,6 +1,7 @@
 .email-folder-list{
     position: absolute;
     top: 16rem;
+    cursor:pointer;
 }
 
 .folder-list-icon{
