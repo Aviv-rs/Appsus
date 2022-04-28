@@ -71,11 +71,13 @@ function _createMails(){
 function _createMail(subject, body='', from){
     return{
             id: utilService.makeId(),
+            status: 'inbox',
             subject,
             body,
             isRead: false,
             sentAt : utilService.getDateIntl(Date.now()),
             from,
+            labels:['important', 'romantic']
     }
 }
 
