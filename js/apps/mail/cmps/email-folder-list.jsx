@@ -1,5 +1,9 @@
+
+
 export class EmailFolderList extends React.Component {
-    render() {
+
+  
+  render() {
       return (
         <main className="email-folder-list">
           <h2>Email Folder List</h2>

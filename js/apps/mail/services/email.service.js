@@ -7,6 +7,7 @@ export const emailService={
     getById,
     markAsUnread,
     removeMail,
+    sendMail,
 }
 
 const KEY = 'emailDB'
@@ -56,7 +57,22 @@ function removeMail(id){
     return Promise.resolve(mailIdx)
 }
 
-
+function sendMail(to, subject, body){
+    const newMail ={
+        id: utilService.makeId(),
+            status: 'sent',
+            subject,
+            body,
+            isRead: true,
+            sentAt : utilService.getDateIntl(Date.now()),
+            from: loggedinUser.fullname,
+            to,
+            labels:['important', 'romantic']
+    }
+    gMails.push(newMail)
+    _saveToStorage(gMails)
+    return Promise.resolve(newMail)
+}
 
 function _createMails(){
     return [
@@ -68,7 +84,7 @@ function _createMails(){
 
 }
 
-function _createMail(subject, body='', from){
+function _createMail(subject, body='', from=loggedinUser.email){
     return{
             id: utilService.makeId(),
             status: 'inbox',
@@ -77,6 +93,7 @@ function _createMail(subject, body='', from){
             isRead: false,
             sentAt : utilService.getDateIntl(Date.now()),
             from,
+            to: loggedinUser.email,
             labels:['important', 'romantic']
     }
 }

@@ -1,6 +1,8 @@
 .email-list{
     width: 80%;
     margin: auto;
+    grid-row: 2;
+    grid-column: 2;
 }
 
 ul.email-preview {
