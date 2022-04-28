@@ -1,3 +1,5 @@
+import { NoteControls } from '../note-controls.jsx'
+
 export class NoteTodos extends React.Component {
   state = {
     todos: null,
@@ -26,7 +28,7 @@ export class NoteTodos extends React.Component {
             </li>
           ))}
         </ul>
-        <button onClick={() => onDeleteNote(note.id)}>Delete</button>
+        <NoteControls />
       </div>
     )
   }
