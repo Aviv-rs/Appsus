@@ -1,6 +1,12 @@
 import { NoteControls } from '../note-controls.jsx'
 
-export function NoteVideo({ note, onDeleteNote, onChangeStyle }) {
+export function NoteVideo({
+  note,
+  onDeleteNote,
+  onChangeStyle,
+  onDuplicateNote,
+  noteIdx,
+}) {
   const videoId = new URLSearchParams(note.info.url).get(
     'https://www.youtube.com/watch?v'
   )
@@ -18,6 +24,8 @@ export function NoteVideo({ note, onDeleteNote, onChangeStyle }) {
         note={note}
         onChangeStyle={onChangeStyle}
         onDeleteNote={onDeleteNote}
+        onDuplicateNote={onDuplicateNote}
+        noteIdx={noteIdx}
       />
     </div>
   )

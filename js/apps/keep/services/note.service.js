@@ -81,6 +81,7 @@ function addNote(note) {
 function duplicateNote(noteIdx) {
   let notes = _loadFromStorage()
   const note = { ...notes[noteIdx] }
+  note.id = utilService.makeId()
   notes.splice(noteIdx, 0, note)
   _saveToStorage(notes)
   return Promise.resolve()
