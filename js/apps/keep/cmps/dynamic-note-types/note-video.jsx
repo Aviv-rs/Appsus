@@ -5,6 +5,7 @@ export function NoteVideo({
   onDeleteNote,
   onChangeStyle,
   onDuplicateNote,
+  onTogglePin,
   noteIdx,
 }) {
   const videoId = new URLSearchParams(note.info.url).get(
@@ -25,6 +26,7 @@ export function NoteVideo({
         onChangeStyle={onChangeStyle}
         onDeleteNote={onDeleteNote}
         onDuplicateNote={onDuplicateNote}
+        onTogglePin={onTogglePin}
         noteIdx={noteIdx}
       />
     </div>

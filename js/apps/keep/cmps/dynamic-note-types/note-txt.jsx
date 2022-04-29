@@ -5,6 +5,7 @@ export function NoteTxt({
   onDeleteNote,
   onChangeStyle,
   onDuplicateNote,
+  onTogglePin,
   noteIdx,
 }) {
   function onNoteActive() {
@@ -26,6 +27,7 @@ export function NoteTxt({
         onChangeStyle={onChangeStyle}
         onDeleteNote={onDeleteNote}
         onDuplicateNote={onDuplicateNote}
+        onTogglePin={onTogglePin}
         noteIdx={noteIdx}
       />
     </div>

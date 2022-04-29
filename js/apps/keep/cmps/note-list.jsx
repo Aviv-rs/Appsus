@@ -7,18 +7,22 @@ export function NoteList({
   onToggleTodo,
   onChangeStyle,
   isPinnedNotes,
+  onTogglePin,
 }) {
+  const noteListClass = isPinnedNotes ? 'note-list pinned-notes' : 'note-list'
+
   return (
-    <section className="note-list ">
+    <section className={noteListClass}>
       {notes.map((note, idx) => {
         if (!isPinnedNotes && note.isPinned)
-          return <ReactFragment></ReactFragment>
+          return <React.Fragment key={idx}></React.Fragment>
         else
           return (
             <NotePreview
               onDuplicateNote={onDuplicateNote}
               onChangeStyle={onChangeStyle}
               onToggleTodo={onToggleTodo}
+              onTogglePin={onTogglePin}
               onDeleteNote={onDeleteNote}
               note={note}
               noteIdx={idx}

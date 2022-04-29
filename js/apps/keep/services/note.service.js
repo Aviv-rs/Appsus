@@ -8,6 +8,7 @@ export const noteService = {
   toggleTodo,
   changeStyle,
   duplicateNote,
+  togglePin,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -83,6 +84,14 @@ function duplicateNote(noteIdx) {
   const note = { ...notes[noteIdx] }
   note.id = utilService.makeId()
   notes.splice(noteIdx, 0, note)
+  _saveToStorage(notes)
+  return Promise.resolve()
+}
+
+function togglePin(noteId) {
+  let notes = _loadFromStorage()
+  const note = notes.find(note => note.id === noteId)
+  note.isPinned = !note.isPinned
   _saveToStorage(notes)
   return Promise.resolve()
 }
