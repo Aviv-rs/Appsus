@@ -3,7 +3,6 @@ import { NotePreview } from './note-preview.jsx'
 export function NoteList({
   notes,
   onDuplicateNote,
-  noteIdx,
   onDeleteNote,
   onToggleTodo,
   onChangeStyle,
