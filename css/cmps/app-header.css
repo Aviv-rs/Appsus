@@ -11,12 +11,20 @@
 .header-image{
     height: 10vh;
 }
-
-a.page-link {
-    padding-right: 5px;
-    color: var(--logo-font);
-    text-decoration: none;
+.menu-modal{
+    position: absolute;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    background-color: aliceblue;
+    right: 2rem;
+    top: 4rem;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 85%;
 }
-a.page-link.active {
-color: var(--logo-clr1);
+
+.menu-nav:hover{
+    background-color: lightgray ;
 }
