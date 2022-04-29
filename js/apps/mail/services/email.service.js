@@ -14,29 +14,26 @@ const loggedinUser = {
   email: 'user@appsus.com',
   fullname: 'Mahatma Appsus',
 }
-let gMails
+//  gMails
 
 function query(filterBy, folderBy) {
-  gMails = _loadFromStorage()
+  let gMails = _loadFromStorage()
   if (!gMails || !gMails.length) {
     gMails = _createMails()
     _saveToStorage(gMails)
   }
-  if (filterBy || filterBy.length) {
-    // console.log('filter')
-    // let {filter} = filterBy
-    // console.log(filter)
-    // console.log(filterBy)
+  if (filterBy) {
+    
     gMails=gMails.filter(mail=> {
-        mail.body.includes(filterBy)
-        console.log(mail)
-    })
+        mail.subject.includes(filterBy)
+      })
 }
 if (folderBy) {
       gMails=gMails.filter(mail=> {
           mail.status === folderBy
-          console.log(mail.status)
+          
       })
+      
   }
 
   return Promise.resolve(gMails)
@@ -69,7 +66,7 @@ function removeMail(id) {
 function sendMail(to, subject, body) {
   const newMail = {
     id: utilService.makeId(),
-    status: 'sent',
+    status: 'Sent Mail',
     subject,
     body,
     isRead: true,
@@ -103,7 +100,7 @@ function _createMails() {
 function _createMail(subject, body = '', from = loggedinUser.email) {
   return {
     id: utilService.makeId(),
-    status: 'inbox',
+    status: 'Inbox',
     subject,
     body,
     isRead: false,

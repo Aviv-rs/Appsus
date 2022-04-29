@@ -14,26 +14,29 @@ export class EmailList extends React.Component {
         filter: '',
         folder:'',
     }
+    removeFilterEvent;
+    removeFolderEvent;
 
     componentDidMount = () => {
         this.loadMails()
-        eventBusService.on('filter-submit', this.GetFilter)
-        eventBusService.on('folder-submit', this.GetFolder)
+        this.removeFilterEvent = eventBusService.on('filter-submit ', (filter)=> this.getFilter(filter))
+        this.removeFolderEvent = eventBusService.on('folder-submit', (folder)=>{
+            console.log('mount folder ', folder)
+            this.getFolder(folder)})
     }
 
-    GetFilter=(info)=>{
-        this.setState({filter: info})
-        this.loadMails()
+    getFilter=(info)=>{
+        this.setState({filter: info}, ()=>this.loadMails())
     }
-    GetFolder=(info)=>{
-        this.setState({folder: info})
-        this.loadMails()
+    getFolder=(info)=>{
+        this.setState({folder: info}, ()=>this.loadMails())
     }
 
     loadMails = () => {
+        // debugger
         let {filter, folder} = this.state
-        // console.log(filter, folder)
         emailService.query(filter, folder).then(mails => {
+
             this.setState({ mails })
             this.setState({ unReadCount: 0})
             mails.forEach(mail => {
@@ -71,7 +74,10 @@ export class EmailList extends React.Component {
         return body.slice(1, 50)
     }
 
-
+    componentWillUnmount=()=>{
+        this.removeFilterEvent()
+        this.removeFolderEvent()
+    }
 
     render() {
         let { mails, unReadCount,compose} = this.state
