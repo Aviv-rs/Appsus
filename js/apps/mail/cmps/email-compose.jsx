@@ -35,7 +35,7 @@ export class EmailCompose extends React.Component {
         <div className="email-compose">
       <h4 className="compose-header flex">New Message <span onClick={this.onCloseModal}>X</span></h4>
         <form onSubmit={this.onSendMail}>
-        <input name="to" type="text" className="compose-input" placeholder="To" onChange={this.handleChange}/>
+        <input name="to" type="email" className="compose-input" placeholder="To" onChange={this.handleChange}/>
         <hr />
         <input name="subject" type="text" className="compose-input" placeholder="Subject" onChange={this.handleChange}/>
         <hr />

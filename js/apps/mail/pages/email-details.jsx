@@ -13,7 +13,7 @@ export class EmailDetails extends React.Component {
     loadMail=(mailId)=>{
         emailService.getById(mailId).then(mail=>{
             if (!mail) this.props.history.push('/')
-            console.log(mail)
+            // console.log(mail)
             this.setState({mail})
         })
     }

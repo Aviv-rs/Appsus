@@ -47,22 +47,24 @@ export class EmailList extends React.Component {
 
     }
 
-    onMarkUnread = (ev, mailId) => {
-        ev.preventDefault()
-        emailService.markAsUnread(mailId).then(() => this.loadMails())
-    }
-
-    onDeleteMail = (ev, mailId) => {
-        ev.preventDefault()
-        emailService.removeMail(mailId).then((serviceMail) => {
-            this.setState({ mails: serviceMail })
+    reLoadMails=(mailsType)=>{
+        this.setState({ mails: mailsType })
             this.setState({ unReadCount: 0 })
-            serviceMail.forEach(mail => {
+            mailsType.forEach(mail => {
                 if (mail.isRead === false) {
                     this.setState({ unReadCount: this.state.unReadCount + 1 })
                 }
             });
-        })
+    }
+
+    onMarkUnread = (ev, mailId) => {
+        ev.preventDefault()
+        emailService.markAsUnread(mailId).then(this.reLoadMails)
+    }
+
+    onDeleteMail = (ev, mailId) => {
+        ev.preventDefault()
+        emailService.removeMail(mailId).then(this.reLoadMails)
     }
 
     onToggleCompose = () => {
@@ -75,7 +77,7 @@ export class EmailList extends React.Component {
     onSortBy = ({ target }) => {
         this.onToggleSortModal()
         emailService.sortMail(target.innerText)
-            .then(this.loadMails)
+            .then(this.reLoadMails)
     }
 
     onShortMailBody = (body) => {
