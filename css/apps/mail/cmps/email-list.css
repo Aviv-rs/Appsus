@@ -54,6 +54,16 @@ a.link-to-details.read  {
     width: 30px;
     display: block;
 }
+
+.three-dots-btn{
+    height: 35px;
+}
+.three-dots-btn:hover{
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .delete-btn{
     height: 25px;
     width: 20px;
@@ -83,4 +93,16 @@ a.link-to-details.read  {
     border-radius: 50%;
     color: white;
     font-weight: bold;
+}
+.sort-modal{
+    top: 8rem;
+    position: absolute;
+    left: 10.5rem;
+    background-color: white;
+    padding: 10px;
+    line-height: 25px;
+    border-radius: 5px;
+}
+.sort-type:hover{
+    background-color: #e8eaed;
 }

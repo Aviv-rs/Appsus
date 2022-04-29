@@ -4,6 +4,12 @@
     cursor:pointer;
 }
 
+.email-folder-list-item:hover{
+    background-color: white;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
 .folder-list-icon{
     height: 15px;
     padding-right: 5px;

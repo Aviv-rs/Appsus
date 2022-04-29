@@ -1,7 +1,7 @@
 import { emailService } from "../services/email.service.js"
 import { EmailCompose } from "./email-compose.jsx"
-import {EmailFilter} from "./email-filter.jsx"
 import { eventBusService } from "../../../services/event-bus-service.js"
+import { utilService } from "../../../services/util.service.js"
 
 const { Link } = ReactRouterDOM
 
@@ -9,37 +9,38 @@ export class EmailList extends React.Component {
 
     state = {
         mails: [],
-        unReadCount: 0, 
+        unReadCount: 0,
         compose: false,
         filter: '',
-        folder:'',
+        folder: '',
+        sortModal: false
     }
     removeFilterEvent;
     removeFolderEvent;
 
-    componentDidMount = () => {
+    componentDidMount() {
         this.loadMails()
-        this.removeFilterEvent = eventBusService.on('filter-submit', (filter)=> this.getFilter(filter))
-        this.removeFolderEvent = eventBusService.on('folder-submit', (folder)=>this.getFolder(folder))
+        this.removeFilterEvent = eventBusService.on('filter-submit', (filter) => this.getFilter(filter))
+        this.removeFolderEvent = eventBusService.on('folder-submit', (folder) => this.getFolder(folder))
     }
 
-    getFilter=(info)=>{
-        this.setState({filter: info}, ()=>this.loadMails())
+    getFilter = (info) => {
+        this.setState({ filter: info }, () => this.loadMails())
     }
-    getFolder=(info)=>{
-        this.setState({folder: info}, ()=>this.loadMails())
+    getFolder = (info) => {
+        this.setState({ folder: info }, () => this.loadMails())
     }
 
     loadMails = () => {
         // debugger
-        let {filter, folder} = this.state
+        let { filter, folder } = this.state
         emailService.query(filter, folder).then(mails => {
 
             this.setState({ mails })
-            this.setState({ unReadCount: 0})
+            this.setState({ unReadCount: 0 })
             mails.forEach(mail => {
                 if (mail.isRead === false) {
-                    this.setState({ unReadCount: this.state.unReadCount+1 })
+                    this.setState({ unReadCount: this.state.unReadCount + 1 })
                 }
             });
         })
@@ -54,31 +55,44 @@ export class EmailList extends React.Component {
     onDeleteMail = (ev, mailId) => {
         ev.preventDefault()
         emailService.removeMail(mailId).then((serviceMail) => {
-            this.setState({mails: serviceMail})
-            this.setState({ unReadCount: 0})
+            this.setState({ mails: serviceMail })
+            this.setState({ unReadCount: 0 })
             serviceMail.forEach(mail => {
                 if (mail.isRead === false) {
-                    this.setState({ unReadCount: this.state.unReadCount+1 })
+                    this.setState({ unReadCount: this.state.unReadCount + 1 })
                 }
             });
-    })}
-
-    onToggleCompose=()=>{
-        this.setState({compose: !this.state.compose})
+        })
     }
 
+    onToggleCompose = () => {
+        this.setState({ compose: !this.state.compose })
+    }
+    onToggleSortModal = () => {
+        this.setState({ sortModal: !this.state.sortModal })
+    }
+
+    onSortBy = ({ target }) => {
+        this.onToggleSortModal()
+        emailService.sortMail(target.innerText)
+            .then(this.loadMails)
+    }
 
     onShortMailBody = (body) => {
         return body.slice(1, 50)
     }
 
-    componentWillUnmount=()=>{
+    getDate = (date) => {
+        return utilService.getDateIntl(date)
+    }
+
+    componentWillUnmount() {
         this.removeFilterEvent()
         this.removeFolderEvent()
     }
 
     render() {
-        let { mails, unReadCount,compose} = this.state
+        let { mails, unReadCount, compose, sortModal } = this.state
         let mailReadColor;
         return (
             <main className="email-list">
@@ -86,6 +100,15 @@ export class EmailList extends React.Component {
                     <span className="unread-mails">{unReadCount}</span>
                 }
                 <button onClick={this.onToggleCompose} className="compose-btn">+ compose</button>
+                <img onClick={this.onToggleSortModal} className="three-dots-btn" src="assets/img/three-dots.png"></img>
+                {sortModal &&
+                    <div className="sort-modal">
+                        <p onClick={this.onSortBy} className="sort-type">Oldest to Newest</p>
+                        <p onClick={this.onSortBy} className="sort-type">Newest to Oldest</p>
+                        <p onClick={this.onSortBy} className="sort-type">A-Z</p>
+                        <p onClick={this.onSortBy} className="sort-type">Z-A</p>
+                    </div>
+                }
                 {mails &&
                     <ul className="email-preview flex">{mails.map(mail => {
                         {
@@ -97,16 +120,16 @@ export class EmailList extends React.Component {
                                 className="email-line flex"
                             ><span className="mail-subject">{mail.subject}</span>
                                 <span className="mail-body">{this.onShortMailBody(mail.body)}...</span>
-                                <span className="mail-date">{mail.sentAt}</span>
+                                <span className="mail-date">{this.getDate(mail.sentAt)}</span>
                                 <div className="list-btn flex">
                                     <img onClick={(event) => this.onMarkUnread(event, mail.id)} className="mark-unread" src="assets/img/mail-icons/mark-unread.png"></img>
                                     <img onClick={(event) => this.onDeleteMail(event, mail.id)} className="delete-btn" src="assets/img/delete.png"></img>
                                 </div>
-                                </li></Link>
+                            </li></Link>
                     })}</ul>
                 }
                 {compose &&
-                <EmailCompose onToggleCompose={this.onToggleCompose}/>
+                    <EmailCompose onToggleCompose={this.onToggleCompose} />
                 }
             </main>
         )
