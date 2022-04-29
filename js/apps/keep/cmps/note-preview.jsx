@@ -5,6 +5,7 @@ import { NoteVideo } from './dynamic-note-types/note-video.jsx'
 
 export function NotePreview({
   onToggleTodo,
+  onDuplicateNote,
   note,
   onDeleteNote,
   onChangeStyle,
@@ -13,6 +14,7 @@ export function NotePreview({
     case 'note-txt':
       return (
         <NoteTxt
+          onDuplicateNote={onDuplicateNote}
           onChangeStyle={onChangeStyle}
           onDeleteNote={onDeleteNote}
           note={note}
@@ -21,6 +23,7 @@ export function NotePreview({
     case 'note-img':
       return (
         <NoteImg
+          onDuplicateNote={onDuplicateNote}
           onChangeStyle={onChangeStyle}
           onDeleteNote={onDeleteNote}
           note={note}
@@ -29,6 +32,7 @@ export function NotePreview({
     case 'note-todos':
       return (
         <NoteTodos
+          onDuplicateNote={onDuplicateNote}
           onChangeStyle={onChangeStyle}
           onDeleteNote={onDeleteNote}
           onToggleTodo={onToggleTodo}
@@ -38,6 +42,7 @@ export function NotePreview({
     case 'note-video':
       return (
         <NoteVideo
+          onDuplicateNote={onDuplicateNote}
           onChangeStyle={onChangeStyle}
           onDeleteNote={onDeleteNote}
           note={note}

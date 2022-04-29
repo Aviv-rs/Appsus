@@ -7,6 +7,7 @@ export const noteService = {
   deleteNote,
   toggleTodo,
   changeStyle,
+  duplicateNote,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -39,8 +40,28 @@ function query(filterBy) {
 
 function _createNotes() {
   return [
-    _createNote('note-txt', false, { txt: 'first note 😄' }),
     _createNote('note-txt', false, { txt: 'NOTEice me senpai' }),
+    _createNote('note-todos', false, {
+      todos: [
+        { id: utilService.makeId(), txt: 'Ace this sprint', isDone: false },
+        {
+          id: utilService.makeId(),
+          txt: "Don't let Tommy down",
+          isDone: false,
+        },
+      ],
+    }),
+    _createNote('note-video', false, {
+      url: 'https://www.youtube.com/watch?v=IYnsfV5N2n8&ab_channel=TomSka',
+    }),
+    _createNote('note-img', false, {
+      url: 'https://files.slack.com/files-pri/T02SFLQBMS9-F03C5UWCJPM/memeking__1_.png?pub_secret=cde5f56c52',
+    }),
+    _createNote('note-txt', false, { txt: 'Call puki' }),
+    _createNote('note-video', false, {
+      url: 'https://www.youtube.com/watch?v=Dc2HrGjWwos&ab_channel=UchihaSasuke327',
+    }),
+    _createNote('note-txt', false, { txt: 'Add duplication button' }),
   ]
 }
 
@@ -53,6 +74,14 @@ function addNote(note) {
       .map(todo => ({ txt: todo, isDone: false, id: utilService.makeId() }))
   }
   notes = [note, ...notes]
+  _saveToStorage(notes)
+  return Promise.resolve()
+}
+
+function duplicateNote(noteIdx) {
+  let notes = _loadFromStorage()
+  const note = { ...notes[noteIdx] }
+  notes.splice(noteIdx, 0, note)
   _saveToStorage(notes)
   return Promise.resolve()
 }

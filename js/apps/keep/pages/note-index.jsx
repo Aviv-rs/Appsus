@@ -36,6 +36,10 @@ export class NoteIndex extends React.Component {
     noteService.changeStyle(noteId, style).then(this.loadNotes)
   }
 
+  onDuplicateNote = noteId => {
+    noteService.duplicateNote(noteId).then(this.loadNotes)
+  }
+
   onSetFilter = filterBy => {
     this.setState({ filterBy }, () => this.loadNotes(filterBy))
   }
@@ -49,6 +53,7 @@ export class NoteIndex extends React.Component {
         <NoteAdd onAddNote={this.onAddNote} />
         {notes && (
           <NoteList
+            onDuplicateNote={this.onDuplicateNote}
             onChangeStyle={this.onChangeStyle}
             onToggleTodo={this.onToggleTodo}
             onDeleteNote={this.onDeleteNote}
