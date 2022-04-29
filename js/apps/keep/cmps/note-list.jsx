@@ -6,20 +6,26 @@ export function NoteList({
   onDeleteNote,
   onToggleTodo,
   onChangeStyle,
+  isPinnedNotes,
 }) {
   return (
     <section className="note-list ">
-      {notes.map((note, idx) => (
-        <NotePreview
-          onDuplicateNote={onDuplicateNote}
-          onChangeStyle={onChangeStyle}
-          onToggleTodo={onToggleTodo}
-          onDeleteNote={onDeleteNote}
-          note={note}
-          noteIdx={idx}
-          key={note.id}
-        />
-      ))}
+      {notes.map((note, idx) => {
+        if (!isPinnedNotes && note.isPinned)
+          return <ReactFragment></ReactFragment>
+        else
+          return (
+            <NotePreview
+              onDuplicateNote={onDuplicateNote}
+              onChangeStyle={onChangeStyle}
+              onToggleTodo={onToggleTodo}
+              onDeleteNote={onDeleteNote}
+              note={note}
+              noteIdx={idx}
+              key={note.id}
+            />
+          )
+      })}
     </section>
   )
 }

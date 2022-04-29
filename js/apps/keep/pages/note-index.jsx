@@ -58,6 +58,7 @@ export class NoteIndex extends React.Component {
             onToggleTodo={this.onToggleTodo}
             onDeleteNote={this.onDeleteNote}
             notes={notes}
+            isPinnedNotes={false}
           />
         )}
       </section>
