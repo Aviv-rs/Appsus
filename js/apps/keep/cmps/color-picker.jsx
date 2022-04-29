@@ -1,5 +1,5 @@
 export function ColorPicker({ onChangeStyle, note }) {
-  const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1']
+  const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1', 'inherit']
 
   return (
     <div className="color-picker-container">

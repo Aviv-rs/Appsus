@@ -10,8 +10,10 @@ export class NoteTodos extends React.Component {
     this.setState({ todos })
   }
 
-  onTodoDone() {
-    console.log('done')
+  onTodoClicked = (todoIdx, isDone) => {
+    const { todos } = this.state
+    todos[todoIdx].isDone = !isDone
+    this.setState({ todos })
   }
 
   render() {
@@ -30,6 +32,7 @@ export class NoteTodos extends React.Component {
                 key={idx}
                 onClick={() => {
                   this.props.onToggleTodo(todo.id, note.id)
+                  this.onTodoClicked(idx, todo.isDone)
                 }}
                 className={todoClass}
               >

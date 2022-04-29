@@ -18,17 +18,14 @@ function query(filterBy) {
     notes = _createNotes()
     _saveToStorage(notes)
   }
-  //   if (filterBy) {
-  //     let { title, minPrice, maxPrice } = filterBy
-  //     if (!minPrice) minPrice = 0
-  //     if (!maxPrice) maxPrice = Infinity
-  //     notes = notes.filter(
-  //       note =>
-  //         note.listPrice.amount > minPrice &&
-  //         note.listPrice.amount < maxPrice &&
-  //         note.title.toLowerCase().includes(title.toLowerCase())
-  //     )
-  //   }
+  if (filterBy) {
+    let { txt, type, label } = filterBy
+    if (!type) type = ''
+
+    notes = notes.filter(note =>
+      note.info.txt.toLowerCase().includes(txt.toLowerCase())
+    )
+  }
   return Promise.resolve(notes)
 }
 
@@ -76,13 +73,14 @@ function changeStyle(noteId, style) {
   return Promise.resolve()
 }
 
-function _createNote(type, isPinned, info, style) {
+function _createNote(type, isPinned, info, style, label = '') {
   return {
     id: utilService.makeId(),
     type,
     isPinned,
     info,
     style,
+    label,
   }
 }
 
