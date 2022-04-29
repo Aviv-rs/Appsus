@@ -1,9 +1,15 @@
 import { NoteControls } from '../note-controls.jsx'
 
-export function NoteTxt({ note, onDeleteNote, onChangeStyle }) {
-  // function onNoteActive() {
-  //   console.log('active')
-  // }
+export function NoteTxt({
+  note,
+  onDeleteNote,
+  onChangeStyle,
+  onDuplicateNote,
+  noteIdx,
+}) {
+  function onNoteActive() {
+    console.log('active')
+  }
 
   return (
     <div onClick={onNoteActive} style={note.style} className="note-txt note">
@@ -19,6 +25,8 @@ export function NoteTxt({ note, onDeleteNote, onChangeStyle }) {
         note={note}
         onChangeStyle={onChangeStyle}
         onDeleteNote={onDeleteNote}
+        onDuplicateNote={onDuplicateNote}
+        noteIdx={noteIdx}
       />
     </div>
   )

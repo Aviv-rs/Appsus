@@ -10,7 +10,8 @@ export class NoteControls extends React.Component {
   }
 
   render() {
-    const { onDeleteNote, note, onChangeStyle } = this.props
+    const { onDeleteNote, note, noteIdx, onChangeStyle, onDuplicateNote } =
+      this.props
     const { isPickingColor } = this.state
     return (
       <div className="note-controls">
@@ -20,7 +21,10 @@ export class NoteControls extends React.Component {
         >
           <img src="assets\img\delete.png" alt="" />
         </button>
-        <button className="clean-btn btn-duplicate btn-note-edit">
+        <button
+          onClick={() => onDuplicateNote(noteIdx)}
+          className="clean-btn btn-duplicate btn-note-edit"
+        >
           <img src="assets\img\keep-icons\duplicate.png" alt="" />
         </button>
         <button className="clean-btn btn-mail-note btn-note-edit">
