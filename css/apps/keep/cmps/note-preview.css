@@ -22,9 +22,20 @@
   opacity: 1;
 }
 
+.note.note-video .note-controls,
+.note.note-img .note-controls {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.note .note-controls img {
+  width: 20px;
+  height: 20px;
+}
+
 .note-controls button {
   border-radius: 50%;
-  padding: 2px;
+  padding: 3px 2px 0 2px;
 }
 
 .colors-container {
@@ -68,11 +79,6 @@
 .note.note-video,
 .note.note-img {
   padding: 0 0 2.5rem 0;
-}
-.note.note-video .note-controls,
-.note.note-img .note-controls {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .todo.done {

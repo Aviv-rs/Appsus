@@ -35,6 +35,7 @@ export class NoteFilter extends React.Component {
               type="search"
               placeholder="🔍︎ Search"
               autoComplete="off"
+              className="note-search-input"
             />
           </label>
         </form>

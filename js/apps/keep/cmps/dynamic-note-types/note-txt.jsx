@@ -11,6 +11,7 @@ export function NoteTxt({ note, onDeleteNote, onChangeStyle }) {
         className="no-outline"
         suppressContentEditableWarning="true"
         contentEditable="true"
+        onInput={ev => console.log(ev.target)}
       >
         {note.info.txt}
       </p>

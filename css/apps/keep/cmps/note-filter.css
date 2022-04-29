@@ -1,0 +1,16 @@
+.note-filter {
+  width: 40%;
+  position: absolute;
+  top: 0.875rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.note-search-input {
+  height: 48px;
+  width: 100%;
+}
+
+[for='by-search'] {
+  width: 100%;
+}

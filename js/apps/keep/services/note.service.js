@@ -22,9 +22,15 @@ function query(filterBy) {
     let { txt, type, label } = filterBy
     if (!type) type = ''
 
-    notes = notes.filter(note =>
-      note.info.txt.toLowerCase().includes(txt.toLowerCase())
-    )
+    notes = notes.filter(note => {
+      let { txt: noteTxt } = note.info
+      if (!noteTxt) noteTxt = ''
+      if (note.type === 'note-todos') {
+        noteTxt = note.info.todos.map(note => note.txt).join(' ')
+      }
+
+      return noteTxt.toLowerCase().includes(txt.toLowerCase())
+    })
   }
   return Promise.resolve(notes)
 }

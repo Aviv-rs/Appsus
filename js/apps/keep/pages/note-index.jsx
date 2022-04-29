@@ -27,8 +27,8 @@ export class NoteIndex extends React.Component {
     this.loadNotes()
   }
 
-  loadNotes = () => {
-    noteService.query().then(notes => this.setState({ notes }))
+  loadNotes = filterBy => {
+    noteService.query(filterBy).then(notes => this.setState({ notes }))
   }
 
   onChangeStyle = (noteId, style) => {
@@ -36,7 +36,7 @@ export class NoteIndex extends React.Component {
   }
 
   onSetFilter = filterBy => {
-    this.setState({ filterBy }, () => this.loadNotes())
+    this.setState({ filterBy }, () => this.loadNotes(filterBy))
   }
 
   render() {
