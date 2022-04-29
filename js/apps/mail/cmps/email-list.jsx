@@ -19,10 +19,8 @@ export class EmailList extends React.Component {
 
     componentDidMount = () => {
         this.loadMails()
-        this.removeFilterEvent = eventBusService.on('filter-submit ', (filter)=> this.getFilter(filter))
-        this.removeFolderEvent = eventBusService.on('folder-submit', (folder)=>{
-            console.log('mount folder ', folder)
-            this.getFolder(folder)})
+        this.removeFilterEvent = eventBusService.on('filter-submit', (filter)=> this.getFilter(filter))
+        this.removeFolderEvent = eventBusService.on('folder-submit', (folder)=>this.getFolder(folder))
     }
 
     getFilter=(info)=>{

@@ -9,9 +9,7 @@ export class EmailFolderList extends React.Component {
     this.setState({mailType: target.innerText})
     eventBusService.emit('folder-submit', target.innerText)
   }
-  setMailType=()=>{
-    
-  }
+ 
 
   render() {
       return (
