@@ -16,23 +16,32 @@ export class _AppHeader extends React.Component {
       <header className="app-header flex">
         <NavLink exact to="/"><img src="./assets/img/logo.png" className="header-image" /></NavLink>
         <nav className="page-nav flex">
-          <img onClick={this.onToggleModal} className="page-link" src="./assets/img/menu.png" alt="" />
+          <img onClick={this.onToggleModal} src="./assets/img/menu.png" alt="" />
           {isModalOpen &&
-            <div>
-              <NavLink exact to="/"><img onClick={this.onToggleModal} src="./assets/img/home.png" alt="" /></NavLink>
-              <NavLink  to="/about"><img onClick={this.onToggleModal} src="./assets/img/about.png" alt="" /></NavLink>
-              <NavLink  to="/keep"><img onClick={this.onToggleModal} src="./assets/img/note.png" alt="" /></NavLink>
-              <NavLink  to="/mail"><img onClick={this.onToggleModal} src="./assets/img/email.png" alt="" /></NavLink>
-              <NavLink  to="/books"><img onClick={this.onToggleModal} src="./assets/img/book.png" alt="" /></NavLink>
+            <div className="menu-modal">
+              <div className="menu-nav">
+                <NavLink exact to="/"><img onClick={this.onToggleModal} src="./assets/img/home.png" alt="" /></NavLink>
+              <h4>Home</h4>
+                </div>
+                <div className="menu-nav">
+                <NavLink to="/books"><img onClick={this.onToggleModal} src="./assets/img/book.png" alt="" /></NavLink>
+              <h4>Books</h4>
+                </div>
+              <div className="menu-nav">
+                <NavLink to="/keep"><img onClick={this.onToggleModal} src="./assets/img/note.png" alt="" /></NavLink>
+              <h4>Keep</h4>
+                </div>
+              <div className="menu-nav">
+                <NavLink to="/mail"><img onClick={this.onToggleModal} src="./assets/img/email.png" alt="" /></NavLink>
+              <h4>Mail</h4>
+                </div>
+              <div className="menu-nav">
+                <NavLink to="/about"><img onClick={this.onToggleModal} src="./assets/img/about.png" alt="" /></NavLink>
+              <h4>About</h4>
+                </div>
             </div>
+            
           }
-
-          {/* <NavLink  className="page-link" exact to="/">
-          Home
-          </NavLink>
-          <NavLink  className="page-link"  to="/about">
-          About
-        </NavLink> */}
         </nav>
       </header>
     )
