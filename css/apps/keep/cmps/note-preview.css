@@ -43,15 +43,16 @@
   gap: 10px;
   padding: 10px;
   background: lightgoldenrodyellow;
-  position: absolute;
-  z-index: 10;
+  /* position: absolute;
+  z-index: 10; */
 }
 
 .colors-container .color {
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(103, 103, 103);
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .btn-note-edit {
@@ -79,6 +80,10 @@
 .note.note-video,
 .note.note-img {
   padding: 0 0 2.5rem 0;
+}
+
+.todo {
+  cursor: pointer;
 }
 
 .todo.done {

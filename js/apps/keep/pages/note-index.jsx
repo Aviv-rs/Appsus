@@ -11,6 +11,7 @@ export class NoteIndex extends React.Component {
 
   onAddNote = (ev, note) => {
     ev.preventDefault()
+    ev.target[0].value = ''
     if (!note.info.txt && !note.info.url && !note.info.todos) return
     noteService.addNote(note).then(this.loadNotes())
   }
@@ -44,7 +45,6 @@ export class NoteIndex extends React.Component {
     return (
       <section className="note-index">
         <NoteFilter onSetFilter={this.onSetFilter} />
-        {/* <input className="filter-input" type="text" placeholder="  ︎  Search note" /> */}
 
         <NoteAdd onAddNote={this.onAddNote} />
         {notes && (
