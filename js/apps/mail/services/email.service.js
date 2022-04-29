@@ -7,6 +7,7 @@ export const emailService = {
   markAsUnread,
   removeMail,
   sendMail,
+  sortMail,
 }
 
 const KEY = 'emailDB'
@@ -28,14 +29,14 @@ function query(filterBy, folderBy='Inbox') {
     gMails=gMails.filter(mail=> {
         return mail.subject.includes(filterBy)
       })
+      if (folderBy) {
+            gMails=gMails.filter(mail=> {
+                return mail.status === folderBy
+                
+            })
+            
+        }
 }
-if (folderBy) {
-      gMails=gMails.filter(mail=> {
-          return mail.status === folderBy
-          
-      })
-      
-  }
   return Promise.resolve(gMails)
 }
 
@@ -70,7 +71,7 @@ function sendMail(to, subject, body) {
     subject,
     body,
     isRead: true,
-    sentAt: utilService.getDateIntl(Date.now()),
+    sentAt: Date.now(),
     from: loggedinUser.fullname,
     to,
     labels: ['important', 'romantic'],
@@ -80,31 +81,51 @@ function sendMail(to, subject, body) {
   return Promise.resolve(newMail)
 }
 
+function sortMail(sorter){
+  switch(sorter){
+    case 'Oldest to Newest':
+      gMails.sort((a,b) => (a.sentAt > b.sentAt) ? 1 : ((b.sentAt > a.sentAt) ? -1 : 0))
+      break;
+    case 'Newest to Oldest':
+      gMails.sort((a,b) => (a.sentAt > b.sentAt) ? -1 : ((b.sentAt > a.sentAt) ?-1 : 0))
+      break;
+    case 'A-Z':
+      gMails.sort((a,b) => (a.subject > b.subject) ? 1 : ((b.subject > a.subject) ? -1 : 0))
+      break;
+    case 'Z-A':
+      gMails.sort((a,b) => (a.subject > b.subject) ? -1 : ((b.subject > a.subject) ? 1 : 0))
+      break;
+  }
+
+  _saveToStorage(gMails)
+  return Promise.resolve(gMails)
+}
+
 function _createMails() {
   return [
-    _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(4), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(5), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(4), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com'),
-    _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com'),
+    _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com', 1650622836006),
+    _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com', 1651236317628),
+    _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com', 1651236316628),
+    _createMail(utilService.makeLorem(4), utilService.makeLorem(), 'me@me.com', 1651054836216),
+    _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com', 1651141236146),
+    _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com', 1651141236458),
+    _createMail(utilService.makeLorem(5), utilService.makeLorem(), 'me@me.com', 1650622836458),
+    _createMail(utilService.makeLorem(4), utilService.makeLorem(), 'me@me.com', 1651054836125),
+    _createMail(utilService.makeLorem(2), utilService.makeLorem(), 'me@me.com', 1651236310628),
+    _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com', 1651141236565),
+    _createMail(utilService.makeLorem(3), utilService.makeLorem(), 'me@me.com', 1650622836455),
+    _createMail(utilService.makeLorem(1), utilService.makeLorem(), 'me@me.com', 1651054836569),
   ]
 }
 
-function _createMail(subject, body = '', from = loggedinUser.email) {
+function _createMail(subject, body = '', from = loggedinUser.email, sentAt = Date.now()) {
   return {
     id: utilService.makeId(),
     status: 'Inbox',
     subject,
     body,
     isRead: false,
-    sentAt: utilService.getDateIntl(Date.now()),
+    sentAt,
     from,
     to: loggedinUser.email,
     labels: ['important', 'romantic'],
