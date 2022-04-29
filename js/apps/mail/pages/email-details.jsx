@@ -1,5 +1,6 @@
 import { emailService } from "../services/email.service.js"
 import { utilService } from "../../../services/util.service.js"
+import { eventBusService } from "../../../services/event-bus-service.js"
 
 export class EmailDetails extends React.Component {
     state={
@@ -16,6 +17,10 @@ export class EmailDetails extends React.Component {
             // console.log(mail)
             this.setState({mail})
         })
+    }
+    onMakeNote=(mail)=>{
+      eventBusService.emit('mail-to-note', (mail))
+      console.log(mail)
     }
 
     onGoBack = () => {
@@ -37,13 +42,16 @@ export class EmailDetails extends React.Component {
             <React.Fragment>
             <h1>{mail.subject} </h1>
             <span>{this.getDate(mail.sentAt)}</span>
-            <hr />
+            <hr className="details-hr"/>
             <h3>from: {mail.from}</h3>
             <h4>{mail.body}</h4>
-            <hr />
+            <hr className="details-hr" />
             </React.Fragment>}
           <h4 onClick={this.onGoBack}>←Return</h4>
-          <img onClick={()=>this.onDeleteMail(mail.id)} className="delete-btn" src="assets/img/delete.png"></img>
+          <div className="details-btn" >
+          <img onClick={()=>this.onDeleteMail(mail.id)} src="assets/img/delete.png"></img>
+          <img onClick={()=>this.onMakeNote(mail)} src="assets/img/mail-icons/mail-to-keep.png"></img>
+          </div>
         </main>
       )
     }

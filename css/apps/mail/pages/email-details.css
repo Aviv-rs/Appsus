@@ -1,6 +1,16 @@
 
 .email-details{
+    display: flex;
+    flex-direction: column;
     padding-top: 4rem;
     width: 70%;
     margin: auto;
+}
+
+.details-btn{
+    align-self: end;
+    display: block;
+}
+.details-hr{
+    width: 100%
 }

@@ -17,16 +17,23 @@ export class EmailList extends React.Component {
     }
     removeFilterEvent;
     removeFolderEvent;
+    removeNoteEvent;
 
     componentDidMount() {
         this.loadMails()
+        this.removeNoteEvent = eventBusService.on('note-to-mail', (note) => this.renderNote(note))
         this.removeFilterEvent = eventBusService.on('filter-submit', (filter) => this.getFilter(filter))
         this.removeFolderEvent = eventBusService.on('folder-submit', (folder) => this.getFolder(folder))
+    }
+
+    renderNote=(note)=>{
+        console.log(note)
     }
 
     getFilter = (info) => {
         this.setState({ filter: info }, () => this.loadMails())
     }
+
     getFolder = (info) => {
         this.setState({ folder: info }, () => this.loadMails())
     }
@@ -70,6 +77,7 @@ export class EmailList extends React.Component {
     onToggleCompose = () => {
         this.setState({ compose: !this.state.compose })
     }
+
     onToggleSortModal = () => {
         this.setState({ sortModal: !this.state.sortModal })
     }
