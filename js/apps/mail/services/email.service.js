@@ -13,11 +13,12 @@ const KEY = 'emailDB'
 const loggedinUser = {
   email: 'user@appsus.com',
   fullname: 'Mahatma Appsus',
-}
-//  gMails
 
-function query(filterBy, folderBy) {
-  let gMails = _loadFromStorage()
+}
+let gMails
+
+function query(filterBy, folderBy='Inbox') {
+   gMails = _loadFromStorage()
   if (!gMails || !gMails.length) {
     gMails = _createMails()
     _saveToStorage(gMails)
@@ -25,17 +26,16 @@ function query(filterBy, folderBy) {
   if (filterBy) {
     
     gMails=gMails.filter(mail=> {
-        mail.subject.includes(filterBy)
+        return mail.subject.includes(filterBy)
       })
 }
 if (folderBy) {
       gMails=gMails.filter(mail=> {
-          mail.status === folderBy
+          return mail.status === folderBy
           
       })
       
   }
-
   return Promise.resolve(gMails)
 }
 

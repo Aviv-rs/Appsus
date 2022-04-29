@@ -8,7 +8,7 @@ export class EmailFilter extends React.Component {
   
   onHandleChange=({target})=>{
     this.setState({filter: target.value})
-    eventBusService.emit('filter-submit', target.value)
+    eventBusService.emit('filter-submit',target.value)
   }
   
   render() {
