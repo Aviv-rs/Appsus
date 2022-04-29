@@ -4,3 +4,29 @@
   margin: auto;
   width: 80%;
 }
+
+.note-list.pinned-notes {
+  margin-bottom: 80px;
+}
+
+.pinned-notes-title {
+  color: #5f6368;
+  letter-spacing: 0.07272727em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  text-transform: uppercase;
+  margin: 32px 32px 8px;
+}
+
+.other-notes-title {
+  color: #5f6368;
+  letter-spacing: 0.07272727em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  text-transform: uppercase;
+  margin: 32px 32px 8px;
+}

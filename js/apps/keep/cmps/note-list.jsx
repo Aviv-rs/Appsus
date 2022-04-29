@@ -3,24 +3,33 @@ import { NotePreview } from './note-preview.jsx'
 export function NoteList({
   notes,
   onDuplicateNote,
-  noteIdx,
   onDeleteNote,
   onToggleTodo,
   onChangeStyle,
+  isPinnedNotes,
+  onTogglePin,
 }) {
+  const noteListClass = isPinnedNotes ? 'note-list pinned-notes' : 'note-list'
+
   return (
-    <section className="note-list ">
-      {notes.map((note, idx) => (
-        <NotePreview
-          onDuplicateNote={onDuplicateNote}
-          onChangeStyle={onChangeStyle}
-          onToggleTodo={onToggleTodo}
-          onDeleteNote={onDeleteNote}
-          note={note}
-          noteIdx={idx}
-          key={note.id}
-        />
-      ))}
+    <section className={noteListClass}>
+      {notes.map((note, idx) => {
+        if (!isPinnedNotes && note.isPinned)
+          return <React.Fragment key={idx}></React.Fragment>
+        else
+          return (
+            <NotePreview
+              onDuplicateNote={onDuplicateNote}
+              onChangeStyle={onChangeStyle}
+              onToggleTodo={onToggleTodo}
+              onTogglePin={onTogglePin}
+              onDeleteNote={onDeleteNote}
+              note={note}
+              noteIdx={idx}
+              key={note.id}
+            />
+          )
+      })}
     </section>
   )
 }

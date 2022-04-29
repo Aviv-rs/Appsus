@@ -7,6 +7,7 @@ export class NoteIndex extends React.Component {
   state = {
     notes: null,
     filterBy: null,
+    pinnedNotes: null,
   }
 
   onAddNote = (ev, note) => {
@@ -29,7 +30,14 @@ export class NoteIndex extends React.Component {
   }
 
   loadNotes = filterBy => {
-    noteService.query(filterBy).then(notes => this.setState({ notes }))
+    noteService.query(filterBy).then(notes => {
+      const pinnedNotes = this.getPinnedNotes(notes)
+      this.setState({ notes, pinnedNotes })
+    })
+  }
+
+  getPinnedNotes = notes => {
+    return notes.filter(note => note.isPinned)
   }
 
   onChangeStyle = (noteId, style) => {
@@ -40,25 +48,49 @@ export class NoteIndex extends React.Component {
     noteService.duplicateNote(noteIdx).then(this.loadNotes)
   }
 
+  onTogglePin = noteId => {
+    noteService.togglePin(noteId).then(this.loadNotes)
+  }
+
   onSetFilter = filterBy => {
     this.setState({ filterBy }, () => this.loadNotes(filterBy))
   }
 
   render() {
-    const { notes } = this.state
+    const { notes, pinnedNotes } = this.state
     return (
       <section className="note-index">
         <NoteFilter onSetFilter={this.onSetFilter} />
 
         <NoteAdd onAddNote={this.onAddNote} />
+        {pinnedNotes && (
+          <React.Fragment>
+            <div className="pinned-notes-title">Pinned</div>
+            <NoteList
+              onDuplicateNote={this.onDuplicateNote}
+              onChangeStyle={this.onChangeStyle}
+              onToggleTodo={this.onToggleTodo}
+              onDeleteNote={this.onDeleteNote}
+              onTogglePin={this.onTogglePin}
+              notes={pinnedNotes}
+              isPinnedNotes={true}
+            />
+          </React.Fragment>
+        )}
         {notes && (
-          <NoteList
-            onDuplicateNote={this.onDuplicateNote}
-            onChangeStyle={this.onChangeStyle}
-            onToggleTodo={this.onToggleTodo}
-            onDeleteNote={this.onDeleteNote}
-            notes={notes}
-          />
+          <React.Fragment>
+            <div className="other-notes-title">Others</div>
+
+            <NoteList
+              onDuplicateNote={this.onDuplicateNote}
+              onChangeStyle={this.onChangeStyle}
+              onToggleTodo={this.onToggleTodo}
+              onDeleteNote={this.onDeleteNote}
+              onTogglePin={this.onTogglePin}
+              notes={notes}
+              isPinnedNotes={false}
+            />
+          </React.Fragment>
         )}
       </section>
     )

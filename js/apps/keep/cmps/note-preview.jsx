@@ -5,6 +5,7 @@ import { NoteVideo } from './dynamic-note-types/note-video.jsx'
 
 export function NotePreview({
   onToggleTodo,
+  onTogglePin,
   onDuplicateNote,
   note,
   onDeleteNote,
@@ -20,6 +21,7 @@ export function NotePreview({
           onDeleteNote={onDeleteNote}
           note={note}
           noteIdx={noteIdx}
+          onTogglePin={onTogglePin}
         />
       )
     case 'note-img':
@@ -30,6 +32,7 @@ export function NotePreview({
           onDeleteNote={onDeleteNote}
           note={note}
           noteIdx={noteIdx}
+          onTogglePin={onTogglePin}
         />
       )
     case 'note-todos':
@@ -41,6 +44,7 @@ export function NotePreview({
           onToggleTodo={onToggleTodo}
           note={note}
           noteIdx={noteIdx}
+          onTogglePin={onTogglePin}
         />
       )
     case 'note-video':
@@ -51,6 +55,7 @@ export function NotePreview({
           onDeleteNote={onDeleteNote}
           note={note}
           noteIdx={noteIdx}
+          onTogglePin={onTogglePin}
         />
       )
   }
