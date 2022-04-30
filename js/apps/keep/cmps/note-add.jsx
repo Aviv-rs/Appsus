@@ -1,3 +1,5 @@
+import { eventBusService } from '../../../services/event-bus-service'
+
 export class NoteAdd extends React.Component {
   state = {
     note: {
@@ -10,6 +12,19 @@ export class NoteAdd extends React.Component {
     },
     placeholderStyle: { display: 'block' },
   }
+
+  removeMailEvent
+
+  componentDidMount() {
+    this.removeMailEvent = eventBusService.on('mail-to-note', mail =>
+      console.log(mail)
+    )
+  }
+
+  componentWillUnmount() {
+    this.removeMailEvent()
+  }
+
   inputRef = React.createRef()
 
   placeholderRef = React.createRef()

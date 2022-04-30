@@ -6,7 +6,6 @@ export class NoteControls extends React.Component {
   state = {
     isPickingColor: false,
   }
-  removeMailEvent
 
   onMailNote(note) {
     eventBusService.emit('note-to-mail', note)

@@ -2,11 +2,18 @@
   .note-list {
     width: 240px;
   }
+
+  .note-add {
+    max-width: 600px;
+  }
 }
 
 @media (min-width: 650px) {
   .note-list {
     width: 500px;
+  }
+  .note-add {
+    width: 600px;
   }
 }
 
