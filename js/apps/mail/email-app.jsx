@@ -7,14 +7,26 @@ export class EmailApp extends React.Component {
     filterBy: null,
     note: null,
   }
+  
+
+  componentDidMount(){
+    const urlSrcPrm = new URLSearchParams(this.props.location.search)
+  
+    const noteId = urlSrcPrm.get('noteId')
+    if (noteId) {
+      // console.log(noteId)
+      this.setState({note: noteId})
+    }
+  }
+  
 
   
 
   render() {
-    const { selectedMail } = this.state
+    const { note } = this.state
     return (
       <main className="email-app">
-        <EmailPreview/>
+        <EmailPreview note={note}/>
       </main>
     )
   }

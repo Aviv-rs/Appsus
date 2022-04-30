@@ -2,6 +2,7 @@ import { emailService } from '../services/email.service.js'
 import { EmailCompose } from './email-compose.jsx'
 import { eventBusService } from '../../../services/event-bus-service.js'
 import { utilService } from '../../../services/util.service.js'
+import {NoteService} from '../../keep/services/note.service'
 
 const { Link } = ReactRouterDOM
 
@@ -19,13 +20,6 @@ export class EmailList extends React.Component {
 
   componentDidMount() {
     this.loadMails()
-    // this.isThereNote()
-    // const urlSrcPrm = new URLSearchParams(this.props.location.search)
-  
-    // const noteId = urlSrcPrm.get('noteId')
-    // if (noteId) {
-    //   console.log(noteId)
-    // }
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
     this.getFilter(filter)
     )
@@ -34,12 +28,11 @@ export class EmailList extends React.Component {
     )
   }
 
-  isThereNote=()=>{
-    
-  }
 
-  onAddNoteAsMail(note){
-    console.log(note)
+  onAddNoteAsMail(){
+    const noteId=this.props.note
+    NoteService.getById(noteId)
+    .then(console.log)
   }
 
   renderNote = (note) => {
@@ -67,12 +60,7 @@ export class EmailList extends React.Component {
 
         }
       })
-      const urlSrcPrm = new URLSearchParams(this.props.location.search)
-  
-    const noteId = urlSrcPrm.get('noteId')
-    if (noteId) {
-      console.log(noteId)
-    }
+
     })
   }
 
