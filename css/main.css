@@ -29,6 +29,15 @@
 @import './apps/mail/pages/email-details.css';
 @import './apps/mail/pages/email-app.css';
 
+/* books */
+@import './apps/books/cmps/book-add.css';
+@import './apps/books/cmps/book-details.css';
+@import './apps/books/cmps/book-filter.css';
+@import './apps/books/cmps/book-list.css';
+@import './apps/books/cmps/book-preview.css';
+@import './apps/books/cmps/book-review.css';
+
+
 /* Cmps */
 @import './cmps/app-header.css';
 @import './cmps/app-footer.css';
