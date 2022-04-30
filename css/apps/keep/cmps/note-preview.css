@@ -96,6 +96,7 @@
 
 .todo {
   cursor: pointer;
+  width: fit-content;
 }
 
 .todo.done {

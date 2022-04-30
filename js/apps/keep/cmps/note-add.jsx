@@ -1,4 +1,4 @@
-import { eventBusService } from '../../../services/event-bus-service'
+import { eventBusService } from '../../../services/event-bus-service.js'
 
 export class NoteAdd extends React.Component {
   state = {
@@ -10,7 +10,8 @@ export class NoteAdd extends React.Component {
       isPinned: false,
       style: {},
     },
-    placeholderStyle: { display: 'block' },
+    isPlaceholder: true,
+    isComposing: false,
   }
 
   removeMailEvent
@@ -21,13 +22,13 @@ export class NoteAdd extends React.Component {
     )
   }
 
-  componentWillUnmount() {
-    this.removeMailEvent()
-  }
-
   inputRef = React.createRef()
 
   placeholderRef = React.createRef()
+
+  toggleNoteCompose = () => {
+    this.setState({ isComposing: !this.state.isComposing })
+  }
 
   onChangeType = ({ target }) => {
     const noteInput = this.inputRef.current
@@ -54,31 +55,64 @@ export class NoteAdd extends React.Component {
 
   handleChange = ({ target }) => {
     const field = target.getAttribute('data-field')
+    const isPlaceholder = target.innerText ? false : true
 
     this.setState(prevState => ({
       note: { ...prevState.note, info: { [field]: target.innerText } },
+      isPlaceholder,
     }))
   }
 
+  componentWillUnmount() {
+    this.removeMailEvent()
+  }
+
   render() {
-    const { note } = this.state
-    const { info, isPinned, style } = note
+    const { note, isPlaceholder, isComposing } = this.state
+    const titleInputClass = isComposing ? '' : 'hidden'
+    const placeholderClass = isPlaceholder
+      ? 'note-info-placeholder'
+      : 'note-info-placeholder hidden'
     return (
-      <section className="note-add flex align-center justify-center">
-        <div ref={this.placeholderRef} className="note-info-placeholder">
-          Take a note...
+      <section
+        onFocus={this.toggleNoteCompose}
+        onBlur={this.toggleNoteCompose}
+        className="note-add flex  justify-center column"
+      >
+        <div className={titleInputClass}>
+          <div className="title-placeholder">Title</div>
+          <div
+            // onBlur={ev => {
+            //   this.props.onAddNote(ev, note)
+            //   this.setState({ isPlaceholder: true })
+            // }}
+            data-field="title"
+            // onInput={this.handleChange}
+            className="add-title-input "
+            contentEditable="true"
+            suppressContentEditableWarning="true"
+          ></div>
         </div>
-        <div
-          onBlur={ev => this.props.onAddNote(ev, note)}
-          type="note-txt"
-          data-field="txt"
-          name="txt"
-          ref={this.inputRef}
-          onInput={this.handleChange}
-          className="custom-input"
-          contentEditable="true"
-          suppressContentEditableWarning="true"
-        ></div>
+
+        <div>
+          <div ref={this.placeholderRef} className={placeholderClass}>
+            Take a note...
+          </div>
+          <div
+            onBlur={ev => {
+              this.props.onAddNote(ev, note)
+              this.setState({ isPlaceholder: true })
+            }}
+            type="note-txt"
+            data-field="txt"
+            name="txt"
+            ref={this.inputRef}
+            onInput={this.handleChange}
+            className="add-note-input"
+            contentEditable="true"
+            suppressContentEditableWarning="true"
+          ></div>
+        </div>
 
         <div className="flex note-type-controls">
           <button

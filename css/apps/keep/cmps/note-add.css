@@ -5,10 +5,25 @@
   border-radius: 8px;
   padding: 0 16px;
   min-width: 330px;
+  min-height: 46px;
+}
+
+.title-placeholder {
+  letter-spacing: 0.00625em;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: rgba(0, 0, 0, 0.6);
+  min-height: 43px;
+  padding: 10px 15px;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
 }
 
 .note-info-placeholder {
-  padding: 0 16px;
+  padding: 10px 15px;
   color: rgba(0, 0, 0, 0.702);
   letter-spacing: 0.01785714em;
   font-family: 'Google Sans', Roboto, Arial, sans-serif;
@@ -20,11 +35,30 @@
   pointer-events: none;
 }
 
-.custom-input {
-  padding-top: 12px;
-  height: 46px;
+.add-title-input {
+  min-height: 43px;
+  padding: 10px 15px;
+  transition: box-shadow 0.218s ease-in-out, background-color 0.218s ease-in;
+  letter-spacing: 0.00625em;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
   width: 100%;
   outline: none;
+}
+
+.add-note-input {
+  padding: 10px 15px;
+  min-height: 46px;
+  width: 100%;
+  outline: none;
+  letter-spacing: 0.01428571em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  color: #202124;
 }
 
 .note-type-controls {
@@ -41,7 +75,7 @@
 
 .btn-note-type {
   border-radius: 50%;
-  opacity: 0.7;
+  opacity: 0.6;
   padding: 7px;
 }
 
