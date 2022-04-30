@@ -59,7 +59,10 @@ export class NoteAdd extends React.Component {
     const isPlaceholder = target.innerText ? false : true
 
     this.setState(prevState => ({
-      note: { ...prevState.note, info: { [field]: target.innerText } },
+      note: {
+        ...prevState.note,
+        info: { ...prevState.note.info, [field]: target.innerText },
+      },
       isPlaceholder,
     }))
   }
@@ -73,7 +76,11 @@ export class NoteAdd extends React.Component {
     return (
       <section name="add" className="note-add flex  justify-center column">
         <div>
-          <div className={`title-placeholder ${titleInputClass}`}>Title</div>
+          <div
+            className={`title-placeholder ${titleInputClass} ${placeholderClass}`}
+          >
+            Title
+          </div>
           <div
             onInput={this.handleChange}
             data-field="title"

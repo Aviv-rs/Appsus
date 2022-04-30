@@ -21,28 +21,26 @@ export class EmailList extends React.Component {
     this.loadMails()
     // this.isThereNote()
     // const urlSrcPrm = new URLSearchParams(this.props.location.search)
-  
+
     // const noteId = urlSrcPrm.get('noteId')
     // if (noteId) {
     //   console.log(noteId)
     // }
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
-    this.getFilter(filter)
+      this.getFilter(filter)
     )
     this.removeFolderEvent = eventBusService.on('folder-submit', folder =>
-    this.getFolder(folder)
+      this.getFolder(folder)
     )
   }
 
-  isThereNote=()=>{
-    
-  }
+  isThereNote = () => {}
 
-  onAddNoteAsMail(note){
+  onAddNoteAsMail(note) {
     console.log(note)
   }
 
-  renderNote = (note) => {
+  renderNote = note => {
     this.onToggleCompose()
     // this.onComposeNote(note)
     console.log(note)
@@ -64,20 +62,18 @@ export class EmailList extends React.Component {
       mails.forEach(mail => {
         if (mail.isRead === false) {
           this.setState({ unReadCount: this.state.unReadCount + 1 })
-
         }
       })
       const urlSrcPrm = new URLSearchParams(this.props.location.search)
-  
-    const noteId = urlSrcPrm.get('noteId')
-    if (noteId) {
-      console.log(noteId)
-    }
+
+      const noteId = urlSrcPrm.get('noteId')
+      if (noteId) {
+        console.log(noteId)
+      }
     })
   }
 
   reLoadMails = mailsType => {
-    
     this.setState({ mails: mailsType })
     this.setState({ unReadCount: 0 })
     mailsType.forEach(mail => {

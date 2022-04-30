@@ -9,13 +9,15 @@ export function NoteTxt({
 }) {
   return (
     <div style={note.style} className="note-txt note">
+      <p className="note-title">{note.info.title}</p>
       <p
-        className="no-outline"
+        className="no-outline note-txt-body"
         suppressContentEditableWarning="true"
         contentEditable="true"
       >
         {note.info.txt}
       </p>
+
       <NoteControls
         note={note}
         onChangeStyle={onChangeStyle}
