@@ -1,5 +1,3 @@
-import { eventBusService } from '../../../services/event-bus-service.js'
-
 export class NoteAdd extends React.Component {
   state = {
     note: {
@@ -16,18 +14,18 @@ export class NoteAdd extends React.Component {
 
   removeMailEvent
 
-  componentDidMount() {
-    this.removeMailEvent = eventBusService.on('mail-to-note', mail =>
-      console.log(mail)
-    )
-  }
-
   inputRef = React.createRef()
 
   placeholderRef = React.createRef()
 
-  toggleNoteCompose = () => {
-    this.setState({ isComposing: !this.state.isComposing })
+  onDoneCompose = ev => {
+    console.log(ev.currentTarget)
+    // this.setState({ isComposing: false })
+  }
+
+  onCompose = ev => {
+    console.log(ev.currentTarget)
+    // this.setState({ isComposing: true })
   }
 
   onChangeType = ({ target }) => {
@@ -63,10 +61,6 @@ export class NoteAdd extends React.Component {
     }))
   }
 
-  componentWillUnmount() {
-    this.removeMailEvent()
-  }
-
   render() {
     const { note, isPlaceholder, isComposing } = this.state
     const titleInputClass = isComposing ? '' : 'hidden'
@@ -75,21 +69,23 @@ export class NoteAdd extends React.Component {
       : 'note-info-placeholder hidden'
     return (
       <section
-        onFocus={this.toggleNoteCompose}
-        onBlur={this.toggleNoteCompose}
+        name="add"
+        onBlur={this.onDoneCompose}
         className="note-add flex  justify-center column"
       >
-        <div className={titleInputClass}>
-          <div className="title-placeholder">Title</div>
+        <div>
+          <div className={`title-placeholder ${titleInputClass}`}>Title</div>
           <div
             // onBlur={ev => {
             //   this.props.onAddNote(ev, note)
             //   this.setState({ isPlaceholder: true })
             // }}
-            data-field="title"
             // onInput={this.handleChange}
-            className="add-title-input "
+            data-field="title"
+            type="title"
+            className={`add-title-input ${titleInputClass}`}
             contentEditable="true"
+            onFocus={this.onCompose}
             suppressContentEditableWarning="true"
           ></div>
         </div>
@@ -111,6 +107,7 @@ export class NoteAdd extends React.Component {
             className="add-note-input"
             contentEditable="true"
             suppressContentEditableWarning="true"
+            onFocus={this.onCompose}
           ></div>
         </div>
 

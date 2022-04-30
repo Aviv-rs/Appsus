@@ -9,6 +9,8 @@ export const noteService = {
   changeStyle,
   duplicateNote,
   togglePin,
+  addMailAsNote,
+  getById,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -68,12 +70,29 @@ function _createNotes() {
 
 function addNote(note) {
   let notes = _loadFromStorage()
-  note.id = utilService.makeId()
+  if (!note.id) note.id = utilService.makeId()
   if (note.type === 'note-todos') {
     note.info.todos = note.info.todos
       .split(',')
       .map(todo => ({ txt: todo, isDone: false, id: utilService.makeId() }))
   }
+  notes = [note, ...notes]
+  _saveToStorage(notes)
+  return Promise.resolve()
+}
+
+function addMailAsNote(mail) {
+  let notes = _loadFromStorage()
+  const note = _createNote(
+    'note-txt',
+    false,
+    { txt: mail.body },
+    undefined,
+    'mail',
+    mail.subject
+  )
+  note.id = mail.id
+
   notes = [note, ...notes]
   _saveToStorage(notes)
   return Promise.resolve()
@@ -122,7 +141,12 @@ function changeStyle(noteId, style) {
   return Promise.resolve()
 }
 
-function _createNote(type, isPinned, info, style, label = '') {
+function getById(noteId) {
+  let notes = _loadFromStorage()
+  return Promise.resolve(notes.find(note => note.id === noteId))
+}
+
+function _createNote(type, isPinned, info, style = {}, label = '', title = '') {
   return {
     id: utilService.makeId(),
     type,
@@ -130,6 +154,7 @@ function _createNote(type, isPinned, info, style, label = '') {
     info,
     style,
     label,
+    title,
   }
 }
 

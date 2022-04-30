@@ -38,17 +38,16 @@ function query(filterBy, folderBy) {
   return Promise.resolve(gMails)
 }
 
-function filter(filterBy='', folderBy='') {
+function filter(filterBy = '', folderBy = '') {
   return Promise.resolve(gMails)
 }
 
 function getById(id) {
   gMails = _loadFromStorage()
   const mail = gMails.find(mail => mail.id === id)
-  if(!mail)return
+  if (!mail) return
   mail.isRead = true
   _saveToStorage(gMails)
-  console.log(mail)
   return mail
 }
 
@@ -100,12 +99,20 @@ function sortMail(sorter) {
       break
     case 'A-Z':
       gMails.sort((a, b) =>
-        a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : b.subject.toLowerCase() > a.subject.toLowerCase() ? -1 : 0
+        a.subject.toLowerCase() > b.subject.toLowerCase()
+          ? 1
+          : b.subject.toLowerCase() > a.subject.toLowerCase()
+          ? -1
+          : 0
       )
       break
     case 'Z-A':
       gMails.sort((a, b) =>
-        a.subject.toLowerCase() > b.subject.toLowerCase() ? -1 : b.subject.toLowerCase() > a.subject.toLowerCase() ? 1 : 0
+        a.subject.toLowerCase() > b.subject.toLowerCase()
+          ? -1
+          : b.subject.toLowerCase() > a.subject.toLowerCase()
+          ? 1
+          : 0
       )
       break
   }

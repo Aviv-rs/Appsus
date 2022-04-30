@@ -1,4 +1,5 @@
 import { noteService } from '../services/note.service.js'
+import { emailService } from '../../mail/services/email.service.js'
 import { NoteList } from '../cmps/note-list.jsx'
 import { NoteAdd } from '../cmps/note-add.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
@@ -12,6 +13,19 @@ export class NoteIndex extends React.Component {
 
   componentDidMount() {
     this.loadNotes()
+    const urlSrcPrm = new URLSearchParams(this.props.location.search)
+
+    const mailId = urlSrcPrm.get('mailId')
+    if (mailId) {
+      this.onAddMailAsNote(mailId)
+    }
+  }
+
+  onAddMailAsNote = mailId => {
+    const note = noteService.getById(mailId).then(note => note)
+    if (note) return
+    const mail = emailService.getById(mailId)
+    noteService.addMailAsNote(mail).then(this.loadNotes())
   }
 
   onAddNote = (ev, note) => {
