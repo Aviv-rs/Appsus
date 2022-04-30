@@ -32,7 +32,9 @@
     .email-list{
         margin-top: 25px;
     }
-    
+    li.email-line{
+        width: fit-content;
+    }
     .mail-logo-img{
         height: 2rem
     }
@@ -51,9 +53,8 @@
         right: 0.5rem;
         top: 6.5rem;
     }
-    .email-folder-list {
-        display: flex;
-        top: 7.5rem;
+    .email-folder-list-item{
+        display: none;
     }
     
 }

@@ -9,7 +9,25 @@ export class EmailCompose extends React.Component {
         },
         
     }
+    componentDidMount(){
+      if (this.props.type){
+        switch(this.props.type){
+          case 'note-txt':
+            this.setState((prevState) => ({ message: { ...prevState.message,textarea: this.props.txt}}))
 
+          break
+          case 'note-todos':
+            this.setState((prevState) => ({ message: { ...prevState.message,subject:'Check this list!' ,textarea: this.props.txt}}))
+          break
+          case 'note-video':
+            this.setState((prevState) => ({ message: { ...prevState.message,subject:'Check this video!' ,textarea: this.props.url}}))
+          break
+          case 'note-img':
+            this.setState((prevState) => ({ message: { ...prevState.message,subject:'Check this image!',textarea: this.props.url}}))
+          break
+        }
+      }
+    }
 
     handleChange = ({ target }) => {
         const value =  target.value
@@ -46,7 +64,7 @@ export class EmailCompose extends React.Component {
         <input name="subject" type="text" className="compose-input" placeholder="Subject" onChange={this.handleChange}/>
         <hr />
         <textarea name="textarea" className="compose-text-area" onChange={this.handleChange} id="" cols="30" rows="10"></textarea>
-        <button className="send-btn">Send</button>
+        <button onClick={this.onCloseModal} className="send-btn">Send</button>
         </form>
         </div>
       )

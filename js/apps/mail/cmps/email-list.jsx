@@ -14,14 +14,13 @@ export class EmailList extends React.Component {
     filter: '',
     folder: '',
     sortModal: false,
-    noteId: null,
   }
   removeFilterEvent
   removeFolderEvent
 
   componentDidMount() {
     this.loadMails()
-    this.onAddNoteAsMail()
+    // this.onAddNoteAsMail()
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
       this.getFilter(filter)
     )
@@ -31,12 +30,10 @@ export class EmailList extends React.Component {
   }
 
 
-  onAddNoteAsMail=()=>{
-    if (this.props.noteId){
-
-      this.setState({noteId})
-    } 
-  }
+  // onAddNoteAsMail=()=>{
+  //   if (this.props.noteId){
+  //   } 
+  // }
 
   renderNote = note => {
     this.onToggleCompose()
@@ -89,8 +86,10 @@ export class EmailList extends React.Component {
     this.setState({ compose: !this.state.compose })
   }
 
-  onComposeNote = note => {
-    return note
+  onComposeNote = (type, txt,url) => {
+    console.log(type)
+    console.log(txt)
+    console.log(url)
   }
 
   onToggleSortModal = () => {
@@ -191,6 +190,12 @@ export class EmailList extends React.Component {
             onComposeNote={this.onComposeNote}
             onToggleCompose={this.onToggleCompose}
           />
+        )}
+        {this.props.noteId && (
+          <EmailCompose
+          type ={this.props.noteId} txt={this.props.noteInfoTxt}url={this.props.noteInfoUrl}
+          onToggleCompose={this.onToggleCompose}
+        />
         )}
       </main>
     )

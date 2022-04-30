@@ -5,29 +5,9 @@ import { EmailFilter } from "./email-filter.jsx"
 
 export class EmailPreview extends React.Component {
 
-  state = {
-    noteId: null,
-    noteInfoTxt: null,
-    noteInfoUrl: null,
-  }
-
-  componentDidMount() {
-    if (this.props.noteId) { 
-      console.log(this.props.noteId)
-      this.setState({noteId: this.props.noteId})
-    }
-    if (this.props.noteInfoTxt) {
-      console.log(this.props.noteInfoTxt)
-      this.setState({noteInfoTxt: this.props.noteInfoTxt})
-    }
-    if (this.props.noteInfoUrl) {
-      console.log(this.props.noteInfoUrl)
-      this.setState({noteInfoUrl: this.props.noteInfoUrl})
-    }
-  }
 
   render() {
-    const { noteId, noteInfoTxt,noteInfoUrl } = this.state
+    const { noteId, noteInfoTxt,noteInfoUrl } = this.props
     return (
       <main className="email-preview">
         <div className="mail-logo">
