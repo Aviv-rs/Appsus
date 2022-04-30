@@ -10,6 +10,10 @@ export class NoteIndex extends React.Component {
     pinnedNotes: null,
   }
 
+  componentDidMount() {
+    this.loadNotes()
+  }
+
   onAddNote = (ev, note) => {
     ev.preventDefault()
     ev.target[0].value = ''
@@ -23,10 +27,6 @@ export class NoteIndex extends React.Component {
 
   onToggleTodo = (todoId, noteId) => {
     noteService.toggleTodo(todoId, noteId).then(this.loadNotes())
-  }
-
-  componentDidMount() {
-    this.loadNotes()
   }
 
   loadNotes = filterBy => {
