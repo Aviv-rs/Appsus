@@ -1,6 +1,8 @@
 import { emailService } from "../services/email.service.js"
 import { utilService } from "../../../services/util.service.js"
 import { eventBusService } from "../../../services/event-bus-service.js"
+import { EmailList } from "../cmps/email-list.jsx"
+
 const { Link } = ReactRouterDOM
 
 
@@ -17,7 +19,6 @@ export class EmailDetails extends React.Component {
     const { mailId } = this.props.match.params
     // debugger
     let mailToDis = emailService.getById(mailId)
-    console.log(mailToDis)
     this.setState({mail: mailToDis})
   }
   onMakeNote = (mail) => {

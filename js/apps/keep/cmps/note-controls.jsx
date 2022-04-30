@@ -7,9 +7,9 @@ export class NoteControls extends React.Component {
     isPickingColor: false,
   }
 
-  onMailNote(note) {
-    eventBusService.emit('note-to-mail', note)
-  }
+  // onMailNote(note) {
+  //   eventBusService.emit('note-to-mail', note)
+  // }
 
   toggleColorPicker = isPickingColor => {
     this.setState({ isPickingColor: !isPickingColor })
@@ -39,11 +39,12 @@ export class NoteControls extends React.Component {
           <img src="assets\img\keep-icons\duplicate.png" alt="" />
         </button>
 
-        <Link to={`/mail/${note.id}`}>
+        <Link to={`/mail/fromNote/noteId=${note.id}`}>
           <button
             title="Send note as mail"
             className="clean-btn btn-mail-note btn-note-edit"
-            onClick={() => this.onMailNote(note)}
+            //onClick={() => this.onMailNote(note)}
+            // onClick={() => this.onMailNote(note)}
           >
             <img src="assets\img\keep-icons\note-mail.png" alt="" />
           </button>

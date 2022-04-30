@@ -20,6 +20,7 @@ export function App() {
         <Switch>
           <Route path="/books/review/:bookId" component={BookReview} />
           <Route path="/books/:bookId" component={BookDetails} />
+          <Route path="/mail/fromNote/:mailId" component={EmailApp} />
           <Route path="/mail/:mailId" component={EmailDetails} />
           <Route path="/books" component={BookApp} />
           <Route path="/mail" component={EmailApp} />
