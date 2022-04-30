@@ -89,6 +89,7 @@ export class NoteAdd extends React.Component {
             contentEditable="true"
             onFocus={this.onCompose}
             suppressContentEditableWarning="true"
+            ref={this.titlePlaceholderRef}
           ></div>
         </div>
 
@@ -100,6 +101,7 @@ export class NoteAdd extends React.Component {
             onBlur={ev => {
               this.props.onAddNote(ev, note)
               this.setState({ isPlaceholder: true })
+              this.titlePlaceholderRef.current.innerText = ''
             }}
             type="note-txt"
             data-field="txt"
