@@ -27,7 +27,7 @@ export class EmailList extends React.Component {
     }
 
     renderNote=(note)=>{
-        // this.onToggleCompose()
+        this.onToggleCompose()
         // this.onComposeNote(note)
         console.log(note)
     }
