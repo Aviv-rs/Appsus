@@ -43,11 +43,12 @@ function filter(filterBy='', folderBy='') {
 }
 
 function getById(id) {
-  if (!gMails || !gMails.length) return
+  gMails = _loadFromStorage()
   const mail = gMails.find(mail => mail.id === id)
   mail.isRead = true
   _saveToStorage(gMails)
-  return Promise.resolve(mail)
+  console.log(mail)
+  return mail
 }
 
 function markAsUnread(id) {

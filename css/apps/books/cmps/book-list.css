@@ -1,0 +1,29 @@
+/* doesnt work, why?  */
+
+
+section.book-list{
+    margin: 10px 20px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+}
+article.book-preview{
+    margin: 10px;
+}
+
+@media screen and (max-width: 950px) {
+    section.book-list{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (max-width: 775px) {
+    section.book-list{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (max-width: 530px) {
+    section.book-list{
+        grid-template-columns: 1fr;
+    }
+}

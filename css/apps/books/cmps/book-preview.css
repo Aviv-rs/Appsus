@@ -1,0 +1,6 @@
+.book-image{
+    height: 300px;
+}
+.book-image:hover{
+    outline: 7px solid var(--logo-font);
+}

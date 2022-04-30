@@ -10,6 +10,7 @@ export const utilService = {
   debounce,
   prmDebounce,
   getDateIntl,
+  getCurr,
 }
 
 function makeId(length = 6) {
@@ -144,4 +145,20 @@ function getDateIntl(date) {
   let opt = { month: 'short', day: 'numeric' }
   // let opt = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
   return new Intl.DateTimeFormat('en', opt).format(date)
+}
+
+function getCurr(curr){
+  let coin;
+  switch(curr){
+      case 'ILS':
+          coin = '₪'
+      break;
+      case 'USD':
+          coin = '$'
+      break;
+      case 'EUR':
+          coin = '€'
+      break;
+  }
+  return coin
 }

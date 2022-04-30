@@ -1,0 +1,18 @@
+.book-details {
+    text-align: center;
+}
+
+.red{
+    background-color: red;
+    color: white;
+    width: 50px;
+}
+.green{
+    background-color: green;
+    color: white;
+    width: 50px;
+}
+.sale-img{
+    width: 50vw;
+}
+
