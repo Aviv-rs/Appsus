@@ -20,8 +20,10 @@ export class NoteAdd extends React.Component {
 
   titlePlaceholderRef = React.createRef()
 
-  onDoneCompose = ev => {
+  onDoneCompose = () => {
     this.setState({ isComposing: false })
+    this.titlePlaceholderRef.current.innerText = ''
+    this.infoPlaceholderRef.current.innerText = ''
   }
 
   onCompose = ev => {
@@ -70,11 +72,15 @@ export class NoteAdd extends React.Component {
   render() {
     const { note, isPlaceholder, isComposing } = this.state
     const titleInputClass = isComposing ? '' : 'hidden'
+    const openClass = isComposing ? 'open' : ''
     const placeholderClass = isPlaceholder
       ? 'note-info-placeholder'
       : 'note-info-placeholder hidden'
     return (
-      <section name="add" className="note-add flex  justify-center column">
+      <section
+        name="add"
+        className={`note-add flex  justify-center column ${openClass}`}
+      >
         <div>
           <div
             className={`title-placeholder ${titleInputClass} ${placeholderClass}`}
@@ -98,11 +104,11 @@ export class NoteAdd extends React.Component {
             Take a note...
           </div>
           <div
-            onBlur={ev => {
-              this.props.onAddNote(ev, note)
-              this.setState({ isPlaceholder: true })
-              this.titlePlaceholderRef.current.innerText = ''
-            }}
+            // onBlur={ev => {
+            //   this.props.onAddNote(ev, note)
+            //   this.setState({ isPlaceholder: true })
+            //   this.titlePlaceholderRef.current.innerText = ''
+            // }}
             type="note-txt"
             data-field="txt"
             name="txt"
@@ -155,6 +161,16 @@ export class NoteAdd extends React.Component {
             onClick={this.onChangeType}
           >
             <img name="note-txt" src="assets/img/keep-icons/file.png" alt="" />
+          </button>
+          <button
+            className={`clean-btn btn-note-type btn-add ${titleInputClass}`}
+            onClick={() => {
+              this.props.onAddNote(note)
+              this.setState({ isPlaceholder: true })
+              this.onDoneCompose()
+            }}
+          >
+            Close
           </button>
         </div>
       </section>

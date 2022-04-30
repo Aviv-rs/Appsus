@@ -64,6 +64,7 @@
   border-bottom-right-radius: 8px;
   border: none;
   padding-inline-start: 10px;
+  min-width: 100px;
 }
 
 [for='by-search'] {

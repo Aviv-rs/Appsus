@@ -28,9 +28,7 @@ export class NoteIndex extends React.Component {
     noteService.addMailAsNote(mail).then(this.loadNotes())
   }
 
-  onAddNote = (ev, note) => {
-    if (!ev.target.innerText) return
-    ev.target.innerText = ''
+  onAddNote = note => {
     if (!note.info.txt && !note.info.url && !note.info.todos) return
     noteService.addNote(note).then(this.loadNotes())
   }

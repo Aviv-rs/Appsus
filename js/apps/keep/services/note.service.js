@@ -70,7 +70,7 @@ function _createNotes() {
 
 function addNote(note) {
   let notes = _loadFromStorage()
-  if (!note.id) note.id = utilService.makeId()
+  note.id = utilService.makeId()
   if (note.type === 'note-todos') {
     note.info.todos = note.info.todos
       .split(',')
