@@ -157,7 +157,7 @@ export class EmailList extends React.Component {
                   to={`/mail/${mail.id}`}
                   key={mail.id}
                 >
-                  <li className="email-line flex">
+                  <li className="email-line">
                     <span className="mail-subject">{mail.subject}</span>
                     <span className="mail-body">
                       {this.onShortMailBody(mail.body)}...

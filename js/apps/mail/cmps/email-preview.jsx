@@ -15,7 +15,7 @@ export class EmailPreview extends React.Component {
         <main className="email-preview">
           <div className="mail-logo">
           <img className="mail-logo-img" src="assets/img/mail-icons/letters.png" alt="" />
-          <h1>MailSus</h1>
+          <h1 className="mail-logo-header">MailSus</h1>
           </div>
           <EmailFilter className="email-filter"/>
           <EmailList/>

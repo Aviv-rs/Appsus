@@ -28,6 +28,7 @@
 @import './apps/mail/cmps/email-folder-list.css';
 @import './apps/mail/pages/email-details.css';
 @import './apps/mail/pages/email-app.css';
+@import './apps/mail/pages/email-mq.css';
 
 /* books */
 @import './apps/books/cmps/book-add.css';

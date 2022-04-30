@@ -1,4 +1,6 @@
 .email-list{
+    display: flex;
+    flex-direction: row-reverse;
     width: 80%;
     margin: auto;
     grid-row: 2;
@@ -9,14 +11,17 @@ ul.email-preview {
     flex-direction: column;
     list-style-type: none;
 }
-li.email-line:last-child {
-    padding: 5px;
-    border: 1px solid var(--logo-font);
-    justify-content: space-between;
+li.email-line{
+    padding: 2px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 300px 1fr 50px 50px;
+    height: 50px;
+    border-bottom: 0.5px solid rgb(186, 186, 186);
 }
 
 li.email-line:hover {
-    outline: 1px solid var(--logo-font);
+    outline: 0.5px solid rgb(186, 186, 186);
      
 }
 li.email-line:hover .list-btn{
@@ -71,8 +76,8 @@ a.link-to-details.read  {
 }
 .compose-btn{
     position: absolute;
-    left: 1rem;
-    top: 13rem;
+    left: 0.5rem;
+    top: 13.5rem;
     width: 6.5rem;
     border-radius: 20px;
     padding: 5px;
@@ -95,13 +100,13 @@ a.link-to-details.read  {
     font-weight: bold;
 }
 .sort-modal{
-    top: 8rem;
+    height: fit-content;
+    opacity: 85%;
     position: absolute;
-    left: 10.5rem;
     background-color: white;
     padding: 10px;
     line-height: 25px;
-    border-radius: 5px;
+    border-radius: 5px
 }
 .sort-type:hover{
     background-color: #e8eaed;
