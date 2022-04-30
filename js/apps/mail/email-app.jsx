@@ -11,22 +11,25 @@ export class EmailApp extends React.Component {
   removeNoteEvent
 
   componentDidMount() {
-    this.removeNoteEvent = eventBusService.on('note-to-mail', note => {
-      this.setState({ note })
-      console.log(note)
-    })
+    this.removeNoteEvent = eventBusService.on('note-to-mail', note =>
+      this.getNote(note)
+    )
   }
 
-  //  getNote=()=>{
-  //   return this.state.note
-  //  }
+  getNote = note => {
+    const newNote = note
+    this.setState({ note: newNote })
+  }
+
+  componentWillUnmount() {
+    this.removeNoteEvent()
+  }
 
   render() {
-    console.log(this.state.note)
-    const { selectedMail, note } = this.state
+    const { selectedMail } = this.state
     return (
       <main className="email-app">
-        <EmailPreview note={note} />
+        <EmailPreview getNote={this.getNote} />
       </main>
     )
   }
