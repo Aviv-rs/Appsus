@@ -13,7 +13,7 @@ export class NoteControls extends React.Component {
 
   // }
 
-  onMailNote(note) {
+  onMailNote=(note)=> {
     eventBusService.emit('note-to-mail', note)
   }
 
