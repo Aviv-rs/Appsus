@@ -15,8 +15,8 @@ export class NoteIndex extends React.Component {
   }
 
   onAddNote = (ev, note) => {
-    ev.preventDefault()
-    ev.target[0].value = ''
+    if (!ev.target.innerText) return
+    ev.target.innerText = ''
     if (!note.info.txt && !note.info.url && !note.info.todos) return
     noteService.addNote(note).then(this.loadNotes())
   }

@@ -1,6 +1,42 @@
+.note-add {
+  width: 600px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+  border-radius: 8px;
+  padding: 0 16px;
+}
+
+.note-info-placeholder {
+  padding: 0 16px;
+  color: rgba(0, 0, 0, 0.702);
+  letter-spacing: 0.01785714em;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+}
+
+.custom-input {
+  padding-top: 12px;
+  height: 46px;
+  width: 100%;
+  outline: none;
+}
+
 .note-type-controls {
   gap: 5px;
   margin-inline-start: 1rem;
+  position: absolute;
+  right: 0;
+}
+
+.note-type-controls img {
+  width: 20px;
+  height: 20px;
 }
 
 .btn-note-type {

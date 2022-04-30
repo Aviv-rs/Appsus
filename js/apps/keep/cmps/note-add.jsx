@@ -8,36 +8,40 @@ export class NoteAdd extends React.Component {
       isPinned: false,
       style: {},
     },
+    placeholderStyle: { display: 'block' },
   }
   inputRef = React.createRef()
 
+  placeholderRef = React.createRef()
+
   onChangeType = ({ target }) => {
     const noteInput = this.inputRef.current
+    const placeHolder = this.placeholderRef.current
     const type = target.name
-    noteInput.value = ''
+    noteInput.innerText = ''
     this.setState(prevState => ({
       note: { ...prevState.note, type: type },
     }))
     if (type === 'note-img') {
-      noteInput.placeholder = 'Insert img url'
-      noteInput.name = 'url'
+      placeHolder.innerText = 'Insert img url'
+      noteInput.setAttribute('data-field', 'url')
     } else if (type === 'note-txt') {
-      noteInput.placeholder = 'Take a note...'
-      noteInput.name = 'txt'
+      placeHolder.innerText = 'Take a note...'
+      noteInput.setAttribute('data-field', 'txt')
     } else if (type === 'note-todos') {
-      noteInput.placeholder = 'Enter todos seperated by commas'
-      noteInput.name = 'todos'
+      placeHolder.innerText = 'Enter todos seperated by commas'
+      noteInput.setAttribute('data-field', 'todos')
     } else {
-      noteInput.placeholder = 'Insert video url'
-      noteInput.name = 'url'
+      placeHolder.innerText = 'Insert video url'
+      noteInput.setAttribute('data-field', 'url')
     }
   }
 
   handleChange = ({ target }) => {
-    const field = target.name
+    const field = target.getAttribute('data-field')
 
     this.setState(prevState => ({
-      note: { ...prevState.note, info: { [field]: target.value } },
+      note: { ...prevState.note, info: { [field]: target.innerText } },
     }))
   }
 
@@ -46,18 +50,21 @@ export class NoteAdd extends React.Component {
     const { info, isPinned, style } = note
     return (
       <section className="note-add flex align-center justify-center">
-        <form onSubmit={ev => this.props.onAddNote(ev, note)}>
-          <label htmlFor="add-note">
-            <input
-              ref={this.inputRef}
-              autoComplete="off"
-              onChange={this.handleChange}
-              name="txt"
-              placeholder="Take a note..."
-              type="text"
-            />
-          </label>
-        </form>
+        <div ref={this.placeholderRef} className="note-info-placeholder">
+          Take a note...
+        </div>
+        <div
+          onBlur={ev => this.props.onAddNote(ev, note)}
+          type="note-txt"
+          data-field="txt"
+          name="txt"
+          ref={this.inputRef}
+          onInput={this.handleChange}
+          className="custom-input"
+          contentEditable="true"
+          suppressContentEditableWarning="true"
+        ></div>
+
         <div className="flex note-type-controls">
           <button
             title={'Image note'}

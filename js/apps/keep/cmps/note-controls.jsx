@@ -8,16 +8,7 @@ export class NoteControls extends React.Component {
   }
   removeMailEvent
 
-<<<<<<< HEAD
   onMailNote(note) {
-=======
-  // componentDidMount(){
-  //   this.removeMailEvent = eventBusService.on('mail-to-note',(mail)=>this.props.renderMailAsNote)
-
-  // }
-
-  onMailNote=(note)=> {
->>>>>>> 1727a2d19300bb1d23ad7c618eebe1dc7bc4f36d
     eventBusService.emit('note-to-mail', note)
   }
 
@@ -49,15 +40,15 @@ export class NoteControls extends React.Component {
           <img src="assets\img\keep-icons\duplicate.png" alt="" />
         </button>
 
-        {/* <Link to="/mail"> */}
-        <button
-          title="Send note as mail"
-          className="clean-btn btn-mail-note btn-note-edit"
-          onClick={() => this.onMailNote(note)}
-        >
-          <img src="assets\img\keep-icons\note-mail.png" alt="" />
-        </button>
-        {/* </Link> */}
+        <Link to="/mail">
+          <button
+            title="Send note as mail"
+            className="clean-btn btn-mail-note btn-note-edit"
+            onClick={() => this.onMailNote(note)}
+          >
+            <img src="assets\img\keep-icons\note-mail.png" alt="" />
+          </button>
+        </Link>
 
         {!note.isPinned && (
           <button
