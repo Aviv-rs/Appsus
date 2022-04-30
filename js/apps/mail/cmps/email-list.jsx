@@ -16,20 +16,30 @@ export class EmailList extends React.Component {
   }
   removeFilterEvent
   removeFolderEvent
-  // removeNoteEvent
 
   componentDidMount() {
     this.loadMails()
-    // this.removeNoteEvent = eventBusService.on('note-to-mail', note =>
-    //   this.renderNote(note)
-    // )
+    // this.isThereNote()
+    // const urlSrcPrm = new URLSearchParams(this.props.location.search)
+  
+    // const noteId = urlSrcPrm.get('noteId')
+    // if (noteId) {
+    //   console.log(noteId)
+    // }
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
-      //this.getFilter(filter)
-      console.log('running compdidmount filter')
+    this.getFilter(filter)
     )
     this.removeFolderEvent = eventBusService.on('folder-submit', folder =>
-      this.getFolder(folder)
+    this.getFolder(folder)
     )
+  }
+
+  isThereNote=()=>{
+    
+  }
+
+  onAddNoteAsMail(note){
+    console.log(note)
   }
 
   renderNote = (note) => {
@@ -47,8 +57,6 @@ export class EmailList extends React.Component {
   }
 
   loadMails = () => {
-    // if (window.location.includes('fromNote')) console.log('fromNote')
-    // debugger
     let { filter, folder } = this.state
     emailService.query(filter, folder).then(mails => {
       this.setState({ mails })
@@ -56,8 +64,15 @@ export class EmailList extends React.Component {
       mails.forEach(mail => {
         if (mail.isRead === false) {
           this.setState({ unReadCount: this.state.unReadCount + 1 })
+
         }
       })
+      const urlSrcPrm = new URLSearchParams(this.props.location.search)
+  
+    const noteId = urlSrcPrm.get('noteId')
+    if (noteId) {
+      console.log(noteId)
+    }
     })
   }
 
@@ -108,8 +123,8 @@ export class EmailList extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.removeFilterEvent()
-    // this.removeFolderEvent()
+    this.removeFilterEvent()
+    this.removeFolderEvent()
     // this.removeNoteEvent()
   }
 
