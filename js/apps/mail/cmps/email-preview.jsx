@@ -2,17 +2,12 @@ import {EmailFolderList} from "./email-folder-list.jsx"
 import {EmailList} from "./email-list.jsx"
 import {EmailFilter} from "./email-filter.jsx"
 
+
 export class EmailPreview extends React.Component {
 
   state={
     note: null
   }
-
-  componentDidMount(){
-    const {note} = this.props
-    this.setState({note})
-  }
-
 
 
     render() {
