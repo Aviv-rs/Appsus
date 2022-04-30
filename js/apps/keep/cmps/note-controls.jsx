@@ -34,7 +34,7 @@ export class NoteControls extends React.Component {
           <img src="assets\img\keep-icons\duplicate.png" alt="" />
         </button>
 
-        <Link to={`/mail?noteId=${note.id}`}>
+        <Link to={`/mail?noteId=${note.type}&noteInfoTxt=${note.info.txt}&noteInfoUrl=${note.info.url}`}>
           <button
             title="Send note as mail"
             className="clean-btn btn-mail-note btn-note-edit"

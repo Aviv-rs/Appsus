@@ -3,9 +3,9 @@ import { eventBusService } from '../../services/event-bus-service.js'
 
 export class EmailApp extends React.Component {
   state = {
-    selectedMail: null,
-    filterBy: null,
-    note: null,
+    noteId: null,
+    noteInfoTxt: null,
+    noteInfoUrl: null,
   }
   
 
@@ -13,9 +13,16 @@ export class EmailApp extends React.Component {
     const urlSrcPrm = new URLSearchParams(this.props.location.search)
   
     const noteId = urlSrcPrm.get('noteId')
+    const noteInfoTxt = urlSrcPrm.get('noteInfoTxt')
+    const noteInfoUrl = urlSrcPrm.get('noteInfoUrl')
     if (noteId) {
-      // console.log(noteId)
-      this.setState({note: noteId})
+      this.setState({noteId: noteId})
+    }
+    if (noteInfoTxt) {
+      this.setState({noteInfoTxt: noteInfoTxt})
+    }
+    if (noteInfoUrl) {
+      this.setState({noteInfoUrl: noteInfoUrl})
     }
   }
   
@@ -23,10 +30,10 @@ export class EmailApp extends React.Component {
   
 
   render() {
-    const { note } = this.state
+    const { noteId, noteInfoTxt,noteInfoUrl } = this.state
     return (
       <main className="email-app">
-        <EmailPreview note={note}/>
+        <EmailPreview noteId={noteId} noteInfoTxt={noteInfoTxt} noteInfoUrl={noteInfoUrl}/>
       </main>
     )
   }

@@ -14,12 +14,14 @@ export class EmailList extends React.Component {
     filter: '',
     folder: '',
     sortModal: false,
+    noteId: null,
   }
   removeFilterEvent
   removeFolderEvent
 
   componentDidMount() {
     this.loadMails()
+    this.onAddNoteAsMail()
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
       this.getFilter(filter)
     )
@@ -29,10 +31,11 @@ export class EmailList extends React.Component {
   }
 
 
-  onAddNoteAsMail(){
-    const noteId=this.props.note
-    NoteService.getById(noteId)
-    .then(console.log)
+  onAddNoteAsMail=()=>{
+    if (this.props.noteId){
+
+      this.setState({noteId})
+    } 
   }
 
   renderNote = note => {
