@@ -45,6 +45,7 @@ function filter(filterBy='', folderBy='') {
 function getById(id) {
   gMails = _loadFromStorage()
   const mail = gMails.find(mail => mail.id === id)
+  if(!mail)return
   mail.isRead = true
   _saveToStorage(gMails)
   console.log(mail)

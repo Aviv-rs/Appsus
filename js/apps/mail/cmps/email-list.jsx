@@ -16,22 +16,23 @@ export class EmailList extends React.Component {
   }
   removeFilterEvent
   removeFolderEvent
-  removeNoteEvent
+  // removeNoteEvent
 
   componentDidMount() {
     this.loadMails()
-    this.removeNoteEvent = eventBusService.on('note-to-mail', note =>
-      this.renderNote(note)
-    )
+    // this.removeNoteEvent = eventBusService.on('note-to-mail', note =>
+    //   this.renderNote(note)
+    // )
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
-      this.getFilter(filter)
+      //this.getFilter(filter)
+      console.log('running compdidmount filter')
     )
     this.removeFolderEvent = eventBusService.on('folder-submit', folder =>
       this.getFolder(folder)
     )
   }
 
-  renderNote = note => {
+  renderNote = (note) => {
     this.onToggleCompose()
     // this.onComposeNote(note)
     console.log(note)
@@ -46,6 +47,7 @@ export class EmailList extends React.Component {
   }
 
   loadMails = () => {
+    // if (window.location.includes('fromNote')) console.log('fromNote')
     // debugger
     let { filter, folder } = this.state
     emailService.query(filter, folder).then(mails => {
@@ -60,6 +62,7 @@ export class EmailList extends React.Component {
   }
 
   reLoadMails = mailsType => {
+    
     this.setState({ mails: mailsType })
     this.setState({ unReadCount: 0 })
     mailsType.forEach(mail => {
@@ -105,9 +108,9 @@ export class EmailList extends React.Component {
   }
 
   componentWillUnmount() {
-    this.removeFilterEvent()
-    this.removeFolderEvent()
-    this.removeNoteEvent()
+    // this.removeFilterEvent()
+    // this.removeFolderEvent()
+    // this.removeNoteEvent()
   }
 
   render() {
