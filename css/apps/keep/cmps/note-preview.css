@@ -76,6 +76,24 @@
   opacity: 1;
 }
 
+.note-title {
+  letter-spacing: 0.00625em;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.note-txt-body {
+  padding-top: 10px;
+  color: #5f6368;
+  font-size: 1rem;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+}
+
 .note-img img {
   height: 100%;
   width: 100%;

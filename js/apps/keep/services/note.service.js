@@ -86,10 +86,9 @@ function addMailAsNote(mail) {
   const note = _createNote(
     'note-txt',
     false,
-    { txt: mail.body },
+    { title: mail.subject, txt: mail.body },
     undefined,
-    'mail',
-    mail.subject
+    'mail'
   )
   note.id = mail.id
 
@@ -146,7 +145,7 @@ function getById(noteId) {
   return Promise.resolve(notes.find(note => note.id === noteId))
 }
 
-function _createNote(type, isPinned, info, style = {}, label = '', title = '') {
+function _createNote(type, isPinned, info, style = {}, label = '') {
   return {
     id: utilService.makeId(),
     type,
@@ -154,7 +153,6 @@ function _createNote(type, isPinned, info, style = {}, label = '', title = '') {
     info,
     style,
     label,
-    title,
   }
 }
 

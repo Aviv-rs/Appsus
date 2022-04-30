@@ -21,10 +21,10 @@ export class EmailList extends React.Component {
   componentDidMount() {
     this.loadMails()
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
-    this.getFilter(filter)
+      this.getFilter(filter)
     )
     this.removeFolderEvent = eventBusService.on('folder-submit', folder =>
-    this.getFolder(folder)
+      this.getFolder(folder)
     )
   }
 
@@ -35,7 +35,7 @@ export class EmailList extends React.Component {
     .then(console.log)
   }
 
-  renderNote = (note) => {
+  renderNote = note => {
     this.onToggleCompose()
     // this.onComposeNote(note)
     console.log(note)
@@ -57,15 +57,12 @@ export class EmailList extends React.Component {
       mails.forEach(mail => {
         if (mail.isRead === false) {
           this.setState({ unReadCount: this.state.unReadCount + 1 })
-
         }
       })
-
     })
   }
 
   reLoadMails = mailsType => {
-    
     this.setState({ mails: mailsType })
     this.setState({ unReadCount: 0 })
     mailsType.forEach(mail => {

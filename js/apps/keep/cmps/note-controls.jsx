@@ -1,5 +1,4 @@
 import { ColorPicker } from './color-picker.jsx'
-import { eventBusService } from '../../../services/event-bus-service.js'
 const { Link } = ReactRouterDOM
 
 export class NoteControls extends React.Component {
