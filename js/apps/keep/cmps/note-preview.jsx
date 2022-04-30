@@ -10,7 +10,6 @@ export function NotePreview({
   note,
   onDeleteNote,
   onChangeStyle,
-  noteIdx,
 }) {
   switch (note.type) {
     case 'note-txt':
@@ -20,7 +19,6 @@ export function NotePreview({
           onChangeStyle={onChangeStyle}
           onDeleteNote={onDeleteNote}
           note={note}
-          noteIdx={noteIdx}
           onTogglePin={onTogglePin}
         />
       )
@@ -31,7 +29,6 @@ export function NotePreview({
           onChangeStyle={onChangeStyle}
           onDeleteNote={onDeleteNote}
           note={note}
-          noteIdx={noteIdx}
           onTogglePin={onTogglePin}
         />
       )
@@ -43,7 +40,6 @@ export function NotePreview({
           onDeleteNote={onDeleteNote}
           onToggleTodo={onToggleTodo}
           note={note}
-          noteIdx={noteIdx}
           onTogglePin={onTogglePin}
         />
       )
@@ -54,7 +50,6 @@ export function NotePreview({
           onChangeStyle={onChangeStyle}
           onDeleteNote={onDeleteNote}
           note={note}
-          noteIdx={noteIdx}
           onTogglePin={onTogglePin}
         />
       )

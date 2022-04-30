@@ -44,8 +44,8 @@ export class NoteIndex extends React.Component {
     noteService.changeStyle(noteId, style).then(this.loadNotes)
   }
 
-  onDuplicateNote = noteIdx => {
-    noteService.duplicateNote(noteIdx).then(this.loadNotes)
+  onDuplicateNote = noteId => {
+    noteService.duplicateNote(noteId).then(this.loadNotes)
   }
 
   onTogglePin = noteId => {
@@ -58,6 +58,7 @@ export class NoteIndex extends React.Component {
 
   render() {
     const { notes, pinnedNotes } = this.state
+
     return (
       <section className="note-index">
         <NoteFilter onSetFilter={this.onSetFilter} />
@@ -65,7 +66,6 @@ export class NoteIndex extends React.Component {
         <NoteAdd onAddNote={this.onAddNote} />
         {pinnedNotes && (
           <React.Fragment>
-            <div className="pinned-notes-title">Pinned</div>
             <NoteList
               onDuplicateNote={this.onDuplicateNote}
               onChangeStyle={this.onChangeStyle}
@@ -79,8 +79,6 @@ export class NoteIndex extends React.Component {
         )}
         {notes && (
           <React.Fragment>
-            <div className="other-notes-title">Others</div>
-
             <NoteList
               onDuplicateNote={this.onDuplicateNote}
               onChangeStyle={this.onChangeStyle}

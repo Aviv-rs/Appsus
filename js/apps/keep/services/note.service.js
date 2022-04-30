@@ -79,8 +79,10 @@ function addNote(note) {
   return Promise.resolve()
 }
 
-function duplicateNote(noteIdx) {
+function duplicateNote(noteId) {
   let notes = _loadFromStorage()
+
+  const noteIdx = notes.findIndex(note => note.id === noteId)
   const note = { ...notes[noteIdx] }
   note.id = utilService.makeId()
   notes.splice(noteIdx, 0, note)

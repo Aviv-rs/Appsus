@@ -18,9 +18,14 @@
   transition: opacity, 0.4s;
 }
 
-.note:hover .note-controls {
+.note:hover .note-controls,
+.note-controls.active {
   opacity: 1;
 }
+
+/* .note:hover {
+  box-shadow: 0 0 0 1px black;
+} */
 
 .note.note-video .note-controls,
 .note.note-img .note-controls {

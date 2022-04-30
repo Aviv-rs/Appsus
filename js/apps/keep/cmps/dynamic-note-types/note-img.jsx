@@ -6,7 +6,6 @@ export function NoteImg({
   onChangeStyle,
   onDuplicateNote,
   onTogglePin,
-  noteIdx,
 }) {
   return (
     <div style={note.style} className="note note-img">
@@ -17,7 +16,6 @@ export function NoteImg({
         onDeleteNote={onDeleteNote}
         onDuplicateNote={onDuplicateNote}
         onTogglePin={onTogglePin}
-        noteIdx={noteIdx}
       />
     </div>
   )

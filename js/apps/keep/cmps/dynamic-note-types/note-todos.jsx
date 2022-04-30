@@ -18,14 +18,8 @@ export class NoteTodos extends React.Component {
 
   render() {
     const { todos } = this.state
-    const {
-      note,
-      onDeleteNote,
-      onChangeStyle,
-      onDuplicateNote,
-      onTogglePin,
-      noteIdx,
-    } = this.props
+    const { note, onDeleteNote, onChangeStyle, onDuplicateNote, onTogglePin } =
+      this.props
     if (!todos) return <div className="loader">loading...</div>
     return (
       <div style={note.style} className="note note-todos">
@@ -54,7 +48,6 @@ export class NoteTodos extends React.Component {
           onDeleteNote={onDeleteNote}
           onDuplicateNote={onDuplicateNote}
           onTogglePin={onTogglePin}
-          noteIdx={noteIdx}
         />
       </div>
     )

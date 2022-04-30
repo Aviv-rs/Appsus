@@ -6,19 +6,13 @@ export function NoteTxt({
   onChangeStyle,
   onDuplicateNote,
   onTogglePin,
-  noteIdx,
 }) {
-  function onNoteActive() {
-    console.log('active')
-  }
-
   return (
-    <div onClick={onNoteActive} style={note.style} className="note-txt note">
+    <div style={note.style} className="note-txt note">
       <p
         className="no-outline"
         suppressContentEditableWarning="true"
         contentEditable="true"
-        // onInput={ev => console.log(ev.target)}
       >
         {note.info.txt}
       </p>
@@ -28,7 +22,6 @@ export function NoteTxt({
         onDeleteNote={onDeleteNote}
         onDuplicateNote={onDuplicateNote}
         onTogglePin={onTogglePin}
-        noteIdx={noteIdx}
       />
     </div>
   )
