@@ -1,6 +1,8 @@
 import { emailService } from "../services/email.service.js"
 import { utilService } from "../../../services/util.service.js"
 import { eventBusService } from "../../../services/event-bus-service.js"
+const { Link } = ReactRouterDOM
+
 
 export class EmailDetails extends React.Component {
     state={
@@ -8,7 +10,9 @@ export class EmailDetails extends React.Component {
     }
 
     componentDidMount=()=>{
-        this.loadMail(this.props.match.params.mailId)
+      const {mail} = this.state
+        if (mail) console.log('yes')
+        else this.loadMail(this.props.match.params.mailId)
     }
     
     loadMail=(mailId)=>{
@@ -19,7 +23,6 @@ export class EmailDetails extends React.Component {
     }
     onMakeNote=(mail)=>{
       eventBusService.emit('mail-to-note', (mail))
-      console.log(mail)
     }
 
     onGoBack = () => {
@@ -49,7 +52,7 @@ export class EmailDetails extends React.Component {
           <h4 onClick={this.onGoBack}>←Return</h4>
           <div className="details-btn" >
           <img onClick={()=>this.onDeleteMail(mail.id)} src="assets/img/delete.png"></img>
-          <img onClick={()=>this.onMakeNote(mail)} src="assets/img/mail-icons/mail-to-keep.png"></img>
+         <Link to="/keep"><img onClick={()=>this.onMakeNote(mail)} src="assets/img/mail-icons/mail-to-keep.png"></img></Link> 
           </div>
         </main>
       )

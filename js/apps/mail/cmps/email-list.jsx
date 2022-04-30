@@ -27,6 +27,8 @@ export class EmailList extends React.Component {
     }
 
     renderNote=(note)=>{
+        // this.onToggleCompose()
+        // this.onComposeNote(note)
         console.log(note)
     }
 
@@ -78,6 +80,10 @@ export class EmailList extends React.Component {
         this.setState({ compose: !this.state.compose })
     }
 
+    onComposeNote=(note)=>{
+        return note
+    }
+
     onToggleSortModal = () => {
         this.setState({ sortModal: !this.state.sortModal })
     }
@@ -99,6 +105,7 @@ export class EmailList extends React.Component {
     componentWillUnmount() {
         this.removeFilterEvent()
         this.removeFolderEvent()
+        this.removeNoteEvent()
     }
 
     render() {
@@ -139,7 +146,7 @@ export class EmailList extends React.Component {
                     })}</ul>
                 }
                 {compose &&
-                    <EmailCompose onToggleCompose={this.onToggleCompose} />
+                    <EmailCompose onComposeNote={this.onComposeNote} onToggleCompose={this.onToggleCompose} />
                 }
             </main>
         )

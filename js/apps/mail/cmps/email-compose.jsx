@@ -10,6 +10,7 @@ export class EmailCompose extends React.Component {
         
     }
 
+
     handleChange = ({ target }) => {
         const value =  target.value
         const field = target.name
@@ -28,6 +29,11 @@ export class EmailCompose extends React.Component {
         emailService.sendMail(to,subject,textarea).then(()=>{
           this.onCloseModal()
         })
+    }
+
+    composeNote=()=>{
+      const note = this.props.onComposeNote()
+      console.log(note) 
     }
 
     render() {
