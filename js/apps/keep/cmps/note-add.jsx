@@ -16,21 +16,24 @@ export class NoteAdd extends React.Component {
 
   inputRef = React.createRef()
 
-  placeholderRef = React.createRef()
+  infoPlaceholderRef = React.createRef()
+
+  titlePlaceholderRef = React.createRef()
 
   onDoneCompose = ev => {
-    console.log(ev.currentTarget)
-    // this.setState({ isComposing: false })
+    this.setState({ isComposing: false })
   }
 
   onCompose = ev => {
-    console.log(ev.currentTarget)
-    // this.setState({ isComposing: true })
+    this.setState({ isComposing: true })
   }
 
   onChangeType = ({ target }) => {
     const noteInput = this.inputRef.current
-    const placeHolder = this.placeholderRef.current
+    const placeHolder =
+      target.type === 'title'
+        ? this.titlePlaceholderRef.current
+        : this.infoPlaceholderRef.current
     const type = target.name
     noteInput.innerText = ''
     this.setState(prevState => ({
@@ -68,19 +71,11 @@ export class NoteAdd extends React.Component {
       ? 'note-info-placeholder'
       : 'note-info-placeholder hidden'
     return (
-      <section
-        name="add"
-        onBlur={this.onDoneCompose}
-        className="note-add flex  justify-center column"
-      >
+      <section name="add" className="note-add flex  justify-center column">
         <div>
           <div className={`title-placeholder ${titleInputClass}`}>Title</div>
           <div
-            // onBlur={ev => {
-            //   this.props.onAddNote(ev, note)
-            //   this.setState({ isPlaceholder: true })
-            // }}
-            // onInput={this.handleChange}
+            onInput={this.handleChange}
             data-field="title"
             type="title"
             className={`add-title-input ${titleInputClass}`}
@@ -91,7 +86,7 @@ export class NoteAdd extends React.Component {
         </div>
 
         <div>
-          <div ref={this.placeholderRef} className={placeholderClass}>
+          <div ref={this.infoPlaceholderRef} className={placeholderClass}>
             Take a note...
           </div>
           <div
