@@ -15,8 +15,8 @@ export class _AppHeader extends React.Component {
     return (
       <header className="app-header flex">
         <NavLink exact to="/"><img src="./assets/img/logo.png" className="header-image" /></NavLink>
-        <nav className="page-nav flex">
-          <img onClick={this.onToggleModal} src="./assets/img/menu.png" alt="" />
+        <nav className="flex">
+          <img className="page-nav" onClick={this.onToggleModal} src="./assets/img/menu.png" alt="" />
           {isModalOpen &&
             <div className="menu-modal">
               <div className="menu-nav">

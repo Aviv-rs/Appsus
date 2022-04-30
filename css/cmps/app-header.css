@@ -29,3 +29,6 @@
 .menu-nav:hover{
     background-color: lightgray ;
 }
+.page-nav{
+    cursor: pointer;
+}

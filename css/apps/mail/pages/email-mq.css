@@ -1,0 +1,71 @@
+@media (min-width: 1040px){
+    .email-list{
+        width: 90%;
+        margin-left:8rem
+    }
+}
+@media (min-width: 820px){
+    .email-list{
+        width: 90%;
+        margin-left:7rem
+    }
+    .filter-input {
+        width: 50%;
+    }
+}
+@media (min-width: 780px){
+    .email-list{
+        width: 90%;
+        margin-left:7rem
+    }
+}
+@media (min-width: 640px){
+    .email-list{
+        width: 90%;
+        margin-left:7rem
+    }
+    .filter-input {
+        width: 40%;
+    }
+}
+@media (max-width: 640px){
+    .email-list{
+        margin-top: 25px;
+    }
+    
+    .mail-logo-img{
+        height: 2rem
+    }
+    .unread-mails{
+        left: 3rem;
+        padding: 5px;
+    }
+    .mail-logo-header{
+        font-size: 16px;
+    }
+    .filter-input {
+        width: 40%;
+    }
+    .compose-btn {
+        left: auto;
+        right: 0.5rem;
+        top: 6.5rem;
+    }
+    .email-folder-list {
+        display: flex;
+        top: 7.5rem;
+    }
+    
+}
+@media (max-width: 800px){
+    span.mail-body{
+       display: none;
+    }
+    li.email-line{
+        grid-template-columns: 300px 50px  50px;
+        justify-content: space-evenly;
+    }
+    .email-list{
+        flex-direction: row;
+    }
+}

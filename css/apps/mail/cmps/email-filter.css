@@ -1,9 +1,8 @@
 .email-filter{
     text-align: center;
-    width: 70%;
+    width: 100%;
     position: absolute;
     top: 1.5rem;
-    right: 10rem;
 }
 
 .filter-input{
