@@ -3,55 +3,15 @@ import { NoteImg } from './dynamic-note-types/note-img.jsx'
 import { NoteTodos } from './dynamic-note-types/note-todos.jsx'
 import { NoteVideo } from './dynamic-note-types/note-video.jsx'
 
-export function NotePreview({
-  onToggleTodo,
-  onTogglePin,
-  onDuplicateNote,
-  note,
-  onDeleteNote,
-  onChangeStyle,
-}) {
-  switch (note.type) {
+export function NotePreview(props) {
+  switch (props.note.type) {
     case 'note-txt':
-      return (
-        <NoteTxt
-          onDuplicateNote={onDuplicateNote}
-          onChangeStyle={onChangeStyle}
-          onDeleteNote={onDeleteNote}
-          note={note}
-          onTogglePin={onTogglePin}
-        />
-      )
+      return <NoteTxt {...props} />
     case 'note-img':
-      return (
-        <NoteImg
-          onDuplicateNote={onDuplicateNote}
-          onChangeStyle={onChangeStyle}
-          onDeleteNote={onDeleteNote}
-          note={note}
-          onTogglePin={onTogglePin}
-        />
-      )
+      return <NoteImg {...props} />
     case 'note-todos':
-      return (
-        <NoteTodos
-          onDuplicateNote={onDuplicateNote}
-          onChangeStyle={onChangeStyle}
-          onDeleteNote={onDeleteNote}
-          onToggleTodo={onToggleTodo}
-          note={note}
-          onTogglePin={onTogglePin}
-        />
-      )
+      return <NoteTodos {...props} />
     case 'note-video':
-      return (
-        <NoteVideo
-          onDuplicateNote={onDuplicateNote}
-          onChangeStyle={onChangeStyle}
-          onDeleteNote={onDeleteNote}
-          note={note}
-          onTogglePin={onTogglePin}
-        />
-      )
+      return <NoteVideo {...props} />
   }
 }

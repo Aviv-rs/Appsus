@@ -1,15 +1,24 @@
-.app-home{
-    background-image: url("../../assets/img/app-hero.png");
-    height: 100vh;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
+.app-home {
+  /* background-image: url('../../assets/img/hero.svg');
+  background-position: center;
+  background-size: contain; */
+  /* background-repeat: no-repeat; */
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.links a{
-    text-decoration: none;
-    color: var(--logo-font);
+.hero-home {
+  position: absolute;
+  top: 50%;
+  transform: translate(10px, -45%);
+  z-index: -1;
+  right: 0;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--logo-font);
 }

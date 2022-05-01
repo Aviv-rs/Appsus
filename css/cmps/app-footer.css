@@ -1,15 +1,12 @@
-.app-footer{
-    position: fixed;
-    bottom: 0;
-    background-color: var(--logo-clr4);
-    width: 100%;
-    margin: 0;
-    padding: 15px;
-    text-align: center;
+.app-footer {
+  background-color: var(--logo-clr4);
+  margin: 0;
+  padding: 15px;
+  text-align: center;
 }
 
-.footer-cr{
-    font-family: poir, serif;
-    font-weight: bold;
-    color: var(--logo-clr1)
+.footer-cr {
+  font-family: poir, serif;
+  font-weight: bold;
+  color: var(--logo-clr1);
 }
