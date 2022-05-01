@@ -112,6 +112,15 @@
   padding: 0 0 2.5rem 0;
 }
 
+.note.note-video .note-title,
+.note.note-img .note-title {
+  padding-inline-start: 1rem;
+}
+
+.note-totods ul {
+  padding-inline-start: 1rem;
+}
+
 .todo {
   cursor: pointer;
   width: fit-content;

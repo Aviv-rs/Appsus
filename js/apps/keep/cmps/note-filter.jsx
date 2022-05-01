@@ -25,9 +25,6 @@ export class NoteFilter extends React.Component {
   }
 
   render() {
-    const {
-      filterBy: { type, label },
-    } = this.state
     return (
       <section className="note-filter">
         <form className="flex">
