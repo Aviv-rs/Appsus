@@ -22,7 +22,7 @@ export function AppHome() {
         <p className="welcome-to-txt">Welcome to</p>
         <h1 className="appsus-title">Appsus</h1>
         <h3 className="explore-apps-txt">Explore our apps</h3>
-        <h4 className="home-app-links">
+        <ul className="home-app-links clean-list">
           <Link className="home-app-link" to={'/mail'}>
             Mail
           </Link>
@@ -34,7 +34,7 @@ export function AppHome() {
             {' '}
             Books
           </Link>
-        </h4>
+        </ul>
       </main>
     </section>
   )

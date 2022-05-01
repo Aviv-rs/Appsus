@@ -17,7 +17,13 @@ export function NoteImg({
         onDuplicateNote={onDuplicateNote}
         onTogglePin={onTogglePin}
       />
-      <p className="note-title">{note.info.title}</p>
+      <p
+        contentEditable="true"
+        suppressContentEditableWarning="true"
+        className="note-title"
+      >
+        {note.info.title}
+      </p>
     </div>
   )
 }

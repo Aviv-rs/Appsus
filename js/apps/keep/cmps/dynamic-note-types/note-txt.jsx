@@ -9,7 +9,13 @@ export function NoteTxt({
 }) {
   return (
     <div style={note.style} className="note-txt note">
-      <p className="note-title">{note.info.title}</p>
+      <p
+        suppressContentEditableWarning="true"
+        contentEditable="true"
+        className="note-title"
+      >
+        {note.info.title}
+      </p>
       <p
         className="no-outline note-txt-body"
         suppressContentEditableWarning="true"

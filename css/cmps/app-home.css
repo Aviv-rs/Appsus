@@ -12,6 +12,23 @@
   top: 15rem;
 }
 
+@media (max-width: 650px) {
+  .hero-home {
+    max-width: 100%;
+  }
+
+  .home-app-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+  }
+
+  .home-app-link {
+    width: fit-content;
+  }
+}
+
 .bg-circle-container {
   overflow: hidden;
   height: 80%;
@@ -62,6 +79,7 @@
   background: #f1f3f4;
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
   margin: 0 1rem;
+  font-weight: bold;
 }
 
 .home-app-link:hover {
