@@ -15,10 +15,10 @@ export class EmailFolderList extends React.Component {
       return (
         <main className="email-folder-list">
           
-          <h3 className="email-folder-list-item" onClick={this.onShowType} name="inbox"><img className="folder-list-icon" src="assets/img/mail-icons/inbox.png" alt="" />Inbox</h3>
-          <h3 className="email-folder-list-item" onClick={this.onShowType} name="star"><img className="folder-list-icon" src="assets/img/mail-icons/star.png" alt=""/>Starred</h3>
-          <h3 className="email-folder-list-item" onClick={this.onShowType} name="sent"><img className="folder-list-icon" src="assets/img/mail-icons/sent.png" alt=""/>Sent Mail</h3>
-          <h3 className="email-folder-list-item" onClick={this.onShowType} name="draft"><img className="folder-list-icon" src="assets/img/mail-icons/draft.png" alt=""/>Drafts</h3>
+         <div onClick={this.onShowType} className="flex"> <img onClick={this.onShowType} className="folder-list-icon" src="assets/img/mail-icons/inbox.png" alt="" /><h3 className="email-folder-list-item" name="inbox">Inbox</h3></div>
+         <div onClick={this.onShowType} className="flex"> <img onClick={this.onShowType} className="folder-list-icon" src="assets/img/mail-icons/star.png" alt=""/><h3 className="email-folder-list-item" name="star">Starred</h3></div>
+         <div onClick={this.onShowType} className="flex"><img onClick={this.onShowType} className="folder-list-icon" src="assets/img/mail-icons/sent.png" alt=""/><h3 className="email-folder-list-item" name="sent">Sent Mail</h3></div>
+         <div onClick={this.onShowType} className="flex"> <img onClick={this.onShowType} className="folder-list-icon" src="assets/img/mail-icons/draft.png" alt=""/> <h3 className="email-folder-list-item" name="draft">Drafts</h3></div>
         </main>
       )
     }
