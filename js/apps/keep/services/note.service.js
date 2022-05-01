@@ -11,6 +11,7 @@ export const noteService = {
   togglePin,
   addMailAsNote,
   getById,
+  updateNoteInfo,
 }
 
 const NOTES_KEY = 'noteDB'
@@ -51,7 +52,7 @@ function _createNotes() {
         { id: utilService.makeId(), txt: 'Ace this sprint', isDone: false },
         {
           id: utilService.makeId(),
-          txt: "Don't let Tommy down",
+          txt: 'Make Tommy proud',
           isDone: false,
         },
       ],
@@ -79,6 +80,14 @@ function addNote(note) {
       .map(todo => ({ txt: todo, isDone: false, id: utilService.makeId() }))
   }
   notes = [note, ...notes]
+  _saveToStorage(notes)
+  return Promise.resolve()
+}
+
+function updateNoteInfo(noteId, info) {
+  let notes = _loadFromStorage()
+  const note = notes.find(note => note.id === noteId)
+  note.info = info
   _saveToStorage(notes)
   return Promise.resolve()
 }

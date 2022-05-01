@@ -15,7 +15,6 @@ const loggedinUser = {
   email: 'user@appsus.com',
   fullname: 'Mahatma Appsus',
 }
-// let gMails
 
 function query(filterBy, folderBy) {
   let gMails = _loadFromStorage()
@@ -36,7 +35,6 @@ function query(filterBy, folderBy) {
   }
   return Promise.resolve(gMails)
 }
-
 
 function getById(id) {
   let gMails = _loadFromStorage()

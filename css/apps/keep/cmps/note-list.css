@@ -3,6 +3,7 @@
   column-width: 230px;
   margin: auto;
   width: 80%;
+  position: relative;
 }
 
 .note-list.pinned-notes {
@@ -17,7 +18,9 @@
   font-weight: 500;
   line-height: 1rem;
   text-transform: uppercase;
-  margin: 32px 32px 8px;
+  width: fit-content;
+  position: absolute;
+  top: -8px;
 }
 
 .other-notes-title {

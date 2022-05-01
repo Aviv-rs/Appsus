@@ -14,24 +14,27 @@ export class _EmailList extends React.Component {
     folder: '',
     sortModal: false,
     noteId: null,
-      noteInfoTxt: null,
-      noteInfoUrl: null,
+    noteInfoTxt: null,
+    noteInfoUrl: null,
   }
   removeFilterEvent
   removeFolderEvent
 
   componentDidMount() {
     const urlSrcPrm = new URLSearchParams(this.props.location.search)
-  
+
     const noteId = urlSrcPrm.get('noteId')
     const noteInfoTxt = urlSrcPrm.get('noteInfoTxt')
     const noteInfoUrl = urlSrcPrm.get('noteInfoUrl')
     if (noteId) {
-      this.setState({noteId: noteId, noteInfoTxt: noteInfoTxt,noteInfoUrl: noteInfoUrl})
+      this.setState({
+        noteId: noteId,
+        noteInfoTxt: noteInfoTxt,
+        noteInfoUrl: noteInfoUrl,
+      })
     }
-    
+
     this.loadMails()
-    // this.onAddNoteAsMail()
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
       this.getFilter(filter)
     )
@@ -39,7 +42,6 @@ export class _EmailList extends React.Component {
       this.getFolder(folder)
     )
   }
-
 
   renderNote = note => {
     this.onToggleCompose()
@@ -77,14 +79,14 @@ export class _EmailList extends React.Component {
     emailService.removeMail(mailId).then(this.loadMails)
   }
 
-  onToggleCompose = (boolean) => {
-    if (boolean === false){
-      this.setState({noteId: null, noteInfoTxt: null,noteInfoUrl: null})
+  onToggleCompose = boolean => {
+    if (boolean === false) {
+      this.setState({ noteId: null, noteInfoTxt: null, noteInfoUrl: null })
     }
-    this.setState({ compose: boolean})
+    this.setState({ compose: boolean })
   }
 
-  onComposeNote = (type, txt,url) => {
+  onComposeNote = (type, txt, url) => {
     console.log(type)
     console.log(txt)
     console.log(url)
@@ -120,7 +122,10 @@ export class _EmailList extends React.Component {
         {unReadCount.toString() > 0 && (
           <span className="unread-mails">{unReadCount}</span>
         )}
-        <button onClick={()=>this.onToggleCompose(true)} className="compose-btn">
+        <button
+          onClick={() => this.onToggleCompose(true)}
+          className="compose-btn"
+        >
           + compose
         </button>
         <img
@@ -186,7 +191,9 @@ export class _EmailList extends React.Component {
           <EmailCompose
             onComposeNote={this.onComposeNote}
             onToggleCompose={this.onToggleCompose}
-            type ={this.state.noteId} txt={this.state.noteInfoTxt}url={this.state.noteInfoUrl}
+            type={this.state.noteId}
+            txt={this.state.noteInfoTxt}
+            url={this.state.noteInfoUrl}
           />
         )}
       </main>

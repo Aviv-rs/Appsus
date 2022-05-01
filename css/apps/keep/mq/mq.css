@@ -7,8 +7,8 @@
     max-width: 600px;
   }
 
-  .note-filter {
-    max-width: 600px;
+  .note-controls {
+    opacity: 1;
   }
 }
 
@@ -21,7 +21,7 @@
   }
 
   .note-filter {
-    width: 500px;
+    width: 400px;
   }
 }
 

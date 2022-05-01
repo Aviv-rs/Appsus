@@ -1,8 +1,8 @@
 .note-filter {
   position: absolute;
-  top: 0.875rem;
   left: 50%;
   transform: translateX(-50%);
+  top: 8px;
 }
 
 .filter-type-container {
@@ -17,10 +17,11 @@
   border: none;
   border-inline-end: 1px solid #c3bebe;
   outline: none;
+  background: #f1f3f4;
 }
 
 .custom-arrow {
-  background: #fff;
+  background: #f1f3f4;
   height: 100%;
   width: 1rem;
   pointer-events: none;
@@ -56,6 +57,8 @@
 }
 
 .note-search-input {
+  background: #f1f3f4;
+
   outline: none;
   height: 48px;
   width: 100%;

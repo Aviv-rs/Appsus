@@ -6,6 +6,7 @@
   padding: 0 16px;
   min-width: 330px;
   min-height: 46px;
+  margin: 0 auto 4rem;
 }
 
 .note-add.open .note-type-controls {

@@ -8,7 +8,6 @@ export class NoteIndex extends React.Component {
   state = {
     notes: null,
     filterBy: null,
-    pinnedNotes: null,
   }
 
   componentDidMount() {
@@ -33,6 +32,10 @@ export class NoteIndex extends React.Component {
     noteService.addNote(note).then(this.loadNotes)
   }
 
+  onUpdateNoteInfo = note => {
+    noteService.updateNoteInfo(note.id, note.info).then(this.loadNotes)
+  }
+
   onDeleteNote = noteId => {
     noteService.deleteNote(noteId).then(this.loadNotes)
   }
@@ -43,12 +46,12 @@ export class NoteIndex extends React.Component {
 
   loadNotes = filterBy => {
     noteService.query(filterBy).then(notes => {
-      const pinnedNotes = this.getPinnedNotes(notes)
-      this.setState({ notes, pinnedNotes })
+      this.setState({ notes })
     })
   }
 
   getPinnedNotes = notes => {
+    if (!notes) return
     return notes.filter(note => note.isPinned)
   }
 
@@ -69,8 +72,9 @@ export class NoteIndex extends React.Component {
   }
 
   render() {
-    const { notes, pinnedNotes } = this.state
-
+    const { notes } = this.state
+    const pinnedNotes = this.getPinnedNotes(notes)
+    let notesTitleClass
     return (
       <section className="note-index">
         <NoteFilter onSetFilter={this.onSetFilter} />
@@ -84,6 +88,7 @@ export class NoteIndex extends React.Component {
               onToggleTodo={this.onToggleTodo}
               onDeleteNote={this.onDeleteNote}
               onTogglePin={this.onTogglePin}
+              onUpdateNoteInfo={this.onUpdateNoteInfo}
               notes={pinnedNotes}
               isPinnedNotes={true}
             />
@@ -92,6 +97,7 @@ export class NoteIndex extends React.Component {
         {notes && (
           <React.Fragment>
             <NoteList
+              onUpdateNoteInfo={this.onUpdateNoteInfo}
               onDuplicateNote={this.onDuplicateNote}
               onChangeStyle={this.onChangeStyle}
               onToggleTodo={this.onToggleTodo}

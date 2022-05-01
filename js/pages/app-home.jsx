@@ -2,12 +2,12 @@ const { Link } = ReactRouterDOM
 
 export function AppHome() {
   return (
-    <section className="app-home ">
+    <section className="app-home slide-in-fwd-center">
       <object
         className="hero-home"
         data="assets\img\hero-cropped.svg"
         width="600"
-        height="600"
+        height="550"
       >
         {' '}
       </object>
@@ -18,7 +18,7 @@ export function AppHome() {
           alt="animated background circle"
         />
       </div>
-      <main className="welcome-section">
+      <main className="tracking-in-expand-fwd welcome-section">
         <p className="welcome-to-txt">Welcome to</p>
         <h1 className="appsus-title">Appsus</h1>
         <h3 className="explore-apps-txt">Explore our apps</h3>

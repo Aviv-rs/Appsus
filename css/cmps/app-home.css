@@ -29,19 +29,6 @@
   opacity: 0.3;
 }
 
-.rotate-center {
-  animation: rotate-center 120s linear infinite both;
-}
-
-@keyframes rotate-center {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .welcome-section {
   display: flex;
   flex-direction: column;
@@ -59,7 +46,7 @@
 }
 
 .appsus-title {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -75,4 +62,8 @@
   background: #f1f3f4;
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
   margin: 0 1rem;
+}
+
+.home-app-link:hover {
+  background: #eaecef;
 }
