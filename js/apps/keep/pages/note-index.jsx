@@ -21,10 +21,12 @@ export class NoteIndex extends React.Component {
   }
 
   onAddMailAsNote = mailId => {
-    const note = noteService.getById(mailId).then(note => note)
-    if (note) return
-    const mail = emailService.getById(mailId)
-    noteService.addMailAsNote(mail).then(this.loadNotes)
+    noteService.getById(mailId).then(note => {
+      if (!note) {
+        const mail = emailService.getById(mailId)
+        noteService.addMailAsNote(mail).then(this.loadNotes)
+      }
+    })
   }
 
   onAddNote = note => {

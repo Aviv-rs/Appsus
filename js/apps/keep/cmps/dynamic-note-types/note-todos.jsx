@@ -18,12 +18,25 @@ export class NoteTodos extends React.Component {
 
   render() {
     const { todos } = this.state
-    const { note, onDeleteNote, onChangeStyle, onDuplicateNote, onTogglePin } =
-      this.props
+    const {
+      note,
+      onDeleteNote,
+      onChangeStyle,
+      onDuplicateNote,
+      onTogglePin,
+      onUpdateNoteInfo,
+    } = this.props
     if (!todos) return <div className="loader">loading...</div>
     return (
       <div style={note.style} className="note note-todos">
-        <p className="note-title">{note.info.title}</p>
+        <p
+          // onChange={()=>onUpdateNoteInfo()}
+          contentEditable="true"
+          suppressContentEditableWarning="true"
+          className="note-title"
+        >
+          {note.info.title}
+        </p>
 
         <ul>
           {todos.map((todo, idx) => {
