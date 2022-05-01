@@ -8,7 +8,6 @@ export const emailService = {
   removeMail,
   sendMail,
   sortMail,
-  filter,
 }
 
 const KEY = 'emailDB'
@@ -16,10 +15,10 @@ const loggedinUser = {
   email: 'user@appsus.com',
   fullname: 'Mahatma Appsus',
 }
-let gMails
+// let gMails
 
 function query(filterBy, folderBy) {
-  gMails = _loadFromStorage()
+  let gMails = _loadFromStorage()
   if (!gMails) {
     gMails = _createMails()
     _saveToStorage(gMails)
@@ -38,12 +37,9 @@ function query(filterBy, folderBy) {
   return Promise.resolve(gMails)
 }
 
-function filter(filterBy = '', folderBy = '') {
-  return Promise.resolve(gMails)
-}
 
 function getById(id) {
-  gMails = _loadFromStorage()
+  let gMails = _loadFromStorage()
   const mail = gMails.find(mail => mail.id === id)
   if (!mail) return
   mail.isRead = true
@@ -52,6 +48,7 @@ function getById(id) {
 }
 
 function markAsUnread(id) {
+  let gMails = _loadFromStorage()
   if (!gMails || !gMails.length) return
   const mail = gMails.find(mail => mail.id === id)
   mail.isRead = !mail.isRead
@@ -60,6 +57,7 @@ function markAsUnread(id) {
 }
 
 function removeMail(id) {
+  let gMails = _loadFromStorage()
   if (!gMails) return
   const mailIdx = gMails.findIndex(mail => mail.id === id)
   gMails.splice(mailIdx, 1)
@@ -68,6 +66,7 @@ function removeMail(id) {
 }
 
 function sendMail(to, subject, body) {
+  let gMails = _loadFromStorage()
   const newMail = {
     id: utilService.makeId(),
     status: 'Sent Mail',
@@ -85,6 +84,7 @@ function sendMail(to, subject, body) {
 }
 
 function sortMail(sorter) {
+  let gMails = _loadFromStorage()
   if (!gMails) return
   switch (sorter) {
     case 'Oldest to Newest':

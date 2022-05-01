@@ -1,8 +1,8 @@
 import { emailService } from "../services/email.service.js"
-const { Link } = ReactRouterDOM
+const { withRouter } = ReactRouterDOM
 
 
-export class EmailCompose extends React.Component {
+class _EmailCompose extends React.Component {
   state = {
     message: {
       to: '',
@@ -40,7 +40,7 @@ export class EmailCompose extends React.Component {
 
   onCloseModal = () => {
     this.setState({to:'', subject:'', textarea:''})
-    this.props.onToggleCompose()
+    this.props.onToggleCompose(false)
   }
 
   onSendMail = (ev) => {
@@ -49,6 +49,7 @@ export class EmailCompose extends React.Component {
     if (!to|| to=== undefined)return alert('Please add a send email')
     emailService.sendMail(to, subject, textarea).then(() => {
       this.onCloseModal()
+      this.props.history.push(`/mail`)
     })
   }
 
@@ -66,7 +67,7 @@ export class EmailCompose extends React.Component {
       valueBody=textarea
     }
     return (
-      // <Link to={'/mail'}></Link>
+      
       <div className="email-compose">
         <h4 className="compose-header flex">New Message<span className="exit-compose" onClick={this.onCloseModal}>X</span></h4>
         <form onSubmit={this.onSendMail}>
@@ -75,9 +76,11 @@ export class EmailCompose extends React.Component {
           <input value={valueSubject} name="subject" type="text" className="compose-input" placeholder="Subject" onChange={this.handleChange} />
           <hr />
           <textarea value={valueBody} name="textarea" className="compose-text-area" onChange={this.handleChange} id="" cols="30" rows="10"></textarea>
-          <button className="send-btn">Send</button>
+         <button className="send-btn">Send</button>
         </form>
       </div>
     )
   }
 }
+
+export const EmailCompose = withRouter(_EmailCompose)

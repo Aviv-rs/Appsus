@@ -2,10 +2,10 @@ import { emailService } from '../services/email.service.js'
 import { EmailCompose } from './email-compose.jsx'
 import { eventBusService } from '../../../services/event-bus-service.js'
 import { utilService } from '../../../services/util.service.js'
-
+const { withRouter } = ReactRouterDOM
 const { Link } = ReactRouterDOM
 
-export class EmailList extends React.Component {
+export class _EmailList extends React.Component {
   state = {
     mails: [],
     unReadCount: 0,
@@ -13,11 +13,23 @@ export class EmailList extends React.Component {
     filter: '',
     folder: '',
     sortModal: false,
+    noteId: null,
+      noteInfoTxt: null,
+      noteInfoUrl: null,
   }
   removeFilterEvent
   removeFolderEvent
 
   componentDidMount() {
+    const urlSrcPrm = new URLSearchParams(this.props.location.search)
+  
+    const noteId = urlSrcPrm.get('noteId')
+    const noteInfoTxt = urlSrcPrm.get('noteInfoTxt')
+    const noteInfoUrl = urlSrcPrm.get('noteInfoUrl')
+    if (noteId) {
+      this.setState({noteId: noteId, noteInfoTxt: noteInfoTxt,noteInfoUrl: noteInfoUrl})
+    }
+    
     this.loadMails()
     // this.onAddNoteAsMail()
     this.removeFilterEvent = eventBusService.on('filter-submit', filter =>
@@ -29,14 +41,8 @@ export class EmailList extends React.Component {
   }
 
 
-  // onAddNoteAsMail=()=>{
-  //   if (this.props.noteId){
-  //   } 
-  // }
-
   renderNote = note => {
     this.onToggleCompose()
-    // this.onComposeNote(note)
     console.log(note)
   }
 
@@ -61,28 +67,21 @@ export class EmailList extends React.Component {
     })
   }
 
-  reLoadMails = mailsType => {
-    this.setState({ mails: mailsType })
-    this.setState({ unReadCount: 0 })
-    mailsType.forEach(mail => {
-      if (mail.isRead === false) {
-        this.setState({ unReadCount: this.state.unReadCount + 1 })
-      }
-    })
-  }
-
   onMarkUnread = (ev, mailId) => {
     ev.preventDefault()
-    emailService.markAsUnread(mailId).then(this.reLoadMails)
+    emailService.markAsUnread(mailId).then(this.loadMails)
   }
 
   onDeleteMail = (ev, mailId) => {
     ev.preventDefault()
-    emailService.removeMail(mailId).then(this.reLoadMails)
+    emailService.removeMail(mailId).then(this.loadMails)
   }
 
-  onToggleCompose = () => {
-    this.setState({ compose: !this.state.compose })
+  onToggleCompose = (boolean) => {
+    if (boolean === false){
+      this.setState({noteId: null, noteInfoTxt: null,noteInfoUrl: null})
+    }
+    this.setState({ compose: boolean})
   }
 
   onComposeNote = (type, txt,url) => {
@@ -97,7 +96,7 @@ export class EmailList extends React.Component {
 
   onSortBy = ({ target }) => {
     this.onToggleSortModal()
-    emailService.sortMail(target.innerText).then(this.reLoadMails)
+    emailService.sortMail(target.innerText).then(this.loadMails)
   }
 
   onShortMailBody = body => {
@@ -111,7 +110,6 @@ export class EmailList extends React.Component {
   componentWillUnmount() {
     this.removeFilterEvent()
     this.removeFolderEvent()
-    // this.removeNoteEvent()
   }
 
   render() {
@@ -122,7 +120,7 @@ export class EmailList extends React.Component {
         {unReadCount.toString() > 0 && (
           <span className="unread-mails">{unReadCount}</span>
         )}
-        <button onClick={this.onToggleCompose} className="compose-btn">
+        <button onClick={()=>this.onToggleCompose(true)} className="compose-btn">
           + compose
         </button>
         <img
@@ -184,19 +182,15 @@ export class EmailList extends React.Component {
             })}
           </ul>
         )}
-        {compose || this.props.noteId && (
+        {(compose || this.state.noteId) && (
           <EmailCompose
             onComposeNote={this.onComposeNote}
             onToggleCompose={this.onToggleCompose}
+            type ={this.state.noteId} txt={this.state.noteInfoTxt}url={this.state.noteInfoUrl}
           />
-        )}
-        {this.props.noteId && (
-          <EmailCompose
-          type ={this.props.noteId} txt={this.props.noteInfoTxt}url={this.props.noteInfoUrl}
-          onToggleCompose={this.onToggleCompose}
-        />
         )}
       </main>
     )
   }
 }
+export const EmailList = withRouter(_EmailList)

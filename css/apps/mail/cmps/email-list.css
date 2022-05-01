@@ -78,26 +78,27 @@ a.link-to-details.read  {
 .compose-btn{
     position: absolute;
     left: 0.5rem;
-    top: 13.5rem;
+    top: 12.5rem;
     width: 6.5rem;
     border-radius: 20px;
     padding: 5px;
     border: none;
     font-size: large;
-    color: white;
-    background-color: var(--logo-clr4);
+    color: var(--logo-font);
+    background-color: var(--logo-clr6);
 }
 .compose-btn:hover{
-    background-color: #e1a738;
+    background-color: #4be897;
 }
 .unread-mails{
     position: absolute;
-    top: 6rem;
+    top: 4rem;
     left: 6rem;
     background-color: var(--logo-clr4);
     padding: 7px;
     border-radius: 50%;
-    color: white;
+    color: var(--logo-font);
+    background-color: var(--logo-clr6);
     font-weight: bold;
 }
 .sort-modal{

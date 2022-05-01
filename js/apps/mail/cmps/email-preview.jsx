@@ -7,7 +7,6 @@ export class EmailPreview extends React.Component {
 
 
   render() {
-    const { noteId, noteInfoTxt,noteInfoUrl } = this.props
     return (
       <main className="email-preview">
         <div className="mail-logo">
@@ -15,7 +14,7 @@ export class EmailPreview extends React.Component {
           <h1 className="mail-logo-header">MailSus</h1>
         </div>
         <EmailFilter className="email-filter" />
-        <EmailList noteId={noteId} noteInfoTxt={noteInfoTxt} noteInfoUrl={noteInfoUrl}/>
+        <EmailList />
         <EmailFolderList />
       </main>
     )
