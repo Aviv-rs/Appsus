@@ -2,7 +2,6 @@ import { emailService } from '../services/email.service.js'
 import { EmailCompose } from './email-compose.jsx'
 import { eventBusService } from '../../../services/event-bus-service.js'
 import { utilService } from '../../../services/util.service.js'
-import {NoteService} from '../../keep/services/note.service'
 
 const { Link } = ReactRouterDOM
 
