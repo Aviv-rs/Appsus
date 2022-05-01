@@ -57,16 +57,16 @@
     .compose-btn {
         position: fixed;
         left: auto;
-        right: 0.5rem;
-        top: 54.5rem;
-        bottom: 1rem;
+        right: 1.5rem;
+        top: 50.5rem;
+        bottom: 5rem;
     }
     .mail-folder{
         display: none;
     }
     .filter-input{
         width: 45%;
-        top: 6.5rem;
+        top: 0.5rem;
         left: 8rem;
     }
     .app-footer{
@@ -88,8 +88,35 @@
 }
  
 @media (max-width: 480px){
+   .app-header{
+    display: contents;
+   }
+    .header-image, .three-dots-btn, .sort-modal, .mail-logo, .unread-mails {
+        display: none;
+    }
+
+    .filter-input{
+        width: 60%;
+        top: 2rem;
+        left: 1.5rem;
+    }
 
     .page-nav {
-        height: 2vh;
+       
+        position: absolute;
+        right: 3rem;
+        top: 2.5rem;
+    }
+    .email-list {
+        margin-top: 40px;
+    }
+    .list-btn {
+        display: flex;
+        opacity: 1;
+    }
+    li.email-line {
+        grid-template-columns: 150px 50px 50px;
+        justify-content: space-between;
+        
     }
 }

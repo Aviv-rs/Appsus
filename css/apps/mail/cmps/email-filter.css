@@ -6,11 +6,12 @@
 }
 
 .filter-input{
-    width: 59%;
+    border: none;
+    width: 47%;
     height: 2.5rem;
     border-radius: 7px;
     background-color: snow;
     position: absolute;
-    top: 1.5rem;
+    top: 0.8rem;
     left: 15rem;
 }
