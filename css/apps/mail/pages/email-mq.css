@@ -88,25 +88,20 @@
 }
  
 @media (max-width: 480px){
-   .app-header{
-    display: contents;
-   }
-    .header-image, .three-dots-btn, .sort-modal, .mail-logo, .unread-mails {
+ 
+     .mail-logo, .unread-mails {
         display: none;
+    }
+    .three-dots-btn{
+        top: 5rem;
     }
 
     .filter-input{
         width: 60%;
-        top: 2rem;
+        top: 5rem;
         left: 1.5rem;
     }
 
-    .page-nav {
-       
-        position: absolute;
-        right: 3rem;
-        top: 2.5rem;
-    }
     .email-list {
         margin-top: 40px;
     }
