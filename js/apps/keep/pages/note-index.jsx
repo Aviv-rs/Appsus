@@ -25,20 +25,20 @@ export class NoteIndex extends React.Component {
     const note = noteService.getById(mailId).then(note => note)
     if (note) return
     const mail = emailService.getById(mailId)
-    noteService.addMailAsNote(mail).then(this.loadNotes())
+    noteService.addMailAsNote(mail).then(this.loadNotes)
   }
 
   onAddNote = note => {
     if (!note.info.txt && !note.info.url && !note.info.todos) return
-    noteService.addNote(note).then(this.loadNotes())
+    noteService.addNote(note).then(this.loadNotes)
   }
 
   onDeleteNote = noteId => {
-    noteService.deleteNote(noteId).then(this.loadNotes())
+    noteService.deleteNote(noteId).then(this.loadNotes)
   }
 
   onToggleTodo = (todoId, noteId) => {
-    noteService.toggleTodo(todoId, noteId).then(this.loadNotes())
+    noteService.toggleTodo(todoId, noteId).then(this.loadNotes)
   }
 
   loadNotes = filterBy => {

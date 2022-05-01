@@ -6,6 +6,10 @@
   .note-add {
     max-width: 600px;
   }
+
+  .note-filter {
+    max-width: 600px;
+  }
 }
 
 @media (min-width: 650px) {
@@ -15,11 +19,18 @@
   .note-add {
     width: 600px;
   }
+
+  .note-filter {
+    width: 500px;
+  }
 }
 
 @media (min-width: 890px) {
   .note-list {
     width: 750px;
+  }
+  .note-filter {
+    width: 600px;
   }
 }
 
