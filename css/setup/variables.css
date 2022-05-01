@@ -1,9 +1,9 @@
-:root{
-    --logo-clr1: #F24C00;
-    --logo-clr2: #039BE5;
-    --logo-clr4: #FDB833;
-    --logo-clr5: #667761;
-    --logo-clr6: #A9E5BB;
-    --logo-font: #574853;
-
+:root {
+  --logo-clr1: #7a799c;
+  --logo-clr2: #039be5;
+  --logo-clr4: #f2f2f2;
+  --logo-clr5: #667761;
+  --logo-clr6: #a9e5bb;
+  --logo-font: #574853;
+  --dark-gray: #222326;
 }
