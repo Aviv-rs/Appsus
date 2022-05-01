@@ -20,6 +20,8 @@ export function NoteVideo({
         frameBorder={0}
         allow={'fullscreen'}
       ></iframe>
+      <p className="note-title">{note.info.title}</p>
+
       <NoteControls
         note={note}
         onChangeStyle={onChangeStyle}

@@ -8,6 +8,12 @@
   min-height: 46px;
 }
 
+.note-add.open .note-type-controls {
+  position: static;
+  align-self: flex-end;
+  margin: 4px 0;
+}
+
 .title-placeholder {
   letter-spacing: 0.00625em;
   font-family: 'Google Sans', Roboto, Arial, sans-serif;
@@ -25,14 +31,20 @@
 .note-info-placeholder {
   padding: 10px 15px;
   color: rgba(0, 0, 0, 0.702);
-  letter-spacing: 0.01785714em;
-  font-family: 'Google Sans', Roboto, Arial, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 500;
   line-height: 1.25rem;
   position: absolute;
   width: 100%;
   pointer-events: none;
+  letter-spacing: 0.00625em;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.note-add.open .note-info-placeholder {
+  letter-spacing: 0.01785714em;
+  font-size: 0.875rem;
 }
 
 .add-title-input {

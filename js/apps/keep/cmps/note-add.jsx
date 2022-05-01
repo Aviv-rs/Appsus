@@ -18,12 +18,12 @@ export class NoteAdd extends React.Component {
 
   infoPlaceholderRef = React.createRef()
 
-  titlePlaceholderRef = React.createRef()
+  titleInputRef = React.createRef()
 
   onDoneCompose = () => {
     this.setState({ isComposing: false })
-    this.titlePlaceholderRef.current.innerText = ''
-    this.infoPlaceholderRef.current.innerText = ''
+    this.inputRef.current.innerText = ''
+    this.titleInputRef.current.innerText = ''
   }
 
   onCompose = ev => {
@@ -95,7 +95,7 @@ export class NoteAdd extends React.Component {
             contentEditable="true"
             onFocus={this.onCompose}
             suppressContentEditableWarning="true"
-            ref={this.titlePlaceholderRef}
+            ref={this.titleInputRef}
           ></div>
         </div>
 
@@ -104,11 +104,6 @@ export class NoteAdd extends React.Component {
             Take a note...
           </div>
           <div
-            // onBlur={ev => {
-            //   this.props.onAddNote(ev, note)
-            //   this.setState({ isPlaceholder: true })
-            //   this.titlePlaceholderRef.current.innerText = ''
-            // }}
             type="note-txt"
             data-field="txt"
             name="txt"

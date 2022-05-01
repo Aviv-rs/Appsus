@@ -23,6 +23,8 @@ export class NoteTodos extends React.Component {
     if (!todos) return <div className="loader">loading...</div>
     return (
       <div style={note.style} className="note note-todos">
+        <p className="note-title">{note.info.title}</p>
+
         <ul>
           {todos.map((todo, idx) => {
             const todoClass = todo.isDone ? 'todo done' : 'todo'
