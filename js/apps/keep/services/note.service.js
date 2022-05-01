@@ -23,17 +23,18 @@ function query(filterBy) {
     _saveToStorage(notes)
   }
   if (filterBy) {
-    let { txt, type, label } = filterBy
+    let { txt, type } = filterBy
 
     notes = notes.filter(note => {
-      let { txt: noteTxt } = note.info
-      if (!noteTxt) noteTxt = ''
+      let { txt: noteTxt = '', title = '' } = note.info
+      console.log(title)
       if (note.type === 'note-todos') {
         noteTxt = note.info.todos.map(note => note.txt).join(' ')
       }
 
       return (
         noteTxt.toLowerCase().includes(txt.toLowerCase()) &&
+        noteTxt.toLowerCase().includes(title.toLowerCase()) &&
         note.type.includes(type)
       )
     })
@@ -43,6 +44,7 @@ function query(filterBy) {
 
 function _createNotes() {
   return [
+    _createNote('note-txt', true, { txt: 'Learn React' }),
     _createNote('note-txt', false, { txt: 'NOTEice me senpai' }),
     _createNote('note-todos', false, {
       todos: [
