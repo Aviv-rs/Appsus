@@ -184,7 +184,7 @@ export class EmailList extends React.Component {
             })}
           </ul>
         )}
-        {compose && (
+        {compose || this.props.noteId && (
           <EmailCompose
             onComposeNote={this.onComposeNote}
             onToggleCompose={this.onToggleCompose}

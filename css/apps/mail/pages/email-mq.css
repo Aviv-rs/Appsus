@@ -9,14 +9,17 @@
         width: 90%;
         margin-left:7rem
     }
-    .filter-input {
-        width: 50%;
-    }
+    
 }
 @media (min-width: 780px){
     .email-list{
         width: 90%;
         margin-left:7rem
+    }
+    .three-dots-btn {
+        height: 35px;
+        position: absolute;
+        right: 1rem;
     }
 }
 @media (min-width: 640px){
@@ -24,16 +27,22 @@
         width: 90%;
         margin-left:7rem
     }
-    .filter-input {
-        width: 40%;
+    
+    .three-dots-btn {
+        height: 35px;
+        position: absolute;
+        right: 1rem;
     }
 }
 @media (max-width: 640px){
     .email-list{
-        margin-top: 25px;
+        margin-top: 20px;
+        width: 100%;
     }
-    li.email-line{
-        width: fit-content;
+    .three-dots-btn {
+        height: 35px;
+        position: absolute;
+        right: 1rem;
     }
     .mail-logo-img{
         height: 2rem
@@ -45,15 +54,22 @@
     .mail-logo-header{
         font-size: 16px;
     }
-    .filter-input {
-        width: 40%;
-    }
     .compose-btn {
+        position: fixed;
         left: auto;
         right: 0.5rem;
-        top: 6.5rem;
+        top: 54.5rem;
+        bottom: 1rem;
     }
-    .email-folder-list-item{
+    .mail-folder{
+        display: none;
+    }
+    .filter-input{
+        width: 45%;
+        top: 6.5rem;
+        left: 8rem;
+    }
+    .app-footer{
         display: none;
     }
     
@@ -68,5 +84,12 @@
     }
     .email-list{
         flex-direction: row;
+    }
+}
+ 
+@media (max-width: 480px){
+
+    .page-nav {
+        height: 2vh;
     }
 }

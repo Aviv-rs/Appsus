@@ -39,13 +39,14 @@ export class EmailCompose extends React.Component {
 
 
   onCloseModal = () => {
+    this.setState({to:'', subject:'', textarea:''})
     this.props.onToggleCompose()
   }
 
   onSendMail = (ev) => {
     const { to, subject, textarea } = this.state.message
     ev.preventDefault()
-    if (!to) alert('Please add a send email')
+    if (!to|| to=== undefined)return alert('Please add a send email')
     emailService.sendMail(to, subject, textarea).then(() => {
       this.onCloseModal()
     })
@@ -65,15 +66,16 @@ export class EmailCompose extends React.Component {
       valueBody=textarea
     }
     return (
+      // <Link to={'/mail'}></Link>
       <div className="email-compose">
-        <h4 className="compose-header flex">New Message <span onClick={this.onCloseModal}>X</span></h4>
+        <h4 className="compose-header flex">New Message<span className="exit-compose" onClick={this.onCloseModal}>X</span></h4>
         <form onSubmit={this.onSendMail}>
           <input name="to" type="email" className="compose-input" placeholder="To" onChange={this.handleChange} />
           <hr />
           <input value={valueSubject} name="subject" type="text" className="compose-input" placeholder="Subject" onChange={this.handleChange} />
           <hr />
           <textarea value={valueBody} name="textarea" className="compose-text-area" onChange={this.handleChange} id="" cols="30" rows="10"></textarea>
-          <button onClick={this.onCloseModal} className="send-btn">Send</button>
+          <button className="send-btn">Send</button>
         </form>
       </div>
     )

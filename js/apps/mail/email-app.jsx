@@ -2,9 +2,9 @@ import { EmailPreview } from './cmps/email-preview.jsx'
 
 export class EmailApp extends React.Component {
   state = {
-    noteId: null,
-    noteInfoTxt: null,
-    noteInfoUrl: null,
+      noteId: null,
+      noteInfoTxt: null,
+      noteInfoUrl: null,
   }
   
 
@@ -15,14 +15,9 @@ export class EmailApp extends React.Component {
     const noteInfoTxt = urlSrcPrm.get('noteInfoTxt')
     const noteInfoUrl = urlSrcPrm.get('noteInfoUrl')
     if (noteId) {
-      this.setState({noteId: noteId})
+      this.setState({noteId: noteId, noteInfoTxt: noteInfoTxt,noteInfoUrl: noteInfoUrl})
     }
-    if (noteInfoTxt) {
-      this.setState({noteInfoTxt: noteInfoTxt})
-    }
-    if (noteInfoUrl) {
-      this.setState({noteInfoUrl: noteInfoUrl})
-    }
+    
   }
   
 

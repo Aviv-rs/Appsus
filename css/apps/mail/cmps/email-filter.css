@@ -6,8 +6,11 @@
 }
 
 .filter-input{
-    width: 70%;
+    width: 59%;
     height: 2.5rem;
     border-radius: 7px;
     background-color: snow;
+    position: absolute;
+    top: 1.5rem;
+    left: 15rem;
 }

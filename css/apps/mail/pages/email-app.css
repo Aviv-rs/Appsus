@@ -1,3 +1,4 @@
 .email-app{
     background: #e8eaed;
+    min-height: clac(100vh - 45px);
 }

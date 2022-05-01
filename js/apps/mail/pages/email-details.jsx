@@ -16,7 +16,6 @@ export class EmailDetails extends React.Component {
 
   loadMail = () => {
     const { mailId } = this.props.match.params
-    // debugger
     let mailToDis = emailService.getById(mailId)
     this.setState({ mail: mailToDis })
   }

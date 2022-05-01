@@ -4,7 +4,7 @@
     cursor:pointer;
 }
 
-.email-folder-list-item:hover{
+.mail-folder:hover{
     background-color: white;
     border-radius: 15px;
     cursor: pointer;
